@@ -1,16 +1,15 @@
 package com.example.demo.model.vente;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class Panier {
@@ -19,20 +18,21 @@ public class Panier {
 	private int id;
 	@Column(length = 255)
 	@NotBlank
+	@NotNull
 	private String ModePaiement;
 	@NotBlank
-	private LocalDateTime DateCreation;
+	@NotNull
+	private Date DateCreation;
 	@NotBlank
+	@NotNull
 	private double TotalePrix;
 	
 	public Panier() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@OneToMany(mappedBy = "panier")
-	private List<Commande> commande;
 	
-	public Panier(String modePaiement, LocalDateTime dateCreation, double totalePrix) {
+	public Panier(String modePaiement, Date dateCreation, double totalePrix) {
 		super();
 		ModePaiement = modePaiement;
 		DateCreation = dateCreation;
@@ -51,10 +51,10 @@ public class Panier {
 	public void setModePaiement(String modePaiement) {
 		ModePaiement = modePaiement;
 	}
-	public LocalDateTime getDateCreation() {
+	public Date getDateCreation() {
 		return DateCreation;
 	}
-	public void setDateCreation(LocalDateTime dateCreation) {
+	public void setDateCreation(Date dateCreation) {
 		DateCreation = dateCreation;
 	}
 	public double getTotalePrix() {

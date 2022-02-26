@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -15,7 +16,8 @@ public class Categories {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(length = 50, nullable = false)
+	@Column(length = 50)
+	@NotNull
 	private String Nom;
 	
 	@ManyToMany(mappedBy = "categorie")

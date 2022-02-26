@@ -4,14 +4,23 @@ import java.sql.Date;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.vente.Livraison;
 
+@Repository
 public interface LivraisonSearchRepository extends JpaRepository<Livraison, Integer> {
-	Optional<Livraison> findByDateSortie(Date DateSortie);
-	Optional<Livraison> findByAdrClient(String AdresseClient);
-	Optional<Livraison>	findByFraisLiv(float FraisLiv);
-	Optional<Livraison> findByNbreJour(String NbreJour);
-	Optional<Livraison> findByAdrSociete(String AdresseSociete);
-	Optional<Livraison>	findByEtat(String Etat);
+	@Query(value = "SELECT DateSortie FROM Livraison")
+	Optional<Livraison> SearchByDateSortie(Date DateSortie);
+	@Query(value = "SELECT AdresseClient FROM Livraison")
+	Optional<Livraison> SearchByAdresseClient(String AdresseClient);
+	@Query(value = "SELECT FraisLiv FROM Livraison")
+	Optional<Livraison>	SearchByFraisLiv(float FraisLiv);
+	@Query(value = "SELECT NbreJour FROM Livraison")
+	Optional<Livraison> SearchByJour(int NbreJour);
+	@Query(value = "SELECT AdresseSociete FROM Livraison")
+	Optional<Livraison> SearchByAdresseSociete(String AdresseSociete);
+	@Query(value = "SELECT Etat FROM Livraison")
+	Optional<Livraison>	SearchByEtat(String Etat);
 }

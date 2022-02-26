@@ -3,10 +3,15 @@ package com.example.demo.repo.search;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.vente.Categories;
 
+@Repository
 public interface CategoriesSearchRepository extends JpaRepository<Categories, Integer> {
-	Optional<Categories> findById(int id);
-	Optional<Categories> findByNom(String Nom);
+	@Query(value = "SELECT id FROM Categories")
+	Optional<Categories> SearchById(Integer id);
+	@Query(value = "SELECT Nom FROM Categories")
+	Optional<Categories> SearchByNom(String Nom);
 }

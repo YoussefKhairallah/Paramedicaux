@@ -1,49 +1,43 @@
 package com.example.demo.model.users;
 
-import java.time.LocalDateTime;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import java.util.Date;
 
 @Entity
 public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@NotNull
 	@Column(length = 255)
 	@NotBlank
-	private String desc;
-	@Column(nullable = false)
-	private LocalDateTime Date;
+	private String Description;
+	@NotNull
+	@NotBlank
+	private Date Date;
 	@Column(length = 50)
 	@NotBlank
+	@NotNull
 	private String Type;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<User> user;
+	@ManyToOne
+	private User admin;
 	
-	@OneToMany
-	private Set<User> client;
+	@ManyToOne
+	private User client;
 	
 	public Message() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Message(@NotBlank String desc, LocalDateTime date, @NotBlank String type) {
-		super();
-		this.desc = desc;
-		Date = date;
-		Type = type;
 	}
 
 	public int getId() {
@@ -54,19 +48,19 @@ public class Message {
 		this.id = id;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return Description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		Description = description;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return Date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		Date = date;
 	}
 
@@ -78,26 +72,35 @@ public class Message {
 		Type = type;
 	}
 
-	public Set<User> getUser() {
-		return user;
+	public User getAdmin() {
+		return admin;
 	}
 
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setAdmin(User admin) {
+		this.admin = admin;
 	}
 
-	public Set<User> getClient() {
+	public User getClient() {
 		return client;
 	}
 
-	public void setClient(Set<User> client) {
+	public void setClient(User client) {
 		this.client = client;
+	}
+
+	public Message(@NotBlank String description, Date date, @NotBlank String type) {
+		super();
+		Description = description;
+		Date = date;
+		Type = type;
 	}
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", desc=" + desc + ", Date=" + Date + ", Type=" + Type + "]";
+		return "Message [id=" + id + ", Description=" + Description + ", Date=" + Date + ", Type=" + Type +
+				"]";
 	}
+
 	
 
 }

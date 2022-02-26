@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.example.demo.model.users.User;
 
 @Entity
 public class Commande {
@@ -17,15 +20,20 @@ public class Commande {
 	private int id;
 	@Column(length = 255)
 	@NotBlank
+	@NotNull
 	private String Adresse;
 	@NotBlank
+	@NotNull
 	private double PrixTotale;
 	@NotBlank
+	@NotNull
 	private int Qte;
 	@Column(length = 50)
 	@NotBlank
+	@NotNull
 	private String Etat;
 	@NotBlank
+	@NotNull
 	private LocalDateTime Date;
 	
 	public Commande() {
@@ -35,6 +43,9 @@ public class Commande {
 	
 	@ManyToOne
 	private Panier panier;
+	
+	@ManyToOne
+	private User client;
 	
 	public Commande(String adresse, double prixTotale, int qte, String etat, LocalDateTime date) {
 		super();

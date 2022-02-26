@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -20,19 +21,25 @@ public class Produit {
 	private int id;
 	@Column(length = 255)
 	@NotBlank
+	@NotNull
 	private  String Nom;
 	@NotBlank
+	@NotNull
 	private int Qte;
 	@NotBlank
+	@NotNull
 	private double Prix;
 	@Column(length = 255)
 	@NotBlank
-	private String Desc;
+	@NotNull
+	private String Description;
 	@Column(length = 255)
 	@NotBlank
+	@NotNull
 	private String Image;
 	@Column(length = 255)
 	@NotBlank
+	@NotNull
 	private String Fournisseur;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -43,12 +50,12 @@ public class Produit {
 		super();
 	}
 	
-	public Produit(String nom, int qte, double prix, String desc, String image, String fournisseur) {
+	public Produit(String nom, int qte, double prix, String description, String image, String fournisseur) {
 		super();
 		Nom = nom;
 		Qte = qte;
 		Prix = prix;
-		Desc = desc;
+		Description = description;
 		Image = image;
 		Fournisseur = fournisseur;
 	}
@@ -78,10 +85,10 @@ public class Produit {
 		Prix = prix;
 	}
 	public String getDesc() {
-		return Desc;
+		return Description;
 	}
-	public void setDesc(String desc) {
-		Desc = desc;
+	public void setDesc(String description) {
+		Description = description;
 	}
 	public String getImage() {
 		return Image;
@@ -98,7 +105,7 @@ public class Produit {
 
 	@Override
 	public String toString() {
-		return "Produit [id=" + id + ", Nom=" + Nom + ", Qte=" + Qte + ", Prix=" + Prix + ", Desc=" + Desc + ", Image="
+		return "Produit [id=" + id + ", Nom=" + Nom + ", Qte=" + Qte + ", Prix=" + Prix + ", description=" + Description + ", Image="
 				+ Image + ", Fournisseur=" + Fournisseur + "]";
 	}
 

@@ -1,14 +1,14 @@
 package com.example.demo.model.users;
 
-import java.time.LocalDateTime;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import java.util.Date;
 import com.example.demo.model.vente.Produit;
 
 
@@ -17,14 +17,15 @@ public class Avis {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(length = 255)
+	@NotNull
 	@NotBlank
-	private String desc;
-@NotBlank
-	private LocalDateTime Date;
-	
+	private String Description;
+	@NotBlank
+	@NotNull
+	private Date Date;
+
 	@ManyToOne
-	private User user;
+	private User client;
 	
 	@ManyToOne
 	private Produit produit;
@@ -35,16 +36,12 @@ public class Avis {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-	public Avis(@NotBlank String desc, @NotBlank LocalDateTime date) {
+	public Avis(@NotBlank String description, @NotBlank Date date) {
 		super();
-		this.desc = desc;
+		Description = description;
 		Date = date;
 	
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -57,32 +54,32 @@ public class Avis {
 
 
 	public String getDesc() {
-		return desc;
+		return Description;
 	}
 
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDesc(String description) {
+		this.Description = description;
 	}
 
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return Date;
 	}
 
 
-	public void setDate(LocalDateTime date) {
-		Date = date;
+	public void setDate(Date date) {
+		this.Date = date;
 	}
 
 
 	public User getUser() {
-		return user;
+		return client;
 	}
 
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(User client) {
+		this.client = client;
 	}
 
 
@@ -98,7 +95,7 @@ public class Avis {
 
 	@Override
 	public String toString() {
-		return "Avis [id=" + id + ", desc=" + desc + ", Date=" + Date + "]";
+		return "Avis [id=" + id + ", description=" + Description + ", Date=" + Date + "]";
 	}
 	
 	

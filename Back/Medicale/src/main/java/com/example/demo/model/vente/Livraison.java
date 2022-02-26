@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.example.demo.model.users.User;
 
 @Entity
 public class Livraison {
@@ -15,29 +19,40 @@ public class Livraison {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@NotBlank
+	@NotNull
 	private Date DateSortie;
 	@Column(length = 255)
 	@NotBlank
+	@NotNull
 	private String AdresseClient;
 	@NotBlank
+	@NotNull
 	private float FraisLiv;
 	@Column(length = 50)
 	@NotBlank
-	private String NbreJour;
+	@NotNull
+	private int NbreJour;
 	@Column(length = 255)
 	@NotBlank
+	@NotNull
 	private String AdresseSociete;
 	@NotBlank
 	@Column(length = 50)
+	@NotNull
 	private String Etat;
 	
+	@ManyToOne
+	private User livreur;
+	
+	@ManyToOne
+	private Commande commande;
 
 	public Livraison() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Livraison(Date dateSortie, String adresseClient, float fraisLiv, String nbreJour, String adresseSociete,String etat) {
+	public Livraison(Date dateSortie, String adresseClient, float fraisLiv, int nbreJour, String adresseSociete,String etat) {
 		super();
 		DateSortie = dateSortie;
 		AdresseClient = adresseClient;
@@ -71,10 +86,10 @@ public class Livraison {
 	public void setFraisLiv(float fraisLiv) {
 		FraisLiv = fraisLiv;
 	}
-	public String getNbreJour() {
+	public int getNbreJour() {
 		return NbreJour;
 	}
-	public void setNbreJour(String nbreJour) {
+	public void setNbreJour(int nbreJour) {
 		NbreJour = nbreJour;
 	}
 	public String getAdresseSociete() {
