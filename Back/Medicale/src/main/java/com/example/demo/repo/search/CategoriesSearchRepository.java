@@ -10,8 +10,6 @@ import com.example.demo.model.vente.Categories;
 
 @Repository
 public interface CategoriesSearchRepository extends JpaRepository<Categories, Integer> {
-	@Query(value = "SELECT id FROM Categories")
-	Optional<Categories> SearchById(Integer id);
 	@Query(value = "SELECT Nom FROM Categories")
-	Optional<Categories> SearchByNom(String Nom);
+	Optional<Categories> findByNom(String Nom);
 }

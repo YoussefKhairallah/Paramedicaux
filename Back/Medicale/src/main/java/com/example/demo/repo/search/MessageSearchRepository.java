@@ -11,9 +11,9 @@ import com.example.demo.model.users.Message;
 @Repository
 public interface MessageSearchRepository extends JpaRepository<Message, Integer> {
 	@Query(value = "SELECT Description FROM Message")
-	Optional<Message> SearchByDescription(String Description);
+	Optional<Message> findByDescription(String Description);
 	@Query(value = "SELECT Date FROM Message")
-	Optional<Message> SearchBydate(Date Date);
+	Optional<Message> findBydate(Date Date);
 	@Query(value = "SELECT Type FROM Message")
-	Optional<Message> SearchByType(String Type);
+	Optional<Message> findByType(String Type);
 }

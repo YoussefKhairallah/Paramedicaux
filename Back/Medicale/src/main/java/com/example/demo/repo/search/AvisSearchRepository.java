@@ -11,7 +11,7 @@ import com.example.demo.model.users.Avis;
 @Repository
 public interface AvisSearchRepository extends JpaRepository<Avis, Integer> {
 	@Query(value = "SELECT Description FROM Avis")
-	Optional<Avis> SearchByDescription(String description);
+	Optional<Avis> findByDescription(String description);
 	@Query(value = "SELECT Date FROM Avis")
-	Optional<Avis> SearchByDate(Date Date);
+	Optional<Avis> findByDate(Date Date);
 }

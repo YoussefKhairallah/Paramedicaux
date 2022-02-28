@@ -12,15 +12,15 @@ import com.example.demo.model.vente.Livraison;
 @Repository
 public interface LivraisonSearchRepository extends JpaRepository<Livraison, Integer> {
 	@Query(value = "SELECT DateSortie FROM Livraison")
-	Optional<Livraison> SearchByDateSortie(Date DateSortie);
+	Optional<Livraison> findByDateSortie(Date DateSortie);
 	@Query(value = "SELECT AdresseClient FROM Livraison")
-	Optional<Livraison> SearchByAdresseClient(String AdresseClient);
+	Optional<Livraison> findByAdresseClient(String AdresseClient);
 	@Query(value = "SELECT FraisLiv FROM Livraison")
-	Optional<Livraison>	SearchByFraisLiv(float FraisLiv);
+	Optional<Livraison>	findByFraisLiv(float FraisLiv);
 	@Query(value = "SELECT NbreJour FROM Livraison")
-	Optional<Livraison> SearchByJour(int NbreJour);
+	Optional<Livraison> findByJour(int NbreJour);
 	@Query(value = "SELECT AdresseSociete FROM Livraison")
-	Optional<Livraison> SearchByAdresseSociete(String AdresseSociete);
+	Optional<Livraison> findByAdresseSociete(String AdresseSociete);
 	@Query(value = "SELECT Etat FROM Livraison")
-	Optional<Livraison>	SearchByEtat(String Etat);
+	Optional<Livraison>	findByEtat(String Etat);
 }

@@ -12,9 +12,9 @@ import com.example.demo.model.vente.Panier;
 @Repository
 public interface PanierSearchRepository extends JpaRepository<Panier, Integer> {
 	@Query(value = "SELECT ModePaiement FROM Panier")
-	Optional<Panier> SearchByModePaiement(String ModePaiement);
+	Optional<Panier> findByModePaiement(String ModePaiement);
 	@Query(value = "SELECT DateCreation FROM Panier")
-	Optional<Panier> SearchByDateCreation(Date DateCreation);
+	Optional<Panier> findByDateCreation(Date DateCreation);
 	@Query(value = "SELECT TotalePrix FROM Panier")
-	Optional<Panier> SearchByPrix(double TotalePrix);
+	Optional<Panier> findByPrix(double TotalePrix);
 }

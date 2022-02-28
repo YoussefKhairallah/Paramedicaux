@@ -10,19 +10,19 @@ import com.example.demo.model.users.User;
 @Repository
 public interface UserSearchRepository extends JpaRepository<User, Integer> {
 	@Query(value = "SELECT Nom FROM User")
-	Optional<User> SearchByNom(String Nom);
+	Optional<User> findByNom(String Nom);
 	@Query(value = "SELECT Prenom FROM User")
-	Optional<User> SearchByPrenom(String Prenom);
+	Optional<User> findByPrenom(String Prenom);
 	@Query(value = "SELECT Mail FROM User")
-	Optional<User> SearchBymail(String Mail);
+	Optional<User> findBymail(String Mail);
 	@Query(value = "SELECT Mdp FROM User")
-	Optional<User> SearchByMotPasse(String Mdp);
+	Optional<User> findByMotPasse(String Mdp);
 	@Query(value = "SELECT DateNaissance FROM User")
-	Optional<User> SearchByDateNaissance(Date DateNaissance);
+	Optional<User> findByDateNaissance(Date DateNaissance);
 	@Query(value = "SELECT Tel FROM User")
-	Optional<User> SearchByTel(String Tel);
+	Optional<User> findByTel(String Tel);
 	@Query(value = "SELECT Role FROM User")
-	Optional<User> SearchByRole(String Role);
+	Optional<User> findByRole(String Role);
 	@Query(value = "SELECT Mail, Mdp FROM User")
-	Optional<User> SearchByMailMotPasse(String Mail, String Mdp);
+	Optional<User> findByMailMotPasse(String Mail, String Mdp);
 }

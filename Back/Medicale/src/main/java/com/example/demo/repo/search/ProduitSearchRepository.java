@@ -11,15 +11,15 @@ import com.example.demo.model.vente.Produit;
 @Repository
 public interface ProduitSearchRepository extends JpaRepository<Produit, Integer> {
 	@Query(value = "SELECT Nom FROM Produit")
-	Optional<Produit> SearchByNom(String Nom);
+	Optional<Produit> findByNom(String Nom);
 	@Query(value = "SELECT Qte FROM Produit")
-	Optional<Produit> SearchByQuantite(int Qte);
+	Optional<Produit> findByQuantite(int Qte);
 	@Query(value = "SELECT Prix FROM Produit")
-	Optional<Produit> SearchByPrix(double Prix);
+	Optional<Produit> findByPrix(double Prix);
 	@Query(value = "SELECT Description FROM Produit")
-	Optional<Produit> SearchByDescription(String Desc);
+	Optional<Produit> findByDescription(String Desc);
 	@Query(value = "SELECT Fournisseur FROM Produit")
-	Optional<Produit> SearchByFourrnisseur(String Fournisseur);
+	Optional<Produit> findByFourrnisseur(String Fournisseur);
 	@Query(value = "SELECT Image FROM Produit")
-	Optional<Produit> SearchByImage(String Image);	
+	Optional<Produit> findByImage(String Image);	
 }
