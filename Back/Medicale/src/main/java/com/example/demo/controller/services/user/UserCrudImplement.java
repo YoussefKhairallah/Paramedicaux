@@ -46,4 +46,9 @@ public class UserCrudImplement implements UserCrudInterface {
 		return userapi.save(user);
 	}
 
+	public User findBymail(String mail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

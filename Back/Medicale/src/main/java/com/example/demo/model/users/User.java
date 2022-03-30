@@ -1,7 +1,6 @@
 package com.example.demo.model.users;
 
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
@@ -44,7 +45,7 @@ public class User {
 	@Column(length = 20)
 	@NotBlank
 	@NotNull
-	private String Role;
+	public String Role;
 	@NotBlank
 	@NotNull
 	private String state;
@@ -53,7 +54,6 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 	public User(@NotBlank String nom, @NotBlank String prenom, @NotBlank Date dateNaissance, @NotBlank String tel,
 			@NotBlank @Email String mail, @NotBlank String mdp, @NotBlank String role, @NotBlank String state) {
 		super();
@@ -149,5 +149,9 @@ public class User {
 		// TODO Auto-generated method stub
 		
 	}
-
+	public static UserDetails build(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
