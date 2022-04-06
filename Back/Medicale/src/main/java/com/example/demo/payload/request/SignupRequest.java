@@ -1,36 +1,19 @@
 package com.example.demo.payload.request;
 
-import java.sql.Date;
-
-import javax.persistence.Column;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 public class SignupRequest {
-	@Column(length = 50)
-	@NotBlank
-	@NotNull
+
 	private  String Nom;
-	@Column(length = 50)
-	@NotBlank
-	@NotNull
+
 	private String Prenom;
-	@NotBlank
-	@NotNull
-	private Date DateNaissance;
-	@Column(length = 8)
-	@NotBlank
-	@NotNull
+
+	private String DateNaissance;
+
 	private String Tel;
-	@NotBlank
-	@Column(length = 255)
 	@Email
-	@NotNull
 	private String Mail;
-	@Column(length = 255)
-	@NotBlank
-	@NotNull
+
 	private String Mdp;
 	
 	public String getNom() {
@@ -45,10 +28,10 @@ public class SignupRequest {
 	public void setPrenom(String prenom) {
 		Prenom = prenom;
 	}
-	public Date getDateNaissance() {
+	public String getDateNaissance() {
 		return DateNaissance;
 	}
-	public void setDateNaissance(Date dateNaissance) {
+	public void setDateNaissance(String dateNaissance) {
 		DateNaissance = dateNaissance;
 	}
 	public String getTel() {

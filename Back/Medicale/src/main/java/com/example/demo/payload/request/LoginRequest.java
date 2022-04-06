@@ -1,14 +1,11 @@
 package com.example.demo.payload.request;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 public class LoginRequest {
 	@NotBlank
-	@NotNull
 	private String Mail;
 	@NotBlank
-	@NotNull
 	private String Mdp;
 
 	public String getMail() {

@@ -1,6 +1,5 @@
 package com.example.demo.model.users;
 
-import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +27,7 @@ public class User {
 	private String Prenom;
 	@NotBlank
 	@NotNull
-	private Date DateNaissance;
+	private String DateNaissance;
 	@Column(length = 8)
 	@NotBlank
 	@NotNull
@@ -44,17 +43,16 @@ public class User {
 	private String Mdp;
 	@Column(length = 20)
 	@NotBlank
-	@NotNull
 	public String Role;
 	@NotBlank
-	@NotNull
+	//@NotNull
 	private String state;
 	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(@NotBlank String nom, @NotBlank String prenom, @NotBlank Date dateNaissance, @NotBlank String tel,
+	public User(@NotBlank String nom, @NotBlank String prenom, @NotBlank String dateNaissance, @NotBlank String tel,
 			@NotBlank @Email String mail, @NotBlank String mdp, @NotBlank String role, @NotBlank String state) {
 		super();
 		Nom = nom;
@@ -91,11 +89,11 @@ public class User {
 		Prenom = prenom;
 	}
 
-	public Date getDateNaissance() {
+	public String getDateNaissance() {
 		return DateNaissance;
 	}
 
-	public void setDateNaissance(Date dateNaissance) {
+	public void setDateNaissance(String dateNaissance) {
 		DateNaissance = dateNaissance;
 	}
 

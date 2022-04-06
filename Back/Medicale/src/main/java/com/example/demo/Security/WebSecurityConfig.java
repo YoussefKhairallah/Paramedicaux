@@ -21,9 +21,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-    // securedEnabled = true,
-    // jsr250Enabled = true,
+    //securedEnabled = true,
+    //jsr250Enabled = true,
     prePostEnabled = true)
+
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	 @Value("${spring.h2.console.path}")
@@ -60,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	      .anyRequest().authenticated();
 	     // making H2 console working
 	        http.headers().frameOptions().disable();
-	        http.authorizeRequests().antMatchers("/h2/**").permitAll();
+	        http.authorizeRequests();
 
 	    // fix H2 database console: Refused to display ' in a frame because it set 'X-Frame-Options' to 'deny'
 	    http.headers().frameOptions().sameOrigin();

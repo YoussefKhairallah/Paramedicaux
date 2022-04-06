@@ -53,22 +53,22 @@ public class AuthControlle {
                                    ));
   }
   @PostMapping("/signup")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-    if (userRepository.existsByNom(signUpRequest.getNom())){
-      return ResponseEntity.badRequest().body(new MessageResponse("Error: Nom is already taken!"));
-    }
-    if (userRepository.existsByMail(signUpRequest.getMail())) {
-      return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
-    }
+  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {  
+	  /*
+	  if (userRepository.findBymail(signUpRequest.getMail()) != null) {
+	      return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+	    }
+	  */
     // Create new user's account
     User user = new User(signUpRequest.getNom(),
                          signUpRequest.getPrenom(),
                          signUpRequest.getDateNaissance(),
                          signUpRequest.getTel(),
                          signUpRequest.getMail(),
-                         encoder.encode(signUpRequest.getMdp()), null, null);
-
-
+                         signUpRequest.getMdp(),
+                         null, null);
+    		System.out.println(user);
+    		System.out.println(signUpRequest.toString());
     userRepository.save(user);
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
