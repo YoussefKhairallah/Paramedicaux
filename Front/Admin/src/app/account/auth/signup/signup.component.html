@@ -1,0 +1,199 @@
+<div class="account-pages my-5 pt-sm-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card overflow-hidden">
+          <div class="bg-soft bg-primary">
+            <div class="row">
+              <div class="col-7">
+                <div class="text-primary p-4">
+                  <h5 class="text-primary">S'inscrire</h5>
+                  <p>Obtenez votre compte Skote gratuit maintenant.</p>
+                </div>
+              </div>
+              <div class="col-5 align-self-end">
+                <img src="../../../../assets/images/profile-img.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="card-body pt-0">
+            <div>
+              <a routerLink="/">
+                <div class="avatar-md profile-user-wid mb-4">
+                  <span class="avatar-title rounded-circle bg-light">
+                    <img src="../../../../assets/images/logo.svg" alt="" class="rounded-circle" height="34">
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="p-2">
+
+              <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                
+      <!--================================================= Nom =================================================-->
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Nom</label>
+                      <input type="text" class="form-control"  name="username"  [(ngModel)]="form.username" required 
+                      minlength="3" maxlength="20" #username="ngModel" placeholder="Entre votre nom"/>
+                      <br>
+                      <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                        <div *ngIf="username.errors['required']">
+                          le Nom est obligatoire
+                        </div>
+                        <div *ngIf="username.errors['minlength']">
+                          Le nom d'utilisateur doit comporter au moins 3 caractères
+                        </div>
+                        <div *ngIf="username.errors['maxlength']">                        
+                          Le nom d'utilisateur doit comporter au maximum 20 caractères
+                        </div>
+                      </div>
+                  </div>
+      <!--================================================= Prenom =================================================-->
+
+                <div class="mb-3">
+                  <label for="prenom" class="form-label">Prenom</label>
+                  <input type="text" class="form-control"  name="prenom"  [(ngModel)]="form.prenom" required 
+                    minlength="3" maxlength="20" #prenom="ngModel" placeholder="Entre votre prenom"/>
+                    <br>
+                    <div class="alert-danger" *ngIf="prenom.errors && f.submitted">
+                      <div *ngIf="prenom.errors['required']">
+                        le Prenom est obligatoire
+                      </div>
+                      <div *ngIf="prenom.errors['minlength']">
+                        Le Prenom d'utilisateur doit comporter au moins 3 caractères
+                      </div>
+                      <div *ngIf="prenom.errors['maxlength']">                        
+                        Le Prenom d'utilisateur doit comporter au maximum 20 caractères
+                      </div>
+                    </div>
+                </div>
+
+
+      <!--================================================= Telephone =================================================-->
+
+                <div class="mb-3">
+                  <label for="NumTel" class="form-label">Telephone</label>
+                  <input type="text" class="form-control"  name="NumTel"  [(ngModel)]="form.NumTel" required 
+                  maxlength="8" minlength="8" #NumTel="ngModel" placeholder="Entre votre numero de telephone"/>
+                    <br>
+                    <div class="alert-danger" *ngIf="NumTel.errors && f.submitted">
+                      <div *ngIf="NumTel.errors['required']">
+                        le numero de telephone est obligatoire
+                      </div>
+                      <div *ngIf="NumTel.errors['minlength']">
+                        Le numero de telephone d'utilisateur doit comporter au moins 8 caractères
+                      </div>
+                      <div *ngIf="NumTel.errors['maxlength']">
+                        Le numero de telephone d'utilisateur doit comporter 8 chiffres
+                      </div>
+                    </div> 
+                </div>
+      <!--================================================= Date de Naissance =================================================-->
+
+                <div class="mb-3">
+                  <label for="dateNaissance" class="form-label">Date de naissance</label>
+                  <input type="date" class="form-control"  name="dateNaissance"  [(ngModel)]="form.dateNaissance" required 
+                     #dateNaissance="ngModel" placeholder="Entre votre Date de naissance"/>
+                     <br>
+                    <div class="alert-danger" *ngIf="dateNaissance.errors && f.submitted">
+                      <div *ngIf="dateNaissance.errors['required']">
+                        Date de naissance est obligatoire
+                      </div>
+                    </div>  
+                </div>
+
+      <!--================================================= Email =================================================-->
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control"  name="email"  [(ngModel)]="form.email" required email="exemple@exemple.com" 
+                    minlength="10" maxlength="30" #email="ngModel" placeholder="Entre votre email"/>
+                    <br>
+                    <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                      <div *ngIf="email.errors['required']">
+                        l'email est obligatoire
+                      </div>
+                      <div *ngIf="email.errors['minlength']">
+                        L'email d'utilisateur doit comporter au moins 10 caractères
+                      </div>
+                      <div *ngIf="email.errors['maxlength']">                        
+                        L'email d'utilisateur doit comporter au maximum 30 caractères
+                      </div>
+                    </div>
+                </div>
+
+      <!--================================================= Mot de passe =================================================-->
+
+                <div class="mb-3">
+                  <label for="password" class="form-label">Mot de passe</label>
+                  <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required 
+                  minlength="6" maxlength="30" #password="ngModel" placeholder="Entre votre mot de passe"/>
+                  <br>
+                  <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors['required']">
+                      Mot de passe est obligatoire
+                    </div>
+                    <div *ngIf="password.errors['minlength']">
+                      Mot de passe d'utilisateur doit comporter au moins 6 caractères
+                    </div>
+                    <div *ngIf="password.errors['maxlength']">                        
+                      Mot de passe d'utilisateur doit comporter au maximum 20 caractères
+                    </div>
+                  </div>
+                </div>
+
+      <!--================================================= Button S'inscrire =================================================-->
+
+                <div class="mt-4 d-grid">
+                  <button class="btn btn-primary" type="submit">S'inscrire</button>
+                </div>
+      <!--================================================= Se connecter avec =================================================-->
+
+                <div class="mt-4 text-center">
+                  <h5 class="font-size-14 mb-3">Se connecter avec</h5>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="javascript::void()" class="social-list-item bg-primary text-white border-primary">
+                        <i class="mdi mdi-facebook"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="javascript::void()" class="social-list-item bg-info text-white border-info">
+                        <i class="mdi mdi-twitter"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="javascript::void()" class="social-list-item bg-danger text-white border-danger">
+                        <i class="mdi mdi-google"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt-4 text-center">
+                  <p class="mb-0">En vous inscrivant, vous acceptez le Skote <a href="javascript: void(0);"
+                    class="text-primary">Conditions d'utilisation</a>
+                  </p>
+                </div>
+                <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">Signup failed!<br />{{ errorMessage }}</div>
+
+              </form>
+              <!-- end form -->
+              <div class="alert alert-success" *ngIf="isSuccessful">Your registration is successful!</div>
+            </div>
+          </div>
+        </div>
+        <!-- end card -->
+
+        <div class="mt-5 text-center">
+          <p> Vous avez déjà un compte ?<a routerLink="/account/login" class="fw-medium text-primary"> Se connecter</a>
+          </p>
+          <p>© 2022 Skote. Fabriqué avec <i class="mdi mdi-heart text-danger"></i> par Themesbrand</p>
+        </div>
+      </div>
+       <!-- end col -->
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+
+</div>

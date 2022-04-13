@@ -1,0 +1,116 @@
+<div class="account-pages my-5 pt-sm-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card overflow-hidden">
+          <div class="bg-soft bg-primary">
+            <div class="row">
+              <div class="col-7">
+                <div class="text-primary p-4">
+                  <h5 class="text-primary">Bienvenue !</h5>
+                  <p>Connectez-vous pour continuer sur Skote.</p>
+                </div>
+              </div>
+              <div class="col-5 align-self-end">
+                <img src="../../../../assets/images/profile-img.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="card-body pt-0">
+            <div>
+              <a routerLink="/">
+                <div class="avatar-md profile-user-wid mb-4">
+                  <span class="avatar-title rounded-circle bg-light">
+                    <img src="../../../../assets/images/logo.svg" alt="" class="rounded-circle" height="34">
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="p-2">
+              <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+      <!--================================================= Email =================================================-->
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control"  name="email"  [(ngModel)]="form.email" required 
+                  minlength="3" maxlength="20" #email="ngModel" placeholder="Entre votre email" />
+                  <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors['required']">
+                      l'email est obligatoire
+                    </div>
+                    <div *ngIf="email.errors['minlength']">
+                      L'email d'utilisateur doit comporter au moins 3 caractères
+                    </div>
+                    <div *ngIf="email.errors['maxlength']">                        
+                      L'email d'utilisateur doit comporter au maximum 20 caractères
+                    </div>
+                  </div>
+              </div>
+      <!--================================================= Mot de passe =================================================-->
+
+              <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required 
+                minlength="3" maxlength="30" #password="ngModel" placeholder="Entre votre mot de passe" />
+                <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                  <div *ngIf="password.errors['required']">
+                    Mot de passe est obligatoire
+                  </div>
+                  <div *ngIf="password.errors['minlength']">
+                    Mot de passe de l'utilisateur doit comporter au moins 3 caractères
+                  </div>
+                  <div *ngIf="password.errors['maxlength']">                        
+                    Mot de passe de l'utilisateur doit comporter au maximum 20 caractères
+                  </div>
+                </div>
+              </div>
+      <!--================================================= Button Connexion =================================================-->
+
+                <div class="mt-3 d-grid">
+                  <button class="btn btn-primary" type="submit">Connexion</button>
+                </div>
+      <!--================================================= Connectez-vous avec =================================================-->
+
+                <div class="mt-4 text-center">
+                  <h5 class="font-size-14 mb-3">Connectez-vous avec</h5>
+
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="javascript::void()" class="social-list-item bg-primary text-white border-primary">
+                        <i class="mdi mdi-facebook"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="javascript::void()" class="social-list-item bg-info text-white border-info">
+                        <i class="mdi mdi-twitter"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="javascript::void()" class="social-list-item bg-danger text-white border-danger">
+                        <i class="mdi mdi-google"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt-4 text-center">
+                  <a routerLink="/account/reset-password" class="text-muted"><i class="mdi mdi-lock mr-1"></i>Mot de passe oublié</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!--================================================= S'inscrire maintenant =================================================-->
+
+        <div class="mt-5 text-center">
+          <p>Vous n'avez pas de compte ? <a routerLink="/account/signup" class="fw-medium text-primary"> S'inscrire maintenant</a></p>
+          <p>© 2022 Skote. Fabriqué avec <i class="mdi mdi-heart text-danger"></i> par Themesbrand</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- end container -->
+</div>
+<!-- end page -->
