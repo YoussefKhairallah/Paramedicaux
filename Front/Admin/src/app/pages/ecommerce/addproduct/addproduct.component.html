@@ -29,9 +29,12 @@
       <!--================================================= Fournisseur Produit =================================================-->
 
                 <div class="mb-3">
-                  <label class="control-label">Fournisseur</label>
-                  <ng-select [items]="['Alaska','Hawaii','California','Nevada','Oregon','Washington']"
-                    [multiple]="true"></ng-select>
+                  <label for="fournisseur">Fournisseur du produit</label>
+                  <input id="fournisseur" name="fournisseur" type="text" class="form-control" formControlName="fournisseur"
+                    [ngClass]="{'is-invalid': submit && form.fournisseur.errors}">
+                  <div *ngIf="submit && form.fournisseur.errors" class="invalid-feedback">
+                    <span *ngIf="form.fournisseur.errors.required">Fournisseur du produit est obligatoire.</span>
+                  </div>
                 </div>
 
       <!--================================================= Prix Produit =================================================-->
@@ -55,7 +58,11 @@
 
                 <div class="mb-3">
                   <label class="control-label">Categorie</label>
-                  <ng-select [items]="['Alaska','Hawaii']"></ng-select>
+                  <ng-select [items]="['Alaska','Hawaii']" required formControlName="categorie" [ngClass]="{'is-invalid': submit && form.categorie.errors}"></ng-select>
+                  <div *ngIf="submit && form.categorie.errors" class="invalid-feedback">
+                  <span *ngIf="form.categorie.errors.required">Categorie est obligatoire.</span>
+                  </div>
+                  
                 </div>
 
       <!--================================================= Description du produit =================================================-->

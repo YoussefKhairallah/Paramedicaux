@@ -6,9 +6,8 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { CustomersComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
-
-import { AddCategorieComponent } from './add-categorie/add-categorie.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { AddCategorieComponent } from './add-categorie/add-categorie.component';
 
 const routes: Routes = [
     {
@@ -32,12 +31,12 @@ const routes: Routes = [
         component: OrdersComponent
     },
     {
-        path:'add-categorie',
-        component:AddCategorieComponent
+        path:'categories',
+        component:CategoriesComponent
     },
     {
-        path:'Categories',
-        component:CategoriesComponent
+        path:'add-categorie',
+        component:AddCategorieComponent
     }
 ];
 

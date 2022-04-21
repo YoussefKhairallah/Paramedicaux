@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { Customers } from './customers.model';
-
 import { customersData } from './data';
 
 @Component({
@@ -22,7 +20,6 @@ export class CustomersComponent implements OnInit {
   formData: FormGroup;
   submitted = false;
   customersData: Customers[];
-
   term: any;
 
   // page
@@ -35,10 +32,11 @@ export class CustomersComponent implements OnInit {
 
     this.formData = this.formBuilder.group({
       username: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      address: ['', [Validators.required]],
-      balance: ['', [Validators.required]]
+      dateNaissance: ['', [Validators.required]],
+      role: ['', [Validators.required]]
     });
 
     this.currentpage = 1;
@@ -68,26 +66,32 @@ export class CustomersComponent implements OnInit {
   }
 
   saveCustomer() {
-    const currentDate = new Date();
     if (this.formData.valid) {
      const username = this.formData.get('username').value;
+     const prenom = this.formData.get('prenom').value;
+     const dateNaissance = this.formData.get('dateNaissance').value;
      const email = this.formData.get('email').value;
      const phone = this.formData.get('phone').value;
-     const address = this.formData.get('address').value;
-     const balance = this.formData.get('balance').value;
+     const role = this.formData.get('role').value;
 
       this.customersData.push({
         id: this.customersData.length + 1,
         username,
+        prenom,
         email,
         phone,
-        address,
-        balance,
-        rating: '4.3',
-        date: currentDate + ':' 
+        dateNaissance,
+        role
       })
       this.modalService.dismissAll()
     }
     this.submitted = true
+  }
+  modifierUser(): void{
+
+  }
+
+  supprimerUser(){
+    console.log()
   }
 }
