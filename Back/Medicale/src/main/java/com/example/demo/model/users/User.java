@@ -42,7 +42,7 @@ public class User {
 	@NotNull
 	private String Mdp;
 	@Column(length = 20)
-	@NotBlank
+	//@NotBlank
 	public String Role;
 	@NotBlank
 	//@NotNull
@@ -53,7 +53,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	public User(@NotBlank String nom, @NotBlank String prenom, @NotBlank String dateNaissance, @NotBlank String tel,
-			@NotBlank @Email String mail, @NotBlank String mdp, @NotBlank String role, @NotBlank String state) {
+			@NotBlank @Email String mail, @NotBlank String mdp, String role, String state) {
 		super();
 		Nom = nom;
 		Prenom = prenom;

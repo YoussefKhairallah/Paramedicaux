@@ -28,6 +28,9 @@ public class Produit {
 	private int Qte;
 	@NotBlank
 	@NotNull
+	private int QteLimite;
+	@NotBlank
+	@NotNull
 	private double Prix;
 	@Column(length = 255)
 	@NotBlank
@@ -50,7 +53,7 @@ public class Produit {
 		super();
 	}
 	
-	public Produit(String nom, int qte, double prix, String description, String image, String fournisseur) {
+	public Produit(String nom, int qte, double prix, String description, String image, String fournisseur, int qteLimite) {
 		super();
 		Nom = nom;
 		Qte = qte;
@@ -58,6 +61,7 @@ public class Produit {
 		Description = description;
 		Image = image;
 		Fournisseur = fournisseur;
+		QteLimite = qteLimite;
 	}
 
 	public int getId() {
@@ -102,11 +106,18 @@ public class Produit {
 	public void setFournisseur(String fournisseur) {
 		Fournisseur = fournisseur;
 	}
+	public int getQteLimite() {
+		return QteLimite;
+	}
+
+	public void setQteLimite(int qteLimite) {
+		QteLimite = qteLimite;
+	}
 
 	@Override
 	public String toString() {
 		return "Produit [id=" + id + ", Nom=" + Nom + ", Qte=" + Qte + ", Prix=" + Prix + ", description=" + Description + ", Image="
-				+ Image + ", Fournisseur=" + Fournisseur + "]";
+				+ Image + ", Fournisseur=" + Fournisseur + ", QteLimite=" + QteLimite + "]";
 	}
 
 	public void setProduitCode(String string) {

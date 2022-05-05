@@ -16,6 +16,22 @@ public class SignupRequest {
 
 	private String Mdp;
 	
+	private String Role;
+	private String state;
+	
+	public String getRole() {
+		return Role;
+	}
+	public void setRole(String role) {
+		Role = role;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 	public String getNom() {
 		return Nom;
 	}
@@ -52,5 +68,6 @@ public class SignupRequest {
 	public void setMdp(String mdp) {
 		Mdp = mdp;
 	}
+
 	
 }

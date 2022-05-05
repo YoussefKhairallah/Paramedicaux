@@ -13,7 +13,7 @@ public class UserDetailsImpl implements UserDetails {
 	  private String Nom;
 	  private String Mail;
 	  @JsonIgnore
-	  private String Mdp;
+	  private String Password;
 	  
 	  private Collection<? extends GrantedAuthority> authorities;
 	  public UserDetailsImpl(int id, String nom, String mail, String password,
@@ -21,7 +21,7 @@ public class UserDetailsImpl implements UserDetails {
 	    this.id = id;
 	    this.Nom = nom;
 	    this.Mail = mail;
-	    this.Mdp = password;
+	    this.Password = password;
 	    this.authorities = authorities;
 	  }
 		  @Override
@@ -31,12 +31,12 @@ public class UserDetailsImpl implements UserDetails {
 		  public int getId() {
 		    return id;
 		  }
-		  public String getEmail() {
+		  public String getMail() {
 		    return Mail;
 		  }
 		  @Override
 		  public String getPassword() {
-		    return Mdp;
+		    return Password;
 		  }
 		  @Override
 		  public String getUsername() {

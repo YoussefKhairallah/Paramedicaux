@@ -25,5 +25,5 @@ public interface UserSearchRepository extends JpaRepository<User, Integer> {
 	Optional<User> findByRole(String Role);
 	@Query(value = "SELECT Mail, Mdp FROM User")
 	Optional<User> findByMailMotPasse(String Mail, String Mdp);
-//	boolean existsByMail(String Mail);
+	//boolean existsByMail(String Mail);
 }

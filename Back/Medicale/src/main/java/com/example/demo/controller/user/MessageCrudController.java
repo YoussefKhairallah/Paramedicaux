@@ -38,7 +38,7 @@ public class MessageCrudController implements MessageCrudControllerInterface {
 	}
 
 	@Override
-	@PostMapping()
+	@PostMapping("/addMsg")
 	public Message AddingMessage(@RequestBody @Valid Message message) {
 		// TODO Auto-generated method stub
 		return messageCrud.AddMessage(message);

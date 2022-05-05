@@ -6,7 +6,7 @@ public class LoginRequest {
 	@NotBlank
 	private String Mail;
 	@NotBlank
-	private String Mdp;
+	private String Password;
 
 	public String getMail() {
 		return Mail;
@@ -16,12 +16,12 @@ public class LoginRequest {
 		Mail = mail;
 	}
 
-	public String getMdp() {
-		return Mdp;
+	public String getPassword() {
+		return Password;
 	}
 
-	public void setMdp(String mdp) {
-		Mdp = mdp;
+	public void setPassword(String password) {
+		Password = password;
 	}
 }
 

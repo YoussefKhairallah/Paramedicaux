@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.controller.services.vente.CategoriesCrudImplement;
 import com.example.demo.model.vente.Categories;
 
@@ -24,27 +23,28 @@ public class CategoriesCrudController implements CategoriesCrudControllerInterfa
 	CategoriesCrudImplement categoriesCrud;
 	
 	@Override
+	@GetMapping("/searchcategories")
 	public List<Categories> searchAllCategories() {
 		// TODO Auto-generated method stub
 		return categoriesCrud.findAllCategories();
 	}
 
 	@Override
-	@GetMapping("/{id}")
+	@GetMapping("/searchcategoriesbyid/{id}")
 	public Optional<Categories> searchCategoriesById(@PathVariable(value = "id") int id) {
 		// TODO Auto-generated method stub
 		return categoriesCrud.findCategoriesById(id);
 	}
-
+	
 	@Override
-	@PostMapping()
+	@PostMapping("/addcategorie")
 	public Categories AddingCategories(@RequestBody @Valid Categories categories) {
 		// TODO Auto-generated method stub
 		return categoriesCrud.AddCategories(categories);
 	}
 
 	@Override
-	@DeleteMapping("/{id}")
+	@DeleteMapping("deletecategorie/{id}")
 	public void DeletingCategories(@PathVariable(value = "id") int categoriesid) {
 		// TODO Auto-generated method stub
 		categoriesCrud.DeleteCategories(categoriesid);

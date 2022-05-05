@@ -18,12 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Security.JWT.JwtUtils;
+import com.example.demo.Security.service.JwtResponse;
 import com.example.demo.Security.service.UserDetailsImpl;
 import com.example.demo.model.users.User;
 import com.example.demo.payload.request.LoginRequest;
 import com.example.demo.payload.request.SignupRequest;
 import com.example.demo.payload.response.MessageResponse;
-import com.example.demo.payload.response.UserInfoResponse;
+
 import com.example.demo.repo.search.UserSearchRepository;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -40,38 +41,40 @@ public class AuthControlle {
   JwtUtils jwtUtils;
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-    Authentication authentication = authenticationManager
-        .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getMail(), loginRequest.getMdp()));
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-    ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getMail(), loginRequest.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();		
+		String jwt = jwtUtils.generateJwtToken(authentication);
+		System.out.println(jwt);
 
-    return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-        .body(new UserInfoResponse(userDetails.getId(),
-                                   userDetails.getEmail(),
-                                   userDetails.getPassword(), null, null, null, null, null, null
-                                   ));
-  }
+		return ResponseEntity.ok(new JwtResponse(jwt, 
+												 userDetails.getId(), 
+												 userDetails.getMail(), 
+												 userDetails.getPassword()
+												 ));
+		
+	}
+ 
   @PostMapping("/signup")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {  
-	  /*
-	  if (userRepository.findBymail(signUpRequest.getMail()) != null) {
-	      return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
-	    }
-	  */
-    // Create new user's account
-    User user = new User(signUpRequest.getNom(),
-                         signUpRequest.getPrenom(),
-                         signUpRequest.getDateNaissance(),
-                         signUpRequest.getTel(),
-                         signUpRequest.getMail(),
-                         signUpRequest.getMdp(),
-                         null, null);
+  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+
+		// Create new user's account
+		User user = new User(	signUpRequest.getNom(),
+				                signUpRequest.getPrenom(),
+				                signUpRequest.getDateNaissance(),
+				                signUpRequest.getTel(),
+				                signUpRequest.getMail(),
+				                encoder.encode(signUpRequest.getMdp()), 
+				                signUpRequest.getRole(),
+				                signUpRequest.getState()
+				                );
+  
     		System.out.println(user);
-    		System.out.println(signUpRequest.toString());
     userRepository.save(user);
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
+
   @PostMapping("/signout")
   public ResponseEntity<?> logoutUser() {
     ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
