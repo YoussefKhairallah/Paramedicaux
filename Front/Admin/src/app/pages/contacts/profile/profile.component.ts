@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
 import { revenueBarChart, statData } from './data';
 
@@ -14,25 +15,39 @@ import { ChartType } from './profile.model';
  * Contacts-profile component
  */
 export class ProfileComponent implements OnInit {
-  // bread crumb items
+
   breadCrumbItems: Array<{}>;
 
   revenueBarChart: ChartType;
   statData;
-  constructor() { }
 
-  ngOnInit() {
+  currentUser: any;
+  constructor(private token: TokenStorageService) { }
+  ngOnInit(): void {
     this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Profile', active: true }];
-
-    // fetches the data
-    this._fetchData();
-  }
-
-  /**
-   * Fetches the data
-   */
-  private _fetchData() {
-    this.revenueBarChart = revenueBarChart;
-    this.statData = statData;
+    this.currentUser = this.token.getUser();
   }
 }
+/*
+// bread crumb items
+breadCrumbItems: Array<{}>;
+
+revenueBarChart: ChartType;
+statData;
+constructor() { }
+
+ngOnInit() {
+  this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Profile', active: true }];
+
+  // fetches the data
+  this._fetchData();
+}
+
+/**
+ * Fetches the data
+
+private _fetchData() {
+  this.revenueBarChart = revenueBarChart;
+  this.statData = statData;
+}
+ */

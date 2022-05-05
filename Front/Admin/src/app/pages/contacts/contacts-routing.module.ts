@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsergridComponent } from './usergrid/usergrid.component';
+
+import { UserlistComponent } from './userlist/userlist.component';
+
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-
     {
-        path: 'grid',
-        component: UsergridComponent
+        path: 'list',
+        component: UserlistComponent
     },
+
     {
         path: 'profile',
         component: ProfileComponent

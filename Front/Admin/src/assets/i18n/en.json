@@ -73,7 +73,10 @@
       "TEXT": "Dashboards",
       "BADGE": "04",
       "LIST": {
-        "DEFAULT": "Default"
+        "DEFAULT": "Default",
+        "SAAS": "Saas",
+        "CRYPTO": "Crypto",
+        "BLOG": "Blog"
       }
     },
     "LAYOUTS": {
@@ -85,6 +88,8 @@
         "ICONSIDEBAR": "Icons Sidebar",
         "BOXED": "Boxed Layout",
         "COLOREDSIDEBAR": "Colored Sidebar",
+        "VERTICAL": "Vertical",
+        "LIGHTTOPBAR": "Light Topbar",
         "COLOREDHEADER": "Colored Header",
         "SCROLLABLE": "Scrollable"
       }
@@ -96,18 +101,18 @@
       "TEXT": "Chat",
       "BADGE": "New"
     },
+
     "ECOMMERCE": {
       "TEXT": "Ecommerce",
       "LIST": {
-        "PRODUCTS": "Produits",
-        "CATEGORIES":"Categories",
+        "PRODUCTS": "Les produits",
         "PRODUCTDETAIL": "Détail du produit",
         "ORDERS": "Commandes",
-        "CUSTOMERS": "Utilisateurs",
-        "ADDPRODUCT": "Ajouter un produit",
-        "ADDCATEGORIE":"Ajouter une Categorie"
+        "CUSTOMERS": "Les clients",
+        "ADDPRODUCT": "Ajouter un produit"
       }
     },
+
     "EMAIL": {
       "TEXT": "Email",
       "LIST": {
@@ -131,15 +136,7 @@
         "INVOICEDETAIL": "Invoice Detail"
       }
     },
-    "PROJECTS": {
-      "TEXT": "Projects",
-      "LIST": {
-        "GRID": "Projects Grid",
-        "PROJECTLIST": "Projects List",
-        "OVERVIEW": "Project Overview",
-        "CREATE": "Create New"
-      }
-    },
+
     "TASKS": {
       "TEXT": "Tasks",
       "LIST": {
@@ -151,9 +148,17 @@
     "CONTACTS": {
       "TEXT": "Contacts",
       "LIST": {
-        "USERGRID": "User Grid",
         "USERLIST": "User List",
         "PROFILE": "Profile"
+      }
+    },
+    "BLOG": {
+      "TEXT": "Blog",
+      "BADGE": "New",
+      "LIST": {
+        "BLOGLIST": "Blog List",
+        "BLOGGRID": "Blog Grid",
+        "DETAIL": "Blog Details"
       }
     },
     "PAGES": {
@@ -187,6 +192,30 @@
     "COMPONENTS": {
       "TEXT": "Components"
     },
+    "UIELEMENTS": {
+      "TEXT": "UI Elements",
+      "LIST": {
+        "ALERTS": "Alerts",
+        "BUTTONS": "Buttons",
+        "CARDS": "Cards",
+        "CAROUSEL": "Carousel",
+        "DROPDOWNS": "Dropdowns",
+        "GRID": "Grid",
+        "IMAGES": "Images",
+        "LIGHTBOX": "Lightbox",
+        "MODALS": "Modals",
+        "RANGESLIDER": "Range Slider",
+        "PROGRESSBAR": "Progress Bars",
+        "PLACEHOLDER": "Placeholder",
+        "SWEETALERT": "Sweet Alert",
+        "TABS": "Tabs & Accordions",
+        "TYPOGRAPHY": "Typography",
+        "VIDEO": "Video",
+        "GENERAL": "General",
+        "COLORS": "Colors",
+        "CROPPER": "Image Cropper"
+      }
+    },
     "FORMS": {
       "TEXT": "Forms",
       "BADGE": "09",
@@ -218,10 +247,32 @@
         "ECHART": "E Chart"
       }
     },
+    "ICONS": {
+      "TEXT": "Icons",
+      "LIST": {
+        "BOXICONS": "Boxicons",
+        "MATERIALDESIGN": "Material Design",
+        "DRIPICONS": "Dripicons",
+        "FONTAWESOME": "Font Awesome"
+      }
+    },
     "MAPS": {
       "TEXT": "Maps",
       "LIST": {
         "GOOGLEMAP": "Google Maps"
+      }
+    },
+    "MULTILEVEL": {
+      "TEXT": "Multi Level",
+      "LIST": {
+        "LEVEL1": {
+          "1": "Level 1.1",
+          "2": "Level 1.2",
+          "LEVEL2": {
+            "1": "Level 2.1",
+            "2": "Level 2.2"
+          }
+        }
       }
     }
   }

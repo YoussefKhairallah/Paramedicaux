@@ -52,11 +52,11 @@ export const productList: productModel[] = [
         images: ['assets/images/product/img-1.png', 'assets/images/product/img-1a.png', 'assets/images/product/img-1b.png'],
         colorVariant: [{
             key: 'red',
-            value: '../../../assets/images/product/img-1.png'
+            value: 'assets/images/product/img-1.png'
         },
         {
             key: 'black',
-            value: '../../../assets/images/product/img-1.png'
+            value: 'assets/images/product/img-1.png'
         }]
     },
     {

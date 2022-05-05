@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <!-- page title -->
-  <app-page-title title="Produits" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title title="Products" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <div class="row">
     <div class="col-lg-3">
@@ -17,7 +17,7 @@
             </ul>
           </div>
           <div class="mt-4 pt-3">
-            <h5 class="font-size-14 mb-3">Prix</h5>
+            <h5 class="font-size-14 mb-3">Price</h5>
             <ng5-slider [(value)]="pricevalue" [(highValue)]="maxVal" [options]="priceoption"
               (valueChange)="valueChange($event,true)" (highValueChange)="valueChange($event,false)"></ng5-slider>
           </div>

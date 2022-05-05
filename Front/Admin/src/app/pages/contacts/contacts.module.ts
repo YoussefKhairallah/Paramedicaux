@@ -7,11 +7,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { WidgetModule } from '../../shared/widget/widget.module';
 import { UIModule } from '../../shared/ui/ui.module';
 import { ContactsRoutingModule } from './contacts-routing.module';
-import { UsergridComponent } from './usergrid/usergrid.component';
+import { UserlistComponent } from './userlist/userlist.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [UsergridComponent, ProfileComponent],
+  declarations: [UserlistComponent, ProfileComponent],
   imports: [
     CommonModule,
     ContactsRoutingModule,

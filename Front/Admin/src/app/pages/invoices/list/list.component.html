@@ -18,19 +18,19 @@
                 </div>
                 <img *ngIf="list.image" src="{{list.image}}"
                   class="avatar-sm me-3 mx-lg-auto mb-3 mt-1 float-start float-lg-none rounded-circle" alt="img">
-                <h5 class="mb-1 font-size-15 text-truncate">{{ list.name }} {{ list.prenom }}</h5>
-                <a href="javascript: void(0);" class="text-muted">{{list.commande_id}}</a>
+                <h5 class="mb-1 font-size-15 text-truncate">{{ list.name }}</h5>
+                <a href="javascript: void(0);" class="text-muted">@Skote</a>
               </div>
             </div>
 
             <div class="col-lg-8">
               <div>
-                <a routerLink="/invoices/detail" class="d-block text-primary text-decoration-underline mb-2">Facture {{ list.id }}</a>
-                <h5 class="text-truncate mb-4 mb-lg-5">{{list.commande_id}}</h5>
+                <a routerLink="/invoices/detail" class="d-block text-primary text-decoration-underline mb-2">Invoice {{ list.id }}</a>
+                <h5 class="text-truncate mb-4 mb-lg-5">{{ list.title }}</h5>
                 <ul class="list-inline mb-0">
                   <li class="list-inline-item me-3">
                     <h5 class="font-size-14" placement="top" ngbTooltip="Amount"><i
-                        class="bx bx-money me-1 text-muted"></i> {{ list.Prix}}</h5>
+                        class="bx bx-money me-1 text-muted"></i> {{ list.amount}}</h5>
                   </li>
                   <li class="list-inline-item">
                     <h5 class="font-size-14" placement="top" ngbTooltip="Due Date"><i

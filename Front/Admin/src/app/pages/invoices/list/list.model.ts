@@ -1,8 +1,8 @@
 export interface InvoiceList {
     name: string;
     image ?: string;
-    commande_id: string;
+    title: string;
     id: string;
     date: string;
-    Prix: string;
+    amount: string;
 }

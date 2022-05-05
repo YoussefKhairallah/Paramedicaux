@@ -47,10 +47,9 @@ export class AddproductComponent implements OnInit {
 
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
-      fournisseur: ['', [Validators.required]],
-      categorie: ['', [Validators.required]],
-      price: ['', [Validators.required], Validators.pattern('[0123456789.]')],
-      productdesc: ['', [Validators.required]],
+      manufacture_name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
+      manufacture_brand: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
+      price: ['', [Validators.required]],
     });
     this.submit = false;
   }
@@ -66,13 +65,12 @@ export class AddproductComponent implements OnInit {
     this.submit = true;
     const formData = new FormData();
     formData.append('name', this.productForm.get('name').value);
-    formData.append('fournisseur', this.productForm.get('fournisseur').value);
-    formData.append('categorie', this.productForm.get('categorie').value);
-    formData.append('productdesc', this.productForm.get('productdesc').value);
+    formData.append('manufacture_name', this.productForm.get('manufacture_name').value);
+    formData.append('manufacture_brand', this.productForm.get('manufacture_brand').value);
     formData.append('price', this.productForm.get('price').value);
     formData.append('image', this.file, this.image);
 
-    this.http.post<any>(`http://localhost:8080/api/products`, formData)
+    this.http.post<any>(`http://localhost:8000/api/products`, formData)
       .subscribe((data) => {
         return data;
       });

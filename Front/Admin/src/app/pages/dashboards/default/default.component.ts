@@ -51,13 +51,6 @@ export class DefaultComponent implements OnInit {
      */
     this.fetchData();
   }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.openModal();
-    }, 2000);
-  }
-
   /**
    * Fetches the data
    */
@@ -70,10 +63,6 @@ export class DefaultComponent implements OnInit {
       this.transactions = data.transactions;
       this.statData = data.statData;
     });
-  }
-
-  openModal() {
-    this.modalService.open(this.content, { centered: true });
   }
 
   weeklyreport() {

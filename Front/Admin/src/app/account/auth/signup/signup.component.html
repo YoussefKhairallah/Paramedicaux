@@ -7,8 +7,8 @@
             <div class="row">
               <div class="col-7">
                 <div class="text-primary p-4">
-                  <h5 class="text-primary">S'inscrire</h5>
-                  <p>Obtenez votre compte gratuit maintenant.</p>
+                  <h5 class="text-primary">Inscription gratuite</h5>
+                  <p>Obtenez votre compte gratuit maintenant. </p>
                 </div>
               </div>
               <div class="col-5 align-self-end">
@@ -28,172 +28,121 @@
             </div>
             <div class="p-2">
 
-              <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                
-      <!--================================================= Nom =================================================-->
-                  <div class="mb-3">
-                    <label for="username" class="form-label">Nom</label>
-                      <input type="text" class="form-control"  name="username"  [(ngModel)]="form.username" required 
-                      minlength="3" maxlength="20" #username="ngModel" placeholder="Entre votre nom"/>
-                      <br>
-                      <div class="alert-danger" *ngIf="username.errors && f.submitted">
-                        <div *ngIf="username.errors['required']">
-                          le Nom est obligatoire
-                        </div>
-                        <div *ngIf="username.errors['minlength']">
-                          Le nom d'utilisateur doit comporter au moins 3 caractères
-                        </div>
-                        <div *ngIf="username.errors['maxlength']">                        
-                          Le nom d'utilisateur doit comporter au maximum 20 caractères
-                        </div>
-                      </div>
-                  </div>
-      <!--================================================= Prenom =================================================-->
+              <form class="needs-validation" name="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()"
+                novalidate *ngIf="!isSuccessful">
 
+                <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">Registeration successfull.
+                </ngb-alert>
+
+                <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+
+      <!--================================================= Nom =================================================-->
+
+                <div class="mb-3">
+                  <label class="control-label">Nom</label>
+                    <input class="form-control" placeholder="Entre nom" type="text" name="nom" autocomplete="off" formControlName="username"
+                        [ngClass]="{'is-invalid': submitted && f.username.errors}" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                      <span *ngIf="f.username.errors.required">Nom d'utilisateur est obligatoire.</span>
+                    </div>
+                  <!--<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.minlength">Le nom d'utilisateur doit comporter au moins 3 caractères</div>
+                  </div>
+                  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.maxlength">Le nom d'utilisateur doit comporter au maximum 20 caractères</div>
+                  </div>-->
+                </div>
+              
+      <!--================================================= Prenom =================================================-->
                 <div class="mb-3">
                   <label for="prenom" class="form-label">Prenom</label>
-                  <input type="text" class="form-control"  name="prenom"  [(ngModel)]="form.prenom" required 
-                    minlength="3" maxlength="20" #prenom="ngModel" placeholder="Entre votre prenom"/>
-                    <br>
-                    <div class="alert-danger" *ngIf="prenom.errors && f.submitted">
-                      <div *ngIf="prenom.errors['required']">
-                        le Prenom est obligatoire
-                      </div>
-                      <div *ngIf="prenom.errors['minlength']">
-                        Le Prenom d'utilisateur doit comporter au moins 3 caractères
-                      </div>
-                      <div *ngIf="prenom.errors['maxlength']">                        
-                        Le Prenom d'utilisateur doit comporter au maximum 20 caractères
-                      </div>
-                    </div>
+                  <input class="form-control" placeholder="Entre prenom" type="text" name="prenom" autocomplete="off" formControlName="prenom"
+                    [ngClass]="{'is-invalid': submitted && f.prenom.errors}" />
+                  <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                    <span *ngIf="f.prenom.errors.required">Prenom d'utilisateur est obligatoire.</span>
+                  </div>
+                  <!--<div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                    <div *ngIf="f.prenom.errors.minlength">Le prenom d'utilisateur doit comporter au moins 3 caractères</div>
+                  </div>
+                  <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                    <div *ngIf="f.prenom.errors.maxlength">Le prenom d'utilisateur doit comporter au maximum 20 caractères</div>
+                  </div>-->
                 </div>
-
-
       <!--================================================= Telephone =================================================-->
-
                 <div class="mb-3">
-                  <label for="NumTel" class="form-label">Telephone</label>
-                  <input type="text" class="form-control"  name="NumTel"  [(ngModel)]="form.NumTel" required 
-                  maxlength="8" minlength="8" #NumTel="ngModel" placeholder="Entre votre numero de telephone"/>
-                    <br>
-                    <div class="alert-danger" *ngIf="NumTel.errors && f.submitted">
-                      <div *ngIf="NumTel.errors['required']">
-                        le numero de telephone est obligatoire
-                      </div>
-                      <div *ngIf="NumTel.errors['minlength']">
-                        Le numero de telephone d'utilisateur doit comporter au moins 8 caractères
-                      </div>
-                      <div *ngIf="NumTel.errors['maxlength']">
-                        Le numero de telephone d'utilisateur doit comporter 8 chiffres
-                      </div>
-                    </div> 
+                  <label for="telephone" class="form-label">Telephone</label>
+                  <label class="control-label">Telephone</label>
+                    <input class="form-control" placeholder="Entrez le téléphone" type="text" name="phone" autocomplete="off" formControlName="phone"
+                      [ngClass]="{'is-invalid': submitted && f.phone.errors}" />
+                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                      <span *ngIf="f.phone.errors.required">Le téléphone est obligatoire.</span>
+                    </div>
+                  <!--<div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                    <div *ngIf="f.telephone.errors.minlength">Le telephone d'utilisateur doit comporter au moins 8 caractères</div>
+                  </div>-->
                 </div>
       <!--================================================= Date de Naissance =================================================-->
-
                 <div class="mb-3">
-                  <label for="dateNaissance" class="form-label">Date de naissance</label>
-                  <input type="date" class="form-control"  name="dateNaissance"  [(ngModel)]="form.dateNaissance" required 
-                     #dateNaissance="ngModel" placeholder="Entre votre Date de naissance"/>
-                     <br>
-                    <div class="alert-danger" *ngIf="dateNaissance.errors && f.submitted">
-                      <div *ngIf="dateNaissance.errors['required']">
-                        Date de naissance est obligatoire
-                      </div>
-                    </div>  
+                  <label for="dateNaissance" class="form-label">Date de Naissance</label>
+                  <input class="form-control" placeholder="Date de naissance" type="date" name="dateNaissance" autocomplete="off" formControlName="dateNaissance"
+                    [ngClass]="{'is-invalid': submitted && f.dateNaissance.errors}"/>
+                  <div *ngIf="submitted && f.dateNaissance.errors" class="invalid-feedback">
+                    <span *ngIf="f.dateNaissance.errors.required">Date de naissance d'utilisateur est obligatoire.</span>
+                  </div>
                 </div>
-
       <!--================================================= Email =================================================-->
 
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control"  name="email"  [(ngModel)]="form.email" required email="exemple@exemple.com" 
-                    minlength="10" maxlength="30" #email="ngModel" placeholder="Entre votre email"/>
-                    <br>
-                    <div class="alert-danger" *ngIf="email.errors && f.submitted">
-                      <div *ngIf="email.errors['required']">
-                        l'email est obligatoire
-                      </div>
-                      <div *ngIf="email.errors['minlength']">
-                        L'email d'utilisateur doit comporter au moins 10 caractères
-                      </div>
-                      <div *ngIf="email.errors['maxlength']">                        
-                        L'email d'utilisateur doit comporter au maximum 30 caractères
-                      </div>
-                    </div>
-                </div>
 
+                  <input class="form-control" placeholder="Entre email" type="text" name="email" autocomplete="off" formControlName="email"
+                    [ngClass]="{'is-invalid': submitted && f.email.errors}"/>
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <span *ngIf="f.email.errors.required">E-mail d'utilisateur est obligatoire.</span>
+                    <span *ngIf="f.email.errors.pattern">Cette valeur doit être un e-mail valide.</span>
+                  </div>
+                </div>
       <!--================================================= Mot de passe =================================================-->
 
                 <div class="mb-3">
                   <label for="password" class="form-label">Mot de passe</label>
-                  <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required 
-                  minlength="6" maxlength="30" #password="ngModel" placeholder="Entre votre mot de passe"/>
-                  <br>
-                  <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                    <div *ngIf="password.errors['required']">
-                      Mot de passe est obligatoire
-                    </div>
-                    <div *ngIf="password.errors['minlength']">
-                      Mot de passe d'utilisateur doit comporter au moins 6 caractères
-                    </div>
-                    <div *ngIf="password.errors['maxlength']">                        
-                      Mot de passe d'utilisateur doit comporter au maximum 20 caractères
-                    </div>
+
+                  <input type="password" formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" id="password" placeholder="Mot de passe"/>
+
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Mot de passe de obligatoire</div>
                   </div>
                 </div>
-
-      <!--================================================= Button S'inscrire =================================================-->
 
                 <div class="mt-4 d-grid">
                   <button class="btn btn-primary" type="submit">S'inscrire</button>
                 </div>
-      <!--================================================= Se connecter avec =================================================-->
 
-                <div class="mt-4 text-center">
-                  <h5 class="font-size-14 mb-3">Se connecter avec</h5>
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="javascript::void()" class="social-list-item bg-primary text-white border-primary">
-                        <i class="mdi mdi-facebook"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="javascript::void()" class="social-list-item bg-info text-white border-info">
-                        <i class="mdi mdi-twitter"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="javascript::void()" class="social-list-item bg-danger text-white border-danger">
-                        <i class="mdi mdi-google"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+
                 <div class="mt-4 text-center">
                   <p class="mb-0">En vous inscrivant, vous acceptez le Skote <a href="javascript: void(0);"
-                    class="text-primary">Conditions d'utilisation</a>
-                  </p>
+                      class="text-primary">
+                      Conditions d'utilisation</a></p>
                 </div>
-                <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">Signup failed!<br />{{ errorMessage }}</div>
-
+                <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                  Signup failed!<br />{{ errorMessage }}
+                </div>
               </form>
-              <!-- end form -->
-              <div class="alert alert-success" *ngIf="isSuccessful">Your registration is successful!</div>
             </div>
           </div>
         </div>
         <!-- end card -->
 
         <div class="mt-5 text-center">
-          <p> Vous avez déjà un compte ?<a routerLink="/account/login" class="fw-medium text-primary"> Se connecter</a>
+          <p>
+            Vous avez déjà un compte ? <a routerLink="/account/login" class="fw-medium text-primary"> Connexion</a>
           </p>
-          <p>© 2022 Skote. Fabriqué avec <i class="mdi mdi-heart text-danger"></i> par Themesbrand</p>
+          <p>© {{year}} Skote. Fabriqué avec <i class="mdi mdi-heart text-danger"></i> par Themesbrand</p>
         </div>
-      </div>
-       <!-- end col -->
+      </div> <!-- end col -->
     </div>
     <!-- end row -->
   </div>
   <!-- end container -->
-
 </div>

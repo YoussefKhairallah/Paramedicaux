@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { NgbNavModule, NgbDropdownModule, NgbModalModule, NgbTooltipModule , NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -9,14 +10,16 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import bootstrapPlugin from "@fullcalendar/bootstrap";
 import { LightboxModule } from 'ngx-lightbox';
+
 import { WidgetModule } from '../shared/widget/widget.module';
 import { UIModule } from '../shared/ui/ui.module';
+
 import { PagesRoutingModule } from './pages-routing.module';
+
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { EcommerceModule } from './ecommerce/ecommerce.module';
 import { EmailModule } from './email/email.module';
 import { InvoicesModule } from './invoices/invoices.module';
-import { ProjectsModule } from './projects/projects.module';
 import { TasksModule } from './tasks/tasks.module';
 import { ContactsModule } from './contacts/contacts.module';
 import { BlogModule } from "./blog/blog.module";
@@ -25,10 +28,10 @@ import { UiModule } from './ui/ui.module';
 import { FormModule } from './form/form.module';
 import { TablesModule } from './tables/tables.module';
 import { IconsModule } from './icons/icons.module';
-import { ChartModule } from './chart/chart.module';
 import { MapsModule } from './maps/maps.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChatComponent } from './chat/chat.component';
+
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -37,7 +40,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 ]);
 
 @NgModule({
-  declarations: [ChatComponent],
+  declarations: [ ChatComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -51,7 +54,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     EmailModule,
     InvoicesModule,
     HttpClientModule,
-    ProjectsModule,
     UIModule,
     TasksModule,
     ContactsModule,
@@ -61,7 +63,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormModule,
     TablesModule,
     IconsModule,
-    ChartModule,
     WidgetModule,
     MapsModule,
     FullCalendarModule,

@@ -1,7 +1,6 @@
 import { MenuItem } from './menu.model';
 
 export const MENU: MenuItem[] = [
-    
     {
         id: 1,
         label: 'MENUITEMS.MENU.TEXT',
@@ -12,18 +11,20 @@ export const MENU: MenuItem[] = [
     {
         id: 2,
         label: 'MENUITEMS.DASHBOARDS.TEXT',
-        link: '/dashboard'
+        link: '/dashboard',
     },
     {
         id: 7,
         isLayout: true
     },
     //=========================== Chat =========================
+
     {
         id: 8,
         label: 'MENUITEMS.APPS.TEXT',
         isTitle: true
     },
+
     {
         id: 10,
         label: 'MENUITEMS.CHAT.TEXT',
@@ -32,6 +33,7 @@ export const MENU: MenuItem[] = [
         
     },
     //=========================== Ecommerce =========================
+
     {
         id: 12,
         label: 'MENUITEMS.ECOMMERCE.TEXT',
@@ -45,43 +47,32 @@ export const MENU: MenuItem[] = [
             },
             {
                 id: 14,
-                label: 'MENUITEMS.ECOMMERCE.LIST.CATEGORIES',
-                link: '/ecommerce/categories',
-                parentId: 12  
-            },
-            {
-                id: 15,
                 label: 'MENUITEMS.ECOMMERCE.LIST.PRODUCTDETAIL',
                 link: '/ecommerce/product-detail/1',
                 parentId: 12
             },
             {
-                id: 16,
+                id: 15,
                 label: 'MENUITEMS.ECOMMERCE.LIST.ORDERS',
                 link: '/ecommerce/orders',
                 parentId: 12
             },
             {
-                id: 17,
+                id: 16,
                 label: 'MENUITEMS.ECOMMERCE.LIST.CUSTOMERS',
                 link: '/ecommerce/customers',
                 parentId: 12
             },
             {
-                id: 18,
+                id: 20,
                 label: 'MENUITEMS.ECOMMERCE.LIST.ADDPRODUCT',
                 link: '/ecommerce/add-product',
                 parentId: 12
             },
-            {
-                id: 19,
-                label: 'MENUITEMS.ECOMMERCE.LIST.ADDCATEGORIE',
-                link: '/ecommerce/',
-                parentId: 12
-            }
         ]
     },
     //=========================== Email =========================
+
     {
         id: 29,
         label: 'MENUITEMS.EMAIL.TEXT',
@@ -151,7 +142,33 @@ export const MENU: MenuItem[] = [
             },
         ]
     },
+    //=========================== Tasks =========================
 
+    {
+        id: 44,
+        label: 'MENUITEMS.TASKS.TEXT',
+        icon: 'bx-task',
+        subItems: [
+            {
+                id: 45,
+                label: 'MENUITEMS.TASKS.LIST.TASKLIST',
+                link: '/tasks/list',
+                parentId: 44
+            },
+            {
+                id: 46,
+                label: 'MENUITEMS.TASKS.LIST.KANBAN',
+                link: '/tasks/kanban',
+                parentId: 44
+            },
+            {
+                id: 47,
+                label: 'MENUITEMS.TASKS.LIST.CREATETASK',
+                link: '/tasks/create',
+                parentId: 44
+            }
+        ]
+    },
     //=========================== Contact =========================
 
     {
@@ -159,12 +176,6 @@ export const MENU: MenuItem[] = [
         label: 'MENUITEMS.CONTACTS.TEXT',
         icon: 'bxs-user-detail',
         subItems: [
-            {
-                id: 49,
-                label: 'MENUITEMS.CONTACTS.LIST.USERGRID',
-                link: '/contacts/grid',
-                parentId: 48
-            },
             {
                 id: 50,
                 label: 'MENUITEMS.CONTACTS.LIST.USERLIST',
@@ -179,7 +190,38 @@ export const MENU: MenuItem[] = [
             }
         ]
     },
-    //=========================== Authentification =========================
+    //=========================== Blog =========================
+
+    {
+        id: 52,
+        label: 'MENUITEMS.BLOG.TEXT',
+        icon: 'bx-file',
+        badge: {
+            variant: 'success',
+            text: 'MENUITEMS.EMAIL.LIST.TEMPLATE.BADGE',
+        },
+        subItems: [
+            {
+                id: 53,
+                label: 'MENUITEMS.BLOG.LIST.BLOGLIST',
+                link: '/blog/list',
+                parentId: 52
+            },
+            {
+                id: 54,
+                label: 'MENUITEMS.BLOG.LIST.BLOGGRID',
+                link: '/blog/grid',
+                parentId: 52
+            },
+            {
+                id: 55,
+                label: 'MENUITEMS.BLOG.LIST.DETAIL',
+                link: '/blog/detail',
+                parentId: 52
+            },
+        ]
+    },
+    //=========================== AUTHENTICATION =========================
 
     {
         id: 56,
@@ -201,19 +243,21 @@ export const MENU: MenuItem[] = [
                 link: '/account/login',
                 parentId: 57
             },
+
             {
                 id: 60,
                 label: 'MENUITEMS.AUTHENTICATION.LIST.REGISTER',
                 link: '/account/signup',
                 parentId: 57
             },
+
             {
                 id: 62,
                 label: 'MENUITEMS.AUTHENTICATION.LIST.RECOVERPWD',
                 link: '/account/reset-password',
                 parentId: 57
             },
-
+ 
             {
                 id: 64,
                 label: 'MENUITEMS.AUTHENTICATION.LIST.LOCKSCREEN',
@@ -227,12 +271,14 @@ export const MENU: MenuItem[] = [
                 link: '/pages/confirm-mail',
                 parentId: 57
             },
+
             {
                 id: 68,
                 label: 'MENUITEMS.AUTHENTICATION.LIST.EMAILVERIFICATION',
                 link: '/pages/email-verification',
                 parentId: 57
             },
+
             {
                 id: 70,
                 label: 'MENUITEMS.AUTHENTICATION.LIST.TWOSTEPVERIFICATION',
@@ -241,7 +287,7 @@ export const MENU: MenuItem[] = [
             }
         ]
     },
-    //=========================== Utility ========================
+    //=========================== Utility =========================
 
     {
         id: 72,
@@ -290,19 +336,142 @@ export const MENU: MenuItem[] = [
                 link: '/pages/404',
                 parentId: 72
             },
+            {
+                id: 79,
+                label: 'MENUITEMS.UTILITY.LIST.ERROR500',
+                link: '/pages/500',
+                parentId: 72
+            },
         ]
     },
-
-    //=========================== Components =========================
+    //=========================== UIELEMENTS =========================
 
     {
         id: 80,
         label: 'MENUITEMS.COMPONENTS.TEXT',
         isTitle: true
     },
-
-    //=========================== Forms =========================
-
+    {
+        id: 81,
+        label: 'MENUITEMS.UIELEMENTS.TEXT',
+        icon: 'bx-tone',
+        subItems: [
+            {
+                id: 82,
+                label: 'MENUITEMS.UIELEMENTS.LIST.ALERTS',
+                link: '/ui/alerts',
+                parentId: 81
+            },
+            {
+                id: 83,
+                label: 'MENUITEMS.UIELEMENTS.LIST.BUTTONS',
+                link: '/ui/buttons',
+                parentId: 81
+            },
+            {
+                id: 84,
+                label: 'MENUITEMS.UIELEMENTS.LIST.CARDS',
+                link: '/ui/cards',
+                parentId: 81
+            },
+            {
+                id: 85,
+                label: 'MENUITEMS.UIELEMENTS.LIST.CAROUSEL',
+                link: '/ui/carousel',
+                parentId: 81
+            },
+            {
+                id: 86,
+                label: 'MENUITEMS.UIELEMENTS.LIST.DROPDOWNS',
+                link: '/ui/dropdowns',
+                parentId: 81
+            },
+            {
+                id: 87,
+                label: 'MENUITEMS.UIELEMENTS.LIST.GRID',
+                link: '/ui/grid',
+                parentId: 81
+            },
+            {
+                id: 88,
+                label: 'MENUITEMS.UIELEMENTS.LIST.IMAGES',
+                link: '/ui/images',
+                parentId: 81
+            },
+            {
+                id: 88,
+                label: 'MENUITEMS.UIELEMENTS.LIST.LIGHTBOX',
+                link: '/ui/lightbox',
+                parentId: 81
+            },
+            {
+                id: 89,
+                label: 'MENUITEMS.UIELEMENTS.LIST.MODALS',
+                link: '/ui/modals',
+                parentId: 81
+            },
+            {
+                id: 90,
+                label: 'MENUITEMS.UIELEMENTS.LIST.RANGESLIDER',
+                link: '/ui/rangeslider',
+                parentId: 81
+            },
+            {
+                id: 91,
+                label: 'MENUITEMS.UIELEMENTS.LIST.PROGRESSBAR',
+                link: '/ui/progressbar',
+                parentId: 81
+            },
+            {
+                id: 92,
+                label: 'MENUITEMS.UIELEMENTS.LIST.PLACEHOLDER',
+                link: '/ui/placeholder',
+                parentId: 81
+            },
+            {
+                id: 93,
+                label: 'MENUITEMS.UIELEMENTS.LIST.SWEETALERT',
+                link: '/ui/sweet-alert',
+                parentId: 81
+            },
+            {
+                id: 94,
+                label: 'MENUITEMS.UIELEMENTS.LIST.TABS',
+                link: '/ui/tabs-accordions',
+                parentId: 81
+            },
+            {
+                id: 95,
+                label: 'MENUITEMS.UIELEMENTS.LIST.TYPOGRAPHY',
+                link: '/ui/typography',
+                parentId: 81
+            },
+            {
+                id: 96,
+                label: 'MENUITEMS.UIELEMENTS.LIST.VIDEO',
+                link: '/ui/video',
+                parentId: 81
+            },
+            {
+                id: 97,
+                label: 'MENUITEMS.UIELEMENTS.LIST.GENERAL',
+                link: '/ui/general',
+                parentId: 81
+            },
+            {
+                id: 98,
+                label: 'MENUITEMS.UIELEMENTS.LIST.COLORS',
+                link: '/ui/colors',
+                parentId: 81
+            },
+            {
+                id: 99,
+                label: 'MENUITEMS.UIELEMENTS.LIST.CROPPER',
+                link: '/ui/image-crop',
+                parentId: 81
+            },
+        ]
+    },
     {
         id: 100,
         label: 'MENUITEMS.FORMS.TEXT',
@@ -368,18 +537,25 @@ export const MENU: MenuItem[] = [
             }
         ]
     },
-
-    //=========================== Tables =========================
-
     {
         id: 110,
         icon: 'bx-list-ul',
-        link: '/tables/advanced',
         label: 'MENUITEMS.TABLES.TEXT',
+        subItems: [
+            {
+                id: 111,
+                label: 'MENUITEMS.TABLES.LIST.BASIC',
+                link: '/tables/basic',
+                parentId: 110
+            },
+            {
+                id: 112,
+                label: 'MENUITEMS.TABLES.LIST.ADVANCED',
+                link: '/tables/advanced',
+                parentId: 110
+            }
+        ]
     },
-
-    //=========================== Charts =========================
-    
     {
         id: 113,
         icon: 'bxs-bar-chart-alt-2',
@@ -411,8 +587,37 @@ export const MENU: MenuItem[] = [
             }
         ]
     },
-    //=========================== Maps =========================
-
+    {
+        id: 118,
+        label: 'MENUITEMS.ICONS.TEXT',
+        icon: 'bx-aperture',
+        subItems: [
+            {
+                id: 119,
+                label: 'MENUITEMS.ICONS.LIST.BOXICONS',
+                link: '/icons/boxicons',
+                parentId: 118
+            },
+            {
+                id: 120,
+                label: 'MENUITEMS.ICONS.LIST.MATERIALDESIGN',
+                link: '/icons/materialdesign',
+                parentId: 118
+            },
+            {
+                id: 121,
+                label: 'MENUITEMS.ICONS.LIST.DRIPICONS',
+                link: '/icons/dripicons',
+                parentId: 118
+            },
+            {
+                id: 122,
+                label: 'MENUITEMS.ICONS.LIST.FONTAWESOME',
+                link: '/icons/fontawesome',
+                parentId: 118
+            },
+        ]
+    },
     {
         id: 123,
         label: 'MENUITEMS.MAPS.TEXT',
@@ -424,6 +629,36 @@ export const MENU: MenuItem[] = [
                 link: '/maps/google',
                 parentId: 123
             }
+        ]
+    },
+    {
+        id: 125,
+        label: 'MENUITEMS.MULTILEVEL.TEXT',
+        icon: 'bx-share-alt',
+        subItems: [
+            {
+                id: 126,
+                label: 'MENUITEMS.MULTILEVEL.LIST.LEVEL1.1',
+                link: '#',
+                parentId: 125
+            },
+            {
+                id: 127,
+                label: 'MENUITEMS.MULTILEVEL.LIST.LEVEL1.2',
+                parentId: 125,
+                subItems: [
+                    {
+                        id: 128,
+                        label: 'MENUITEMS.MULTILEVEL.LIST.LEVEL1.LEVEL2.1',
+                        parentId: 127,
+                    },
+                    {
+                        id: 129,
+                        label: 'MENUITEMS.MULTILEVEL.LIST.LEVEL1.LEVEL2.2',
+                        parentId: 127,
+                    }
+                ]
+            },
         ]
     }
 ];
