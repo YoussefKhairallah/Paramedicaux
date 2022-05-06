@@ -21,6 +21,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { AddCategorieComponent } from './add-categorie/add-categorie.component';
+import { AvisComponent } from './avis/avis.component';
 
 const config: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -30,7 +31,7 @@ const config: DropzoneConfigInterface = {
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
-  declarations: [ProductsComponent, ProductdetailComponent, AddproductComponent, CustomersComponent, OrdersComponent, CategorieComponent, AddCategorieComponent],
+  declarations: [ProductsComponent, ProductdetailComponent, AddproductComponent, CustomersComponent, OrdersComponent, CategorieComponent, AddCategorieComponent, AvisComponent],
   imports: [
     CommonModule,
     EcommerceRoutingModule,

@@ -1,10 +1,10 @@
-import { state } from '@angular/animations';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/core/services/Ecommerce/User/user.service';
 import { User } from '../user.module';
-import { UserData } from './data';
+
 @Component({
   selector: 'app-userlist',
   templateUrl: './userlist.component.html',
@@ -36,7 +36,7 @@ export class UserlistComponent implements OnInit {
   constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private userService:UserService) { }
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Users List', active: true }];
+    this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Liste des users', active: true }];
     this.formData = this.formBuilder.group({
       username: ['', [Validators.required]],
       prenom: ['', [Validators.required]],

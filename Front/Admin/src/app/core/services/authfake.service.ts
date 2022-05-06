@@ -19,14 +19,14 @@ export class AuthfakeauthenticationService {
       Mdp
     }, httpOptions);
   }
-  register(Nom: string, prenom: string, Tel:string, DateNaissance:string, Mail: string, Mdp: string): Observable<any> {
+  register(nom: string, prenom: string, dateNaissance:string, tel:string, mail: string, mdp: string): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {
-      Nom,
+      nom,
       prenom,
-      Tel,
-      DateNaissance,
-      Mail,
-      Mdp
+      dateNaissance,
+      tel,
+      mail,
+      mdp
     }, httpOptions);
   }
 }

@@ -39,15 +39,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>id</td>
-                  <td>Nom & prenom</td>
-                  <td>Mail</td>
+                <tr *ngFor="let user of UserData">
+                  <td>{{user.id}}</td>
+                  <td>{{user.Nom}} {{user.prenom}}</td>
+                  <td>{{user.Mail}}</td>
                   <td>
-                    <p class="mb-1">Tel</p>
+                    <p class="mb-1">{{user.Tel}}</p>
                   </td>
-                  <td>DateNaissance</td>
-                  <td>Role</td>
+                  <td>{{user.DateNaissance}}</td>
+                  <td>{{user.Role}}</td>
                   <td>
                     <ul class="list-inline font-size-20 contact-links mb-0">
                       <li class="list-inline-item px-2">
@@ -55,9 +55,6 @@
                       </li>
                       <li class="list-inline-item px-2">
                         <a href="" ngbTooltip="Profile"><i class="bx bx-user-circle"></i></a>
-                      </li>
-                      <li class="list-inline-item px-2">
-                        <a href="" ngbTooltip="Edit"><i class="bx bx-edit"></i></a>
                       </li>
                     </ul>
                   </td>
@@ -111,7 +108,7 @@
         <div class="mb-3">
           <label class="control-label">Nom</label>
           <input class="form-control" placeholder="Entre nom" type="text" name="nom" autocomplete="off" formControlName="username"
-              [ngClass]="{'is-invalid': submitted && form.username.errors}" />
+              [ngClass]="{'is-invalid': submitted && form.username.errors}"/>
             <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
               <span *ngIf="form.username.errors.required">Nom d'utilisateur est obligatoire.</span>
             </div>

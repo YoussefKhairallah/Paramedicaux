@@ -27,42 +27,28 @@
               </a>
             </div>
             <div class="p-2">
-              <form class="form-horizontal" [formGroup]="loginForm" *ngIf="!isLoggedIn" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+              <form [formGroup]="loginForm">
 
                 <!--================================================= Email =================================================-->
 
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control"  name="email"  [(ngModel)]="f.email" required 
-                  minlength="3" maxlength="50" #email="ngModel" placeholder="Entre votre email"/>
-                  <div class="alert-danger" *ngIf="email.errors && f.submitted">
-                    <div *ngIf="email.errors['required']">
-                      l'email est obligatoire
+                <label class="control-label">Email</label>
+                <input class="form-control" placeholder="Entre email" type="text" name="email" autocomplete="off" formControlName="email"
+                    [ngClass]="{'is-invalid': submitted && form.email.errors}"/>
+                    <div *ngIf="submitted && form.email.errors" class="invalid-feedback">
+                      <span *ngIf="form.email.errors.required">E-mail d'utilisateur est obligatoire.</span>
+                      <span *ngIf="form.email.errors.pattern">Cette valeur doit être un e-mail valide.</span>
                     </div>
-                    <div *ngIf="email.errors['minlength']">
-                      L'email d'utilisateur doit comporter au moins 3 caractères
-                    </div>
-                    <div *ngIf="email.errors['maxlength']">                        
-                      L'email d'utilisateur doit comporter au maximum 50 caractères
-                    </div>
-                  </div>
               </div>
       <!--================================================= Mot de passe =================================================-->
 
               <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="f.password" required 
-                minlength="3" maxlength="30" #password="ngModel" placeholder="Entre votre mot de passe"/>
-                <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                  <div *ngIf="password.errors['required']">
-                    Mot de passe est obligatoire
-                  </div>
-                  <div *ngIf="password.errors['minlength']">
-                    Mot de passe de l'utilisateur doit comporter au moins 3 caractères
-                  </div>
-                  <div *ngIf="password.errors['maxlength']">                        
-                    Mot de passe de l'utilisateur doit comporter au maximum 20 caractères
-                  </div>
+                <input type="password" formControlName="password" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && form.password.errors }" id="password" placeholder="Mot de passe"/>
+
+                <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+                  <div *ngIf="form.password.errors.required">Mot de passe de obligatoire</div>
                 </div>
               </div>
       <!--================================================= Button Connexion =================================================-->
@@ -88,8 +74,6 @@
           </div>
         </div>
         <div class="mt-5 text-center">
-          <p>Vous n'avez pas de compte ?<a routerLink="/account/signup" class="fw-medium text-primary"> S'inscrire maintenant
-            </a> </p>
           <p>© {{year}} Skote. Fabriqué avec <i class="mdi mdi-heart text-danger"></i> par Themesbrand</p>
         </div>
 

@@ -13,9 +13,9 @@ export class SignupComponent implements OnInit {
   f: any = {
     username: null,
     prenom: null,
-    telephone: null,
     dateNaissance: null,
-    email: null,
+    phone: null,
+    mail: null,
     password: null
   };
   isSuccessful = false;
@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
       prenom: ['', [Validators.required]],
       dateNaissance: ['', [Validators.required]],
       telephone: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      mail: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -47,14 +47,14 @@ export class SignupComponent implements OnInit {
   }
   onSubmit(): void {
     if(this.signupForm.valid){
-    const Nom = this.signupForm.get('username').value;
+      const nom = this.signupForm.get('username').value;
       const prenom = this.signupForm.get('prenom').value;
       const dateNaissance = this.signupForm.get('dateNaissance').value;
-      const email = this.signupForm.get('email').value;
-      const Mdp = this.signupForm.get('password').value;
-      const Tel = this.signupForm.get('phone').value;
+      const tel = this.signupForm.get('phone').value;
+      const mail = this.signupForm.get('mail').value;
+      const mdp = this.signupForm.get('password').value;
     }
-    /*this.authService.register(Nom, prenom, Tel, dateNaissance, email, Mdp).subscribe({
+    this.authService.register(this.f.nom, this.f.prenom, this.f.dateNaissance, this.f.tel, this.f.mail, this.f.mdp).subscribe({
       next: data => {
         console.log(data);
         this.isSuccessful = true;
@@ -64,7 +64,9 @@ export class SignupComponent implements OnInit {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
       }
-    });*/
+    });
   }
 
 }
+
+

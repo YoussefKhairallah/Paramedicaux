@@ -95,11 +95,11 @@
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
 
-                  <input class="form-control" placeholder="Entre email" type="text" name="email" autocomplete="off" formControlName="email"
+                  <input class="form-control" placeholder="Entre email" type="text" name="mail" autocomplete="off" formControlName="email"
                     [ngClass]="{'is-invalid': submitted && f.email.errors}"/>
-                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <span *ngIf="f.email.errors.required">E-mail d'utilisateur est obligatoire.</span>
-                    <span *ngIf="f.email.errors.pattern">Cette valeur doit être un e-mail valide.</span>
+                  <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                    <span *ngIf="f.mail.errors.required">E-mail d'utilisateur est obligatoire.</span>
+                    <span *ngIf="f.mail.errors.pattern">Cette valeur doit être un e-mail valide.</span>
                   </div>
                 </div>
       <!--================================================= Mot de passe =================================================-->
@@ -107,7 +107,7 @@
                 <div class="mb-3">
                   <label for="password" class="form-label">Mot de passe</label>
 
-                  <input type="password" formControlName="password" class="form-control"
+                  <input type="password" formControlName="password" class="form-control" name="password" autocomplete="off"
                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }" id="password" placeholder="Mot de passe"/>
 
                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">

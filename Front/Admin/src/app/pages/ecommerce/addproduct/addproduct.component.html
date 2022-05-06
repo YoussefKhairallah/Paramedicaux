@@ -15,97 +15,83 @@
           <form [formGroup]="productForm" (ngSubmit)="validSubmit()">
             <div class="row">
               <div class="col-sm-6">
+                <!--================================================= Nom Produit =================================================-->
                 <div class="mb-3">
-                  <label for="productname">Product Name</label>
+                  <label for="productname">Nom du produit</label>
                   <input id="productname" name="productname" type="text" class="form-control" formControlName="name"
                     [ngClass]="{'is-invalid': submit && form.name.errors}">
                   <div *ngIf="submit && form.name.errors" class="invalid-feedback">
-                    <span *ngIf="form.name.errors.required">Name is required.</span>
+                    <span *ngIf="form.name.errors.required">Nom du produit est obligatoire.</span>
                   </div>
                 </div>
+
+      <!--================================================= Fournisseur Produit =================================================-->
+
                 <div class="mb-3">
-                  <label for="manufacturername">Manufacturer Name</label>
-                  <input id="manufacturername" name="manufacturername" type="text" class="form-control"
-                    formControlName="manufacture_name"
-                    [ngClass]="{'is-invalid': submit && form.manufacture_name.errors}">
-                  <div *ngIf="submit && form.manufacture_name.errors" class="invalid-feedback">
-                    <span *ngIf="form.manufacture_name.errors.required">Manufacturer name is required.</span>
+                  <label for="fournisseur">Fournisseur du produit</label>
+                  <input id="fournisseur" name="fournisseur" type="text" class="form-control" formControlName="fournisseur"
+                    [ngClass]="{'is-invalid': submit && form.fournisseur.errors}">
+                  <div *ngIf="submit && form.fournisseur.errors" class="invalid-feedback">
+                    <span *ngIf="form.fournisseur.errors.required">Fournisseur du produit est obligatoire.</span>
                   </div>
                 </div>
+
+      <!--================================================= Prix Produit =================================================-->
+                
                 <div class="mb-3">
-                  <label for="manufacturerbrand">Manufacturer Brand</label>
-                  <input id="manufacturerbrand" name="manufacturerbrand" type="text" class="form-control"
-                    formControlName="manufacture_brand" [ngClass]="{'is-invalid': submit &&
-                    form.manufacture_brand.errors}">
-                  <div *ngIf="submit && form.manufacture_brand.errors" class="invalid-feedback">
-                    <span *ngIf="form.manufacture_brand.errors.required">Manufacturer brand is required.</span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="price">Price</label>
+                  <label for="price">Prix</label>
                   <input id="price" name="price" type="text" class="form-control" formControlName="price" [ngClass]="{'is-invalid': submit &&
                   form.price.errors}">
                   <div *ngIf="submit && form.price.errors" class="invalid-feedback">
-                    <span *ngIf="form.price.errors.required">Price is required.</span>
+                    <span *ngIf="form.price.errors.required">Prix est obligatoire.</span>
                   </div>
                 </div>
-                <label for="product-image" class="mt-2"> Product Images</label>
+      <!--================================================= Quantite Produit =================================================-->
+                
+                <div class="mb-3">
+                  <label for="price">Quantite du produit</label>
+                  <input id="quantiteProd" name="quantiteProd" type="number" class="form-control" formControlName="quantiteProd" [ngClass]="{'is-invalid': submit &&
+                  form.quantiteProd.errors}">
+                  <div *ngIf="submit && form.quantiteProd.errors" class="invalid-feedback">
+                    <span *ngIf="form.quantiteProd.errors.required">Quantite du produit est obligatoire.</span>
+                  </div>
+                </div>           
+      <!--================================================= Image Produit =================================================-->
+
+                <label for="product-image" class="mt-2"> Images du produit</label>
                 <dropzone class="dropzone" [config]="config"></dropzone>
               </div>
 
               <div class="col-sm-6">
+      <!--================================================= Categorie Produit =================================================-->
+
                 <div class="mb-3">
-                  <label class="control-label">Category</label>
-                  <ng-select [items]="['Alaska','Hawaii']"></ng-select>
+                  <label class="control-label">Categorie</label>
+                  <ng-select [items]="['Alaska','Hawaii']" required formControlName="categorie" [ngClass]="{'is-invalid': submit && form.categorie.errors}"></ng-select>
+                  <div *ngIf="submit && form.categorie.errors" class="invalid-feedback">
+                  <span *ngIf="form.categorie.errors.required">Categorie est obligatoire.</span>
+                  </div>
+                  
                 </div>
+
+      <!--================================================= Description du produit =================================================-->
+
                 <div class="mb-3">
-                  <label class="control-label">Features</label>
-                  <ng-select [items]="['Alaska','Hawaii','California','Nevada','Oregon','Washington']"
-                    [multiple]="true"></ng-select>
-                </div>
-                <div class="mb-3">
-                  <label for="productdesc">Product Description</label>
-                  <textarea class="form-control" id="productdesc" rows="5"></textarea>
+                  <label for="productdesc">Description du produit</label>
+                  <textarea class="form-control" id="productdesc" rows="5" name="productdesc" formControlName="productdesc" [ngClass]="{'is-invalid': submit &&
+                  form.productdesc.errors}"></textarea>
+                  <div *ngIf="submit && form.productdesc.errors" class="invalid-feedback">
+                    <span *ngIf="form.productdesc.errors.required">Description est obligatoire.</span>
+                  </div>
                 </div>
               </div>
             </div>
+
+      <!--================================================= Les Buttons =================================================-->
+
             <div class="d-flex flex-wrap gap-2 mt-2">
-              <button type="submit" class="btn btn-primary">Save Changes</button>
-              <button type="submit" class="btn btn-secondary">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-
-          <h4 class="card-title">Meta Data</h4>
-          <p class="card-title-desc">Fill all information below</p>
-
-          <form>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <label for="metatitle">Meta title</label>
-                  <input id="metatitle" name="productname" type="text" class="form-control">
-                </div>
-                <div class="mb-3">
-                  <label for="metakeywords">Meta Keywords</label>
-                  <input id="metakeywords" name="manufacturername" type="text" class="form-control">
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <label for="metadescription">Meta Description</label>
-                  <textarea class="form-control" id="metadescription" rows="5"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex flex-wrap gap-2">
-              <button type="submit" class="btn btn-primary">Save Changes</button>
-              <button type="submit" class="btn btn-secondary">Cancel</button>
+              <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
+              <button type="submit" class="btn btn-secondary">Annuler</button>
             </div>
           </form>
         </div>
@@ -114,4 +100,5 @@
   </div>
   <!-- end row -->
 
-</div> <!-- container-fluid -->
+</div>
+<!-- container-fluid -->

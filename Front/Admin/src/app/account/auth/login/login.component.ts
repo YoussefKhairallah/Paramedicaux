@@ -16,7 +16,7 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
  */
 export class LoginComponent implements OnInit {
   form: any = {
-    uemail: null,
+    email: null,
     password: null
   };
   isLoggedIn = false;
@@ -31,19 +31,17 @@ export class LoginComponent implements OnInit {
   // set the currenr year
   year: number = new Date().getFullYear();
 
-
-  // tslint:disable-next-line: max-line-length
   constructor(private formBuilder: FormBuilder, private authService: AuthfakeauthenticationService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
-
+    
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
-      if (this.tokenStorage.getToken()) {
-        this.isLoggedIn = true;
-      }
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    }
 
   }
 
@@ -55,6 +53,12 @@ export class LoginComponent implements OnInit {
    * Form submit
    */
   onSubmit(): void {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
     const { email, password } = this.form;
     this.authService.login(email, password).subscribe({
       next: data => {

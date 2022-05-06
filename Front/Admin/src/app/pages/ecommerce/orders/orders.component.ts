@@ -20,7 +20,7 @@ export class OrdersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Orders', active: true }];
+    this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Liste des Commandes', active: true }];
 
     this.transactions = [
       {
