@@ -1,0 +1,158 @@
+<div class="container-fluid">
+
+    <app-page-title title="Livraison" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <div class="search-box me-2 mb-2 d-inline-block">
+                  <div class="position-relative">
+                    <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="term" />
+                    <i class="bx bx-search-alt search-icon"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="text-sm-end">
+                  <button type="button" class="btn btn-success btn-rounded mb-2 mr-2" (click)="openModal(content)">
+                    <i class="mdi mdi-plus me-1"></i> Ajouter une livraison
+                  </button>
+                </div>
+              </div>
+              <!-- end col-->
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle table-nowrap">
+                <thead class="table-light">
+                  <tr>
+                    <th>#</th>
+                    <th>Id Commande</th>
+                    <th>Adresse de client</th>
+                    <th>Etat</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let livraison of livraisonData">
+                    <td>{{livraison.commande_id}}</td>
+                    <td>{{livraison.adresseClient}}</td>
+                    <td>{{livraison.etat}}</td>
+                    
+                    <td>
+                      <div class="dropdown" ngbDropdown placement="bottom-right">
+                        <a href="javascript: void(0);" class="dropdown-toggle card-drop" data-toggle="dropdown"
+                          ngbDropdownToggle aria-expanded="false">
+                          <i class="mdi mdi-dots-horizontal font-size-18"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                          <li><a href="javascript: void(0);" class="dropdown-item"><i
+                                class="fas fa-pencil-alt text-success me-1"></i>
+                              Modifier</a></li>
+                          <li><a href="javascript: void(0);" class="dropdown-item"><i
+                                class="fas fa-trash-alt text-danger me-1" (click)="confirmSupp()"></i>
+                              Supprimer</a></li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  
+  <!-- Standard Modal -->
+  <ng-template #content role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Ajouter une livraison</h5>
+      <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+     <form (ngSubmit)="saveLivraison()" (ngSubmit)="validSubmit()" [formGroup]="livraisonForm" >
+      <div class="row">
+        <div class="col-12">
+
+          <!------------------------------------------- Id Commande ------------------------------------------->
+          <div class="mb-3">
+            <label class="control-label">Id Commande</label>
+            <input class="form-control" placeholder="Enter l'id du commande" type="text" name="IdCommande" autocomplete="off" formControlName="livraison"
+                [ngClass]="{'is-invalid': submitted && form.IdCommande.errors}"/>
+                <div *ngIf="submitted && form.IdCommande.errors" class="invalid-feedback">
+                  <span *ngIf="form.IdCommande.errors.required">L'id du commande est obligatoire.</span>
+                </div>
+          </div>
+          <!------------------------------------------- Id Livreur ------------------------------------------->
+
+          <div class="mb-3">
+            <label class="control-label">Id livreur</label>
+            <input class="form-control" placeholder="Enter l'id du livreur" type="text" name="Idlivreur" autocomplete="off" formControlName="livraison"
+                [ngClass]="{'is-invalid': submitted && form.Idlivreur.errors}"/>
+                <div *ngIf="submitted && form.Idlivreur.errors" class="invalid-feedback">
+                  <span *ngIf="form.Idlivreur.errors.required">L'id du livreur est obligatoire.</span>
+                </div>
+          </div>
+          <!------------------------------------------- Adresse Socetie ------------------------------------------->
+
+          <div class="mb-3">
+            <label class="control-label">Adresse du Societe</label>
+            <input class="form-control" placeholder="Enter l'addresse de societe" type="text" name="societe" autocomplete="off" formControlName="livraison"
+                [ngClass]="{'is-invalid': submitted && form.societe.errors}"/>
+                <div *ngIf="submitted && form.societe.errors" class="invalid-feedback">
+                  <span *ngIf="form.societe.errors.required">L'adresse du Societe est obligatoire.</span>
+                </div>
+          </div> 
+          <!------------------------------------------- Adresse Client ------------------------------------------->
+
+          <div class="mb-3">
+            <label class="control-label">L'adresse du Client</label>
+            <input class="form-control" placeholder="Enter l'addresse de client" type="text" name="client" autocomplete="off" formControlName="livraison"
+                [ngClass]="{'is-invalid': submitted && form.client.errors}"/>
+                <div *ngIf="submitted && form.client.errors" class="invalid-feedback">
+                  <span *ngIf="form.client.errors.required">L'adresse du client est obligatoire.</span>
+                </div>
+          </div>
+          <!------------------------------------------- Fairs de livraison ------------------------------------------->
+
+          <div class="mb-3">
+            <label class="control-label">Frais du livraison</label>
+            <input class="form-control" placeholder="Enter Frais du livraison" type="text" name="livraison" autocomplete="off" formControlName="livraison"
+                [ngClass]="{'is-invalid': submitted && form.livraison.errors}"/>
+                <div *ngIf="submitted && form.livraison.errors" class="invalid-feedback">
+                  <span *ngIf="form.livraison.errors.required">Frais du livraison est obligatoire.</span>
+                </div>
+          </div>
+          <!------------------------------------------- Nombre de jour ------------------------------------------->
+
+          <div class="mb-3">
+            <label class="control-label">Nombre du jour de livraison</label>
+            <input class="form-control" placeholder="Enter nombre du jour de livraison" type="number" name="jour" autocomplete="off" formControlName="livraison"
+                [ngClass]="{'is-invalid': submitted && form.jour.errors}"/>
+                <div *ngIf="submitted && form.jour.errors" class="invalid-feedback">
+                  <span *ngIf="form.jour.errors.required">Nombre du jour de livraison est obligatoire.</span>
+                </div>
+          </div>
+          <!------------------------------------------- Etat ------------------------------------------->
+
+          <div class="mb-3">
+            <label class="control-label">Etat</label>
+            <input class="form-control" placeholder="Enter l'etat" type="text" name="etat" autocomplete="off" formControlName="livraison"
+                [ngClass]="{'is-invalid': submitted && form.etat.errors}"/>
+                <div *ngIf="submitted && form.etat.errors" class="invalid-feedback">
+                  <span *ngIf="form.etat.errors.required">L'etat est obligatoire.</span>
+                </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" id="btn-save-event">
+        Enregistrer
+      </button>
+     </form>
+    </div>
+  </ng-template>

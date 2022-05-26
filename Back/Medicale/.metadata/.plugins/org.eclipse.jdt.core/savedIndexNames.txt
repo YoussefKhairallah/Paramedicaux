@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+C:\Users\admin\Desktop\Projet PFE\Back\Medicale\.metadata\.plugins\org.eclipse.jdt.core
-2534857858.index
-1865797976.index
