@@ -10,15 +10,16 @@
           <div>
             <h5 class="font-size-14 mb-3">Categories</h5>
             <ul class="list-unstyled product-list" *ngFor="let categorie of categoriesData">
-              <li><a href="javascript: void(0);"><i class="mdi mdi-chevron-right me-1"></i>{{categorie.Nom}}</a></li>
+              <li><a href="javascript: void(0);"><i class="mdi mdi-chevron-right me-1"></i>{{categorie.nom}}</a></li>
             </ul>
           </div>
+          <!--
           <div class="mt-4 pt-3">
             <h5 class="font-size-14 mb-3">Prix</h5>
             <ng5-slider [(value)]="pricevalue" [(highValue)]="maxVal" [options]="priceoption"
               (valueChange)="valueChange($event,true)" (highValueChange)="valueChange($event,false)"></ng5-slider>
           </div>
-
+          
           <div class="mt-4 pt-3">
             <h5 class="font-size-14 mb-3">Remise</h5>
             <div class="form-check mt-2">
@@ -53,8 +54,9 @@
                 50 % ou plus</label>
             </div>
           </div>
-
+-->
           <div class="mt-4 pt-3">
+            <!--
             <h5 class="font-size-14 mb-3">Évaluation du client</h5>
             <div>
               <div class="form-check mt-2">
@@ -78,7 +80,7 @@
                     class="bx bx-star text-warning"></i></label>
               </div>
 
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
@@ -108,21 +110,19 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-4 col-sm-6" *ngFor="let product of products">
+        <div class="col-xl-4 col-sm-6" *ngFor="let product of produitData">
           <div class="card">
             <div class="card-body">
               <div class="product-img position-relative">
-                <div class="avatar-sm product-ribbon">
-                  <span class="avatar-title rounded-circle bg-primary">
-                      -{{product.discount}} % 
-                  </span>
+                <div class="col-11 d-flex justify-content-between ">
+                  <button class="btn btn-success m-2 col-6" (click)="openModal(content)" (click)="edit(produitedit,content)">Modifier</button>
+                  <button class="btn btn-danger m-2 col-6"  (click)="confirmSupp(product.id)">Supprimer</button>
                 </div>
-                
-                <a [routerLink]="['/ecommerce/product-detail',product.id]" href="javascript: void(0);"><img src="{{product.images[0]}}" alt=""
+                <a [routerLink]="['/ecommerce/product-detail',product.id]" href="javascript: void(0);"><img src="{{product.image}}" alt=""
                   class="img-fluid mx-auto d-block"></a>
               </div>
               <div class="mt-4 text-center">
-                <h5 class="mb-3 text-truncate"><a [routerLink]="['/ecommerce/product-detail',product.id]" href="javascript: void(0);" class="text-dark">{{product.name}} </a>
+                <h5 class="mb-3 text-truncate"><a [routerLink]="['/ecommerce/product-detail',product.id]" href="javascript: void(0);" class="text-dark">{{product.nom}} </a>
                 </h5>
 
                 <p class="text-muted">
@@ -132,8 +132,7 @@
                   <i class="bx bx-star text-warning"></i>
                   <i class="bx bx-star text-warning"></i>
                 </p>
-                <h5 class="my-0"><span class="text-muted mr-2"><del>TND {{product.oriRate}}</del></span> <b>TND
-                  {{product.disRate}}</b></h5>
+                <h5 class="my-0"><span class="text-muted mr-2">{{product.prix}} TND</span></h5>
               </div>
             </div>
           </div>
@@ -149,3 +148,110 @@
     </div>
     <!-- end row -->
   </div>
+
+  <!-- Standard Modal -->
+  <ng-template #content role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Modifier un produit</h5>
+      <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="productForm" (ngSubmit)="validSubmit()">
+        <div class="row">
+          <div class="col-sm-6">
+            <!--================================================= Nom Produit =================================================-->
+            <div class="mb-3">
+              <label for="nom">Nom du produit</label>
+              <input id="nom" name="nom" type="text" class="form-control" formControlName="nom"
+                [ngClass]="{'is-invalid': submit && form.nom.errors}">
+              <div *ngIf="submit && form.nom.errors" class="invalid-feedback">
+                <span *ngIf="form.nom.errors.required">Nom du produit est obligatoire.</span>
+              </div>
+            </div>
+
+  <!--================================================= Fournisseur Produit =================================================-->
+
+            <div class="mb-3">
+              <label for="fournisseur">Fournisseur du produit</label>
+              <input id="fournisseur" name="fournisseur" type="text" class="form-control" formControlName="fournisseur"
+                [ngClass]="{'is-invalid': submit && form.fournisseur.errors}">
+              <div *ngIf="submit && form.fournisseur.errors" class="invalid-feedback">
+                <span *ngIf="form.fournisseur.errors.required">Fournisseur du produit est obligatoire.</span>
+              </div>
+            </div>
+
+  <!--================================================= Prix Produit =================================================-->
+            
+            <div class="mb-3">
+              <label for="price">Prix</label>
+              <input id="price" name="prix" type="text" class="form-control" formControlName="prix" [ngClass]="{'is-invalid': submit &&
+              form.prix.errors}">
+              <div *ngIf="submit && form.prix.errors" class="invalid-feedback">
+                <span *ngIf="form.prix.errors.required">Prix est obligatoire.</span>
+              </div>
+            </div>
+
+  <!--================================================= Quantite Produit =================================================-->
+            
+            <div class="mb-3">
+              <label for="price">Quantite du produit</label>
+              <input id="quantiteProd" name="qte" type="number" class="form-control" formControlName="qte" [ngClass]="{'is-invalid': submit &&
+              form.qte.errors}">
+              <div *ngIf="submit && form.qte.errors" class="invalid-feedback">
+                <span *ngIf="form.qte.errors.required">Quantite du produit est obligatoire.</span>
+              </div>
+            </div>  
+
+  <!--================================================= Image Produit =================================================-->
+
+            <label for="product-image" class="mt-2"> Images du produit</label>
+            <dropzone class="dropzone" [config]="config"></dropzone>
+          </div>
+          <div class="col-sm-6">
+
+  <!--================================================= Categorie Produit =================================================-->
+
+          <div class="mb-3">
+              <label class="control-label">Categorie</label>
+              <select name="categorie" formControlName="categorie" class="form-control" [ngClass]="{'is-invalid': submit &&
+              form.categorie.errors}">
+                <option value="{{categorie.id}}" *ngFor="let categorie of categories">{{categorie.nom}}</option>
+              </select>
+              <div *ngIf="submit && form.categorie.errors" class="invalid-feedback">
+              <span *ngIf="form.categorie.errors.required">Categorie est obligatoire.</span>
+              </div>
+          </div>
+
+  <!--================================================= Quantite limit du produit =================================================-->
+
+            <div class="mb-3">
+              <label for="price">Quantite limite du produit</label>
+              <input id="qteLimite" name="qteLimite" type="number" class="form-control" formControlName="qteLimite" [ngClass]="{'is-invalid': submit &&
+              form.qteLimite.errors}">
+              <div *ngIf="submit && form.qteLimite.errors" class="invalid-feedback">
+                <span *ngIf="form.qteLimite.errors.required">Quantite limite du produit est obligatoire.</span>
+              </div>
+            </div> 
+
+  <!--================================================= Description du produit =================================================-->
+
+            <div class="mb-3">
+              <label for="productdesc">Description du produit</label>
+              <textarea class="form-control" id="description" rows="5" name="description" formControlName="description" [ngClass]="{'is-invalid': submit &&
+              form.description.errors}"></textarea>
+              <div *ngIf="submit && form.description.errors" class="invalid-feedback">
+                <span *ngIf="form.description.errors.required">Description est obligatoire.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  <!--================================================= Les Buttons =================================================-->
+
+        <div class="d-flex flex-wrap gap-2 mt-2">
+          <button type="submit" class="btn btn-primary" (click)="saveProduct()">Sauvegarder</button>
+          <button type="submit" class="btn btn-secondary">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>

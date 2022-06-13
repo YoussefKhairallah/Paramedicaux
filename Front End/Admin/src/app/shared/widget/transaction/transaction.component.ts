@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Commande } from 'src/app/core/models/Commande.model';
+import { CommandeService } from 'src/app/core/services/Ecommerce/Commande/commande.service';
 
 
 @Component({
@@ -14,10 +15,13 @@ export class TransactionComponent implements OnInit {
 
  @Input() transactions: Array<{
   OrdersData: Commande[];
+
 }>;
+
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+
   }
 
   /**
@@ -27,5 +31,4 @@ export class TransactionComponent implements OnInit {
   openModal(content: any) {
     this.modalService.open(content, { centered: true });
   }
-
 }

@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User } from '../../models/user.module';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
-const AUTH_API = 'http://localhost:8080/api/auth/';
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { User } from '../../models/auth.models';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +12,54 @@ const httpOptions = {
 export class AuthService {
 
 
-  constructor(private http: HttpClient) { }
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'signin', {
-      email,
-      password
-    }, httpOptions);
-  }
-  register(username: string, prenom: string, email: string, password: string, tel: string, dateNaissance: string ): Observable<any> {
-    return this.http.post(AUTH_API + 'signup', {
-      username,
-      prenom,
-      tel,
-      dateNaissance,
-      email,
-      password
-    }, httpOptions);
-  }
+  private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
+
+    constructor(private http: HttpClient, private userservive: UserService) {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
+
+    public get currentUserValue(): User {
+        return this.currentUserSubject.value;
+    }
+
+     login(username: string, password: string): Observable<User> {
+        return this.http.post<any>('http://127.0.0.1:8080/api/auth/signin', {username: username, password: password})
+          .pipe(
+            map(user => {
+              // login successful if there's a jwt accessToken in the response
+              console.log(user);
+              
+              if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+                 this.getUser(user.id);
+                //this.router.navigate(['/dashboard']);
+                return user;
+              }
+              
+            }),
+            catchError(error => {
+              //this.router.navigate(['newpage']);
+              console.log(error);
+              return of(false);
+            })
+          );
+      }
+
+       getUser(userId){
+        this.userservive.getUserByID(userId).subscribe(userdata => {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          console.log(userdata);
+          localStorage.setItem('userInfo', JSON.stringify(userdata));
+        });
+      }
+
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('userInfo');
+        this.currentUserSubject.next(null);
+    }
 }

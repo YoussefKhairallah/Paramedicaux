@@ -12,13 +12,13 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CategorieService {
-  public catUrl = 'http://localhost:8080/categories';
+  public catUrl = 'http://localhost:8080/api/categories';
 
   constructor(private http: HttpClient) { }
   
   // get all categories
-  getCategories (): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(this.catUrl +'/findcategories').pipe(
+  getCategories(): Observable<Categorie[]> {
+    return this.http.get<Categorie[]>(this.catUrl).pipe(
       tap(_ => console.log('fetched categories')),
       catchError(this.handleError<Categorie[]>('getCategories', []))
     );
@@ -26,7 +26,7 @@ export class CategorieService {
   
   // get categorie by id
   getCategorieByID(id: number): Observable<any> {
-    return this.http.get(`${this.catUrl}/findcategoriesbyid/${id}`);
+    return this.http.get(`${this.catUrl}/${id}`);
   }
 
   
@@ -37,14 +37,14 @@ export class CategorieService {
 
   // Delete categorie
   deletecategorie(id: number): Observable<any> {
-    return this.http.delete(`${this.catUrl}/deletecategorie/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.catUrl}/${id}`, { responseType: 'text' });
   }
 
  
 
   // create new categorie
   createcategorie(categorie: Object): Observable<Object> {
-    return this.http.post(`${this.catUrl}/addcategorie`, categorie);
+    return this.http.post(`${this.catUrl}`, categorie);
   }
 
   

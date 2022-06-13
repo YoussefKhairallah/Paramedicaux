@@ -10,7 +10,7 @@
               <div class="col-sm-4">
                 <div class="search-box me-2 mb-2 d-inline-block">
                   <div class="position-relative">
-                    <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="term" />
+                    <input type="text" class="form-control" placeholder="Rechercher..." [(ngModel)]="term" />
                     <i class="bx bx-search-alt search-icon"></i>
                   </div>
                 </div>
@@ -38,20 +38,10 @@
                     <td>{{categories.id}}</td>
                     <td>{{categories.nom}}</td>
                     <td>
-                      <div class="dropdown" ngbDropdown placement="bottom-right">
-                        <a href="javascript: void(0);" class="dropdown-toggle card-drop" data-toggle="dropdown"
-                          ngbDropdownToggle aria-expanded="false">
-                          <i class="mdi mdi-dots-horizontal font-size-18"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
-                          <li><a href="javascript: void(0);" class="dropdown-item"><i
-                                class="fas fa-pencil-alt text-success me-1"></i>
-                              Modifier</a></li>
-                          <li><a href="javascript: void(0);" class="dropdown-item"><i
-                                class="fas fa-trash-alt text-danger me-1" (click)="confirmSupp()"></i>
-                              Supprimer</a></li>
-                        </ul>
-                      </div>
+                      <a class="btn btn-success m-1" (click)="edit(categories,content)"><i class="fas fa-pencil-alt me-1"></i>
+                              Modifier</a>
+                              <a class="btn btn-danger m-1" (click)="confirmSupp(categories.id)"><i class="fas fa-trash-alt me-1"></i>
+                              Supprimer</a>
                     </td>
                   </tr>
                 </tbody>
@@ -71,21 +61,20 @@
       <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-     <form [formGroup]="categorieForm" (ngSubmit)="validSubmit()" (ngSubmit)="saveCategorie()">
+     <form [formGroup]="categorieForm" (ngSubmit)="validSubmit()">
       <div class="row">
         <div class="col-12">
           <div class="mb-3">
             <label class="control-label">Nom du Categorie</label>
-            <input class="form-control" placeholder="Enter le nom du categorie" type="text" name="categorie" autocomplete="off" formControlName="categorie"
-                [ngClass]="{'is-invalid': submitted && form.categorie.errors}"/>
-                <div *ngIf="submitted && form.categorie.errors" class="invalid-feedback">
-                  <span *ngIf="form.categorie.errors.required">Le Nom du categorie est obligatoire.</span>
-                </div>
-                
+            <input class="form-control" placeholder="Enter le nom du categorie" type="text" name="nom" autocomplete="off" formControlName="nom"
+                [ngClass]="{'is-invalid': submitted && form.nom.errors}"/>
+                <div *ngIf="submitted && form.nom.errors" class="invalid-feedback">
+                  <span *ngIf="form.nom.errors.required">Le nom du catégorie est obligatoire.</span>
+                </div> 
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-success" id="btn-save-event">
+      <button type="submit" class="btn btn-success" id="btn-save-event" (click)="saveCategorie()">
         Enregistrer
       </button>
      </form>

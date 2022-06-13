@@ -13,13 +13,13 @@ const httpOptions = {
 })
 export class ProduitService {
 
-  public prodUrl = 'http://localhost:8080/produit';
-
+  public prodUrl = 'http://localhost:8080/api/produits';
+  public url = 'http://localhost:8080/api/';
   constructor(private http: HttpClient) { }
   
   // get all Produits
   getProduits (): Observable<Produit[]> {
-    return this.http.get<Produit[]>(this.prodUrl +'/findproduits').pipe(
+    return this.http.get<Produit[]>(this.prodUrl).pipe(
       tap(_ => console.log('fetched produits')),
       catchError(this.handleError<Produit[]>('getProduits', []))
     );
@@ -27,7 +27,7 @@ export class ProduitService {
   
   // get produit by id
   getProduitByID(id: number): Observable<any> {
-    return this.http.get(`${this.prodUrl}/findproduitbyid/${id}`);
+    return this.http.get(`${this.prodUrl}/${id}`);
   }
 
   
@@ -38,14 +38,14 @@ export class ProduitService {
 
   
   deleteProduit(id: number): Observable<any> {
-    return this.http.delete(`${this.prodUrl}/delete/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.prodUrl}/${id}`, { responseType: 'text' });
   }
 
  
 
   // create new produit
-  createProduit(produit: Object): Observable<Object> {
-    return this.http.post(`${this.prodUrl}/addProduct`, produit);
+  createProduit(id: number, produit: Object): Observable<Object> {
+    return this.http.post(`${this.url}categories/${id}/produits`, produit);
   }
 
   

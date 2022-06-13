@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Commande } from 'src/app/core/models/Commande.model';
+import { DetailCommande } from 'src/app/core/models/detailleCommande.module';
+
+import { User } from 'src/app/core/models/user.model';
+import { UserService } from 'src/app/core/services/auth/user.service';
+
 import { CommandeService } from 'src/app/core/services/Ecommerce/Commande/commande.service';
+import { DetailCommandeService } from 'src/app/core/services/Ecommerce/DetailCommande/detail-commande.service';
 
 @Component({
   selector: 'app-orders',
@@ -12,35 +19,74 @@ import { CommandeService } from 'src/app/core/services/Ecommerce/Commande/comman
  * Ecommerce orders component
  */
 export class OrdersComponent implements OnInit {
-
+  OrdersData: Commande[];
+  userData: User[];
   // bread crumb items
   breadCrumbItems: Array<{}>;
   term: any;
-  transactions;
-  commandeData: Array<Commande> = [];
-  constructor(private commandeService: CommandeService) { }
+  commandeData: DetailCommande[];
+  subtotal=0;
+  commande: any;
+  constructor(private commandeService: CommandeService,private modalService: NgbModal, private userServices: UserService, private detailCommande: DetailCommandeService) { }
 
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Liste des Commandes', active: true }];
-    this.transactions = [
-      {
-        id: '#SK2540',
-        name: 'Neal Matthews',
-        date: '07 Oct, 2019',
-        total: '$400',
-        status: 'Paid',
-        payment: ['fab fa-cc-mastercard', 'Mastercard'],
-        index: 1,
-      }]
-      this.getCommande()
+      this.getCommande();
+      this.getAllUser();
+      this.getDetailCommande();
   }
 
-
+  /**
+   * Open modal
+   * @param content modal content
+   */
+   openModal(content: any, commande:any) {
+    this.commande = commande;
+    console.log('commande::', commande);
+    this.modalService.open(content, { centered: true });
+  }
   getCommande(){
     this.commandeService.getCommandes()
     .subscribe(data=>{
-      this.commandeData=data
+      this.OrdersData=data
       console.log(data)
     })
+  }
+  getAllUser(){
+    this.userServices.getUsers()
+    .subscribe(data =>{
+      this.userData= data
+      console.log('user::', data)
+    })
+  }
+
+  getDetailCommande(){
+    this.detailCommande.getDetailCommande()
+    .subscribe(data =>{
+      this.commandeData= data
+      console.log('Detail Commande:: ', data)
+    })
+  }
+
+  Annuler(){
+    console.log('annule')
+    let comm = {};
+    comm['etat'] = "Annuler";
+    this.commandeService.updateCommande(this.commande.id,comm).subscribe(data=>{
+      console.log(data)
+      this.modalService.dismissAll();
+      this.getCommande();
+    });
+  }
+  
+  confirm(){
+    console.log('confirm')
+    let comm = {};
+    comm['etat'] = "confirmer";
+    this.commandeService.updateCommande(this.commande.id,comm).subscribe(data=>{
+      console.log(data)
+      this.modalService.dismissAll();
+      this.getCommande();
+    });
   }
 }

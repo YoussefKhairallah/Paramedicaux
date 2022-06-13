@@ -34,29 +34,25 @@
                   <th scope="col">Email</th>
                   <th scope="col">Telephone</th>
                   <th scope="col">Date de naissance</th>
-                  <th scope="col">Role</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let user of UserData">
                   <td>{{user.id}}</td>
-                  <td>{{user.Nom}} {{user.prenom}}</td>
-                  <td>{{user.Mail}}</td>
+                  <td>{{user.nom}} {{user.prenom}}</td>
+                  <td>{{user.email}}</td>
                   <td>
-                    <p class="mb-1">{{user.Tel}}</p>
+                    <p class="mb-1">{{user.tel}}</p>
                   </td>
-                  <td>{{user.DateNaissance}}</td>
-                  <td>{{user.Role}}</td>
+                  <td>{{user.dateNaissance}}</td>
                   <td>
                     <ul class="list-inline font-size-20 contact-links mb-0">
-                      <li class="list-inline-item px-2">
-                        <a href="" ngbTooltip="Message"><i class="bx bx-message-square-dots"></i></a>
+                      <li class="list-inline-item">
+                        <a class="btn btn-success m-1" href="/chat" ngbTooltip="Message"><i class="bx bx-message-square-dots"></i></a>
                       </li>
-                      <li class="list-inline-item px-2">
-                        <a href="" ngbTooltip="Profile"><i class="bx bx-user-circle"></i></a>
-                      </li><li class="list-inline-item px-2">
-                        <a href="" ngbTooltip="Modifier"><i class="bx bx-edit-circle"></i></a>
+                      <li class="list-inline-item">
+                        <a class="btn btn-danger m-1" ngbTooltip="Supprimer" (click)="confirmSupp(user.id)"><i class="fas fa-trash-alt me-1"></i></a>
                       </li>
                     </ul>
                   </td>
@@ -109,10 +105,10 @@
       <div class="col-12">
         <div class="mb-3">
           <label class="control-label">Nom</label>
-          <input class="form-control" placeholder="Entre nom" type="text" name="nom" autocomplete="off" formControlName="username"
-              [ngClass]="{'is-invalid': submitted && form.username.errors}"/>
-            <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
-              <span *ngIf="form.username.errors.required">Nom d'utilisateur est obligatoire.</span>
+          <input class="form-control" placeholder="Entre nom" type="text" name="nom" autocomplete="off" formControlName="nom"
+              [ngClass]="{'is-invalid': submitted && form.nom.errors}"/>
+            <div *ngIf="submitted && form.nom.errors" class="invalid-feedback">
+              <span *ngIf="form.nom.errors.required">Nom d'utilisateur est obligatoire.</span>
             </div>
         </div>
         <div class="mb-3">
@@ -133,10 +129,19 @@
         </div>
         <div class="mb-3">
           <label class="control-label">Telephone</label>
-          <input class="form-control" placeholder="Entrez le téléphone" type="text" name="phone" autocomplete="off" formControlName="phone"
-              [ngClass]="{'is-invalid': submitted && form.phone.errors}" />
-            <div *ngIf="submitted && form.phone.errors" class="invalid-feedback">
-              <span *ngIf="form.phone.errors.required">Le téléphone est obligatoire.</span>
+          <input class="form-control" placeholder="Entrez le téléphone" type="text" name="tel" autocomplete="off" formControlName="tel"
+              [ngClass]="{'is-invalid': submitted && form.tel.errors}" />
+            <div *ngIf="submitted && form.tel.errors" class="invalid-feedback">
+              <span *ngIf="form.tel.errors.required">Le téléphone est obligatoire.</span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="control-label">Adresse</label>
+          <input class="form-control" placeholder="Entre adresse" type="text" name="adresse" autocomplete="off" formControlName="adresse"
+              [ngClass]="{'is-invalid': submitted && form.adresse.errors}"/>
+            <div *ngIf="submitted && form.adresse.errors" class="invalid-feedback">
+              <span *ngIf="form.adresse.errors.required">L'adresse est obligatoire.</span>
             </div>
         </div>
 
@@ -160,10 +165,12 @@
         </div>
         <div class="mb-3">
           <label class="control-label">Role</label>
-            <ng-select [items]="['Admin']" name="role" required formControlName="role" [ngClass]="{'is-invalid': submitted && form.role.errors}"></ng-select>
-            <div *ngIf="submitted && form.role.errors" class="invalid-feedback">
-              <span *ngIf="form.role.errors.required">Role est obligatoire.</span>
-            </div>
+          
+            <ng-select [items]="['Admin']" name="roles" required formControlName="roles" [ngClass]="{'is-invalid': submitted && form.roles.errors}"></ng-select>
+  
+          <div *ngIf="submitted && form.roles.errors" class="invalid-feedback">
+              <span *ngIf="form.roles.errors.required">Role est obligatoire.</span>
+          </div>
         </div>
       </div>
     </div>

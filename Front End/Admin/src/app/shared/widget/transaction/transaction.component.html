@@ -1,4 +1,4 @@
-<div class="table-responsive mb-0">
+<!--<div class="table-responsive mb-0">
   <table class="table table-centered table-nowrap">
     <thead class="table-light">
       <tr>
@@ -12,26 +12,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of transactions">
-       
+      <tr *ngFor="let data of OrdersData">
         <td>
-          <a href="javascript: void(0);" class="text-body fw-bold">{{data.id}}</a>
+          <a class="text-body fw-bold">{{data.id}}</a>
         </td>
         <td>
-          <a href="javascript: void(0);" class="text-body fw-bold">{{data.client_id}}</a>
+          <a class="text-body fw-bold">{{data.id_client}}</a>
         </td>
         <td>{{data.date}}</td>
-        <td>{{data.prixTotale}}</td>
-        <td>
-          <span class="badge badge-pill badge-soft-success font-size-11" [ngClass]=" { 'badge-soft-danger': data.status === 'Chargeback',
-                        'badge-soft-warning':data.status === 'Refund' }">{{data.status}}</span>
-        </td>
+        <td>{{data.prix_totale}}</td>
         <td>
           <i :class="`fab ${data.payment[0]} mr-1`"></i>
           {{data.payment[1]}}
         </td>
         <td>
-          <!-- Button trigger modal -->
+          <span class="badge badge-pill badge-soft-success font-size-11" [ngClass]=" { 'badge-soft-danger': data.status === 'Chargeback',
+           'badge-soft-warning':data.status === 'Refund' }">{{data.status}}</span>
+        </td>
+        
+        <td>
+          <!-- Button trigger modal 
           <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="openModal(content)">Detaille</button>
         </td>
       </tr>
@@ -43,14 +43,14 @@
       <h5 class="modal-title mt-0">Detaille du commande</h5>
       <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" *ngFor="let data of OrdersData">
       <p class="mb-2">
         Id du produit:
-        <span class="text-primary">#SK2540</span>
+        <span class="text-primary">{{data.produit_id}}</span>
       </p>
       <p class="mb-4">
        Nom & Prenom du client:
-        <span class="text-primary">Neal Matthews</span>
+        <span class="text-primary">{{data.client_id}}</span>
       </p>
       <div class="table-responsive">
         <table class="table table-centered table-nowrap">
@@ -113,8 +113,9 @@
       </div>
     </div>
     <div class="modal-footer">
+      <button class="btn btn-success">Confirmer</button>
       <button class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
     </div>
   </ng-template>
 </div>
-<!-- end table -->
+<!-- end table -->-->

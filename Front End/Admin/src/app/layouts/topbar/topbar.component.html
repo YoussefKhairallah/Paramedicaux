@@ -5,7 +5,7 @@
       <div class="navbar-brand-box">
         <a routerLink="/" class="logo logo-dark">
           <span class="logo-sm">
-            <img src="../../../assets/images/logo.svg" alt="" height="22">
+            <img src="../../../assets/logo/Fichier 5.png" alt="" height="22">
           </span>
           <span class="logo-lg">
             <img src="../../../assets/images/logo-dark.png" alt="" height="17">
@@ -14,10 +14,10 @@
 
         <a routerLink="/" class="logo logo-light">
           <span class="logo-sm">
-            <img src="../../../assets/images/logo-light.svg" alt="" height="22">
+            <img src="../../../assets/logo/Fichier 5.png" alt="" height="22">
           </span>
           <span class="logo-lg">
-            <img src="../../../assets/images/logo-light.png" alt="" height="19">
+            <img src="../../../assets/logo/logoBlanc.png" alt="" height="30">
           </span>
         </a>
       </div>
@@ -183,7 +183,7 @@
               class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i>{{
             'HEADER.LOGIN.SETTINGS' | translate}} </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item text-danger" href="javascript: void(0);"><i
+          <a class="dropdown-item text-danger" (click)="logout()"><i
               class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
             {{ 'HEADER.LOGIN.LOGOUT' | translate}}</a>
         </div>

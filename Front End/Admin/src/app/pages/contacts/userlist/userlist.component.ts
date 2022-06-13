@@ -2,9 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from 'src/app/core/services/Ecommerce/User/user.service';
+import { Roles } from 'src/app/core/models/roles.model';
+import { UserService } from 'src/app/core/services/auth/user.service';
+
 import Swal from 'sweetalert2';
-import { User } from '../../../core/models/user.module';
+import { User } from '../../../core/models/user.model';
 
 @Component({
   selector: 'app-userlist',
@@ -16,7 +18,7 @@ import { User } from '../../../core/models/user.module';
  * Contacts user-list component
  */
 export class UserlistComponent implements OnInit {
- 
+  rolesData: Roles[];
   breadCrumbItems: Array<{}>;
   term: any;
   formData: FormGroup;
@@ -31,13 +33,13 @@ export class UserlistComponent implements OnInit {
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Liste des administrateurs', active: true }];
     this.formData = this.formBuilder.group({
-      username: ['', [Validators.required]],
+      nom: ['', [Validators.required]],
       prenom: ['', [Validators.required]],
       dateNaissance: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      tel: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      role: ['', [Validators.required]],
+      roles: ['', [Validators.required]],
     });
 
     this.currentpage = 1;
@@ -61,53 +63,79 @@ export class UserlistComponent implements OnInit {
     formData.append('name', this.formData.get('dateNaissance').value);
     formData.append('name', this.formData.get('email').value);
     formData.append('name', this.formData.get('password').value);
-    formData.append('name', this.formData.get('phone').value);
-    formData.append('name', this.formData.get('role').value);
+    formData.append('name', this.formData.get('tel').value);
+    formData.append('name', this.formData.get('roles').value);
+    formData.append('name', this.formData.get('adresse').value);
     }
 
+
   saveUser() {
+    console.log(this.formData.value);
     if (this.validSubmit){
-     this.userService.createUser(this.formData.value)
-      .subscribe({
-        next: (res) => {
+      this.userService.createuser(this.formData.value)
+        .subscribe(res => {
+          this.getAllUser();
+          this.modalService.dismissAll();
           Swal.fire({
             position: 'top-end',
             title: 'Thank you...',
             text: 'Utilisateur ajoute avec succes!',
-            icon: 'success'
-          });
-          this.formData.reset();
-          
-        },
-          error:() => {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: 'Oops...',
-              text: "il y a un erreur avec l'ajout!!"
-            })
-          }
+            icon: 'success'});
+          this.formData.reset(); 
+      }, error => {
+        error = console.error();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Oops...',
+          text: "il y a un erreur avec l'ajout!!"
+        })
       });
     }
   }
-  getAllUser(){
-      this.userService.getUsers()
-      .subscribe({
-        next:(res)=>{
-          console.log(res);
-        },
-        error:()=>{
-          Swal.fire({  
-            position: 'top-end',
-            icon: 'error',  
-            title: 'Oops...',  
-            text: 'Quelque chose est mal passé !',
-            timer: 1500
-          }) 
-        }
-      })
-  }
   
+  getAllUser(){
+    this.userService.getUsers()
+    .subscribe(data=>{
+      this.UserData=data
+      console.log(data)
+    })
+  }
+
+  //Supprimer un utilisateur
+
+  confirmSupp(id: number){
+    Swal.fire({  
+      title: 'Voulez-vous vraiment supprimer ?',   
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Oui, supprimez-le !',  
+      cancelButtonText: 'Non, gardez-le'  
+    }).then((result) => {  
+      if (result.value) { 
+        this.delete(id);
+        Swal.fire(  
+          'Supprimé !',  
+          'Votre admin a été supprimée.',  
+          'success'  
+        )  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Annulé',  
+          'Votre admin est sécurisée :)',  
+          'error'  
+        )  
+      }  
+    })  
+  }
+
+  delete(id: number) {
+    this.userService.deleteuser(id).subscribe(data => {
+      console.log(data);
+      this.getAllUser();
+    }
+    );
+  }
 
 }
 

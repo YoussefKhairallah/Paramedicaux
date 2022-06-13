@@ -17,10 +17,11 @@ export class ProductdetailComponent implements OnInit {
 
   breadCrumbItems: Array<{}>;
   public productDetail: productModel[];
-  produitData: Array<Produit> = [];
+  produitData: Produit;
   isImage;
+  id:number;
 
-  constructor(private route: ActivatedRoute, private produitServices:ProduitService) {
+  constructor(private route: ActivatedRoute, private produitServices:ProduitService, private actRouter: ActivatedRoute) {
     this.route.params.subscribe(params =>
       this.productDetail = productList.filter(function (product) {
         return product.id == parseInt(params.id)
@@ -31,7 +32,8 @@ export class ProductdetailComponent implements OnInit {
 
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Détail du produit', active: true }];
-    //this.getProduitId(id: number);
+    this.id = parseInt(this.actRouter.snapshot.paramMap.get("id"));
+    this.getProduitId(this.id);
   }
 
   /**
@@ -49,7 +51,7 @@ export class ProductdetailComponent implements OnInit {
     this.produitServices.getProduitByID(id)
     .subscribe(data=>{
       this.produitData=data
-      console.log(data)
+      console.log('produits',data)
     })
   }
 }

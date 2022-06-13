@@ -13,13 +13,13 @@ const httpOptions = {
 })
 export class CommandeService {
 
-  public prodUrl = 'http://localhost:8080/commande';
+  public prodUrl = 'http://localhost:8080/api/commande';
 
   constructor(private http: HttpClient) { }
   
   // get all Commandes
   getCommandes (): Observable<Commande[]> {
-    return this.http.get<Commande[]>(this.prodUrl +'/findCommande').pipe(
+    return this.http.get<Commande[]>(this.prodUrl).pipe(
       tap(_ => console.log('fetched commande')),
       catchError(this.handleError<Commande[]>('getCommandes', []))
     );
@@ -27,7 +27,7 @@ export class CommandeService {
   
   // get Commande by id
   getCommandeByID(id: number): Observable<any> {
-    return this.http.get(`${this.prodUrl}/findCommandeById/${id}`);
+    return this.http.get(`${this.prodUrl}/${id}`);
   }
 
   
@@ -38,14 +38,14 @@ export class CommandeService {
 
   
   deleteCommande(id: number): Observable<any> {
-    return this.http.delete(`${this.prodUrl}/deleteCommande/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.prodUrl}/${id}`, { responseType: 'text' });
   }
 
  
 
   // create new Commande
   createCommande(Commande: Object): Observable<Object> {
-    return this.http.post(`${this.prodUrl}/addCommande`, Commande);
+    return this.http.post(this.prodUrl, Commande);
   }
 
   

@@ -1,26 +1,72 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-const API_URL = 'http://localhost:8080/api/test/';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { User } from '../../models/user.model'
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  public catUrl = 'http://localhost:8080/api/users';
+
   constructor(private http: HttpClient) { }
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+  // get all user
+  getUsers (): Observable<User[]> {
+    return this.http.get<User[]>(this.catUrl).pipe(
+      tap(_ => console.log('fetched users')),
+      catchError(this.handleError<User[]>('getUsers', []))
+    );
   }
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'client', { responseType: 'text' });
+
+  
+  // get categorie by  usersByRole
+  getUserByID(id: number): Observable<any> {
+    return this.http.get(`${this.catUrl}/${id}`);
   }
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'livreur', { responseType: 'text' });
+
+  getUserByRole(id: any): Observable<any> {
+    return this.http.get(`${this.catUrl}/usersByRole/${id}`);
   }
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+
+  
+  // update categorie
+  updatecategorie(id: number, value: any): Observable<Object> {
+    return this.http.put(`${this.catUrl}/${id}`, value);
+  }
+
+  
+  deleteuser(id: number): Observable<any> {
+    return this.http.delete(`${this.catUrl}/${id}`, { responseType: 'text' });
+  }
+
+ 
+
+  // create new categorie
+  createuser(user: Object): Observable<Object> {
+    return this.http.post(`${this.catUrl}`, user);
+  }
+
+  
+
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }

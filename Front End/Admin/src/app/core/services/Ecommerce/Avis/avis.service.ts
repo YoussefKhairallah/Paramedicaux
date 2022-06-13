@@ -14,13 +14,13 @@ const httpOptions = {
 })
 export class AvisService {
 
-  public avisUrl = 'http://localhost:8080/avis';
+  public avisUrl = 'http://localhost:8080/api/avis';
 
   constructor(private http: HttpClient) { }
   
   // get all Avis
   getAvis (): Observable<Avis[]> {
-    return this.http.get<Avis[]>(this.avisUrl +'/findAvis').pipe(
+    return this.http.get<Avis[]>(this.avisUrl).pipe(
       tap(_ => console.log('fetched avis')),
       catchError(this.handleError<Avis[]>('getAvis', []))
     );
@@ -28,7 +28,7 @@ export class AvisService {
   
   // get avis by id
   getAvisByID(id: number): Observable<any> {
-    return this.http.get(`${this.avisUrl}/findAvisById/${id}`);
+    return this.http.get(`${this.avisUrl}/${id}`);
   }
 
   
@@ -39,14 +39,14 @@ export class AvisService {
 
   
   deleteAvis(id: number): Observable<any> {
-    return this.http.delete(`${this.avisUrl}/deleteAvis/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.avisUrl}/${id}`, { responseType: 'text' });
   }
 
  
 
   // create new avis
   createAvis(avis: Object): Observable<Object> {
-    return this.http.post(`${this.avisUrl}/addAvis`, avis);
+    return this.http.post(this.avisUrl, avis);
   }
 
   

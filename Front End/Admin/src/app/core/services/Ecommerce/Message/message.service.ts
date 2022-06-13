@@ -14,13 +14,13 @@ const httpOptions = {
 })
 export class MessageService {
 
-  public msgUrl = 'http://localhost:8080/message';
+  public msgUrl = 'http://localhost:8080/api/message';
 
   constructor(private http: HttpClient) { }
   
   // get all Messages
   getMessages (): Observable<Message[]> {
-    return this.http.get<Message[]>(this.msgUrl +'/findMessage').pipe(
+    return this.http.get<Message[]>(this.msgUrl).pipe(
       tap(_ => console.log('fetched produits')),
       catchError(this.handleError<Message[]>('getMessages', []))
     );
@@ -28,7 +28,7 @@ export class MessageService {
   
   // get message by id
   getMessageByID(id: number): Observable<any> {
-    return this.http.get(`${this.msgUrl}/findMessageById/${id}`);
+    return this.http.get(`${this.msgUrl}/${id}`);
   }
 
   
@@ -39,14 +39,14 @@ export class MessageService {
 
   
   deleteMessage(id: number): Observable<any> {
-    return this.http.delete(`${this.msgUrl}/deleteMsg/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.msgUrl}/${id}`, { responseType: 'text' });
   }
 
  
 
   // create new message
   createMessage(message: Object): Observable<Object> {
-    return this.http.post(`${this.msgUrl}/addMsg`, message);
+    return this.http.post(this.msgUrl, message);
   }
 
   

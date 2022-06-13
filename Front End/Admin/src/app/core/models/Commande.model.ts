@@ -3,8 +3,6 @@ export class Commande {
     adresse: String;
     date: string;
     etat: string;
-    prixTotale: string;
-    qte: number;
-    client_id: number;
-    panier_id: number;
+    prix_totale: string;
+    id_client: number;
 }

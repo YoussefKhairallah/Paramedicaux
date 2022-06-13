@@ -7,5 +7,4 @@ export class Produit {
     prix: string;
     qte: number;
     qteLimite:number;
-    categorie: number;
-}
+    }

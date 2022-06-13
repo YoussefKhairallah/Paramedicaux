@@ -19,13 +19,15 @@ export class CategorieComponent implements OnInit {
   term: any;
   categorieData:Array<Categorie> =[]
   router: any;
+  editable = false;
+  id: number;
   constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private categorieServices: CategorieService, router:Router) { }
 
   ngOnInit(): void {
     this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Categorie', active: true }];
     
     this.categorieForm = this.formBuilder.group({
-      categorie: ['', [Validators.required]],
+      nom: ['', [Validators.required]],
     })
     this.getAll();
   }
@@ -43,9 +45,20 @@ export class CategorieComponent implements OnInit {
   validSubmit() {
     this.submitted = true;
     const formData = new FormData();
-    formData.append('name', this.categorieForm.get('categorie').value);
+    formData.append('nom', this.categorieForm.get('nom').value);
   }
-  confirmSupp(){
+
+  edit(categorie,content){
+    this.categorieForm.patchValue({
+      nom: categorie.nom
+    });
+    this.id = categorie.id;
+    this.editable = true;
+    this.modalService.open(content);
+  }
+
+
+  confirmSupp(id: number){
     Swal.fire({  
       title: 'Voulez-vous vraiment supprimer ?',   
       icon: 'warning',  
@@ -53,7 +66,8 @@ export class CategorieComponent implements OnInit {
       confirmButtonText: 'Oui, supprimez-le !',  
       cancelButtonText: 'Non, gardez-le'  
     }).then((result) => {  
-      if (result.value) {  
+      if (result.value) { 
+        this.delete(id);
         Swal.fire(  
           'Supprimé !',  
           'Votre catégorie a été supprimée.',  
@@ -68,6 +82,15 @@ export class CategorieComponent implements OnInit {
       }  
     })  
   }
+
+  delete(id: number) {
+    this.categorieServices.deletecategorie(id).subscribe(data => {
+      console.log(data);
+      this.getAll();
+    }
+    );
+  }
+
   getAll():void{
     this.categorieServices.getCategories()
     .subscribe(data=>{
@@ -77,11 +100,27 @@ export class CategorieComponent implements OnInit {
   }
   
   saveCategorie(): void {
-    this.categorieServices.createcategorie(this.categorieData)
+    console.log(this.categorieForm.value);
+    if(this.editable)
+    {
+      this.categorieServices.updatecategorie(this.id,this.categorieForm.value)
       .subscribe(res => {
-        this.router.navigate(['categories'])
+        this.getAll();
+        this.modalService.dismissAll();
+        this.categorieForm.reset();
       }, error => {
         error: error = console.error()
       });
+    }
+    else{
+      this.categorieServices.createcategorie(this.categorieForm.value)
+        .subscribe(res => {
+          this.getAll();
+          this.modalService.dismissAll();
+          this.categorieForm.reset();
+        }, error => {
+          error: error = console.error()
+        });
+    }
    }
 }

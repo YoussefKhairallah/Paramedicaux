@@ -34,31 +34,26 @@
                     <th scope="col">Email</th>
                     <th scope="col">Telephone</th>
                     <th scope="col">Date de naissance</th>
-                    <th scope="col">Role</th>
                     <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let user of UserData">
-                    <td>{{user.id}}</td>
-                    <td>{{user.Nom}} {{user.prenom}}</td>
-                    <td>{{user.Mail}}</td>
-                    <td>
-                      <p class="mb-1">{{user.Tel}}</p>
-                    </td>
-                    <td>{{user.DateNaissance}}</td>
-                    <td>{{user.Role}}</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of UserData">
+                  <td>{{user.id}}</td>
+                  <td>{{user.nom}} {{user.prenom}}</td>
+                  <td>{{user.email}}</td>
+                  <td>
+                    <p class="mb-1">{{user.tel}}</p>
+                  </td>
+                  <td>{{user.dateNaissance}}</td>
                     <td>
                       <ul class="list-inline font-size-20 contact-links mb-0">
-                        <li class="list-inline-item px-2">
-                          <a href="" ngbTooltip="Message"><i class="bx bx-message-square-dots"></i></a>
+                        <li class="list-inline-item">
+                          <a class="btn btn-success m-1" href="/chat" ngbTooltip="Message"><i class="bx bx-message-square-dots"></i></a>
                         </li>
-                        <li class="list-inline-item px-2">
-                          <a href="" ngbTooltip="Profile"><i class="bx bx-user-circle"></i></a>
+                        <li class="list-inline-item">
+                          <a class="btn btn-danger m-1" ngbTooltip="Supprimer" (click)="confirmSupp(user.id)"><i class="fas fa-trash-alt me-1"></i></a>
                         </li>
-                        <li class="list-inline-item px-2">
-                        <a href="" ngbTooltip="Modifier"><i class="bx bx-edit-circle"></i></a>
-                      </li>
                       </ul>
                     </td>
                   </tr>

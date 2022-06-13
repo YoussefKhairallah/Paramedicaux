@@ -14,13 +14,13 @@ const httpOptions = {
 })
 export class LivraisonService {
 
-  public livUrl = 'http://localhost:8080/livraison';
+  public livUrl = 'http://localhost:8080/api/livraison';
 
   constructor(private http: HttpClient) { }
   
   // get all Livraisons
   getLivraisons (): Observable<Livraison[]> {
-    return this.http.get<Livraison[]>(this.livUrl +'/findLivraison').pipe(
+    return this.http.get<Livraison[]>(this.livUrl).pipe(
       tap(_ => console.log('fetched produits')),
       catchError(this.handleError<Livraison[]>('getLivraisons', []))
     );
@@ -28,7 +28,7 @@ export class LivraisonService {
   
   // get produit by id
   getLivraisonByID(id: number): Observable<any> {
-    return this.http.get(`${this.livUrl}/findLivraisonbyid/${id}`);
+    return this.http.get(`${this.livUrl}/${id}`);
   }
 
   
@@ -39,14 +39,14 @@ export class LivraisonService {
 
   
   deleteLivraison(id: number): Observable<any> {
-    return this.http.delete(`${this.livUrl}/delete/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.livUrl}/${id}`, { responseType: 'text' });
   }
 
  
 
   // create new produit
   createLivraison(produit: Object): Observable<Object> {
-    return this.http.post(`${this.livUrl}/addLivraison`, produit);
+    return this.http.post(this.livUrl, produit);
   }
 
   

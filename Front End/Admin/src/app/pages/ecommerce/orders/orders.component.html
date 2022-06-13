@@ -17,10 +17,102 @@
           </div>
 
           <!-- Table data --> 
-          <app-transaction [transactions]="transactions |  filter:term"></app-transaction>
+          <div class="table-responsive">
+            <table class="table align-middle table-nowrap">
+              <thead class="table-light">
+                <tr>
+                  <th class="align-middle">Id commande</th>
+                  <th class="align-middle">Client</th>
+                  <th class="align-middle">Adresse</th>
+                  <th class="align-middle">Date</th>
+                  <th class="align-middle">Prix total</th>
+                  
+                  <th class="align-middle">Etat</th>
+                  <th class="align-middle">View Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let commande of OrdersData">
+                  <td>{{commande.id}}</td>
+                  <td>{{commande.id_client.nom}} {{commande.id_client.prenom}}</td>
+                  <td>{{commande.adresse}}</td>
+                  <td>{{commande.date}}</td>
+                  <td>{{commande.prix_totale}}</td>
+                  <td>{{commande.etat}}</td>
+                  <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="openModal(content,commande)">Detaille</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- end table -->
           <!-- End Table data -->
         </div>
       </div>
     </div>
   </div>
 </div>
+<ng-template #content role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Detaille du commande</h5>
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    
+    <p class="mb-4">
+     Nom & Prenom du client: {{commande.id_client.nom}} {{commande.id_client.prenom}}
+      <span class="text-primary"></span>
+    </p>
+    <div class="table-responsive">
+      <table class="table table-centered table-nowrap">
+        <thead>
+          <tr>
+            <th scope="col">Produit</th>
+            <th scope="col">Nom du produit</th>
+            <th scope="col">Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of commandeData">
+            <th scope="row">
+              <div>
+                <td><img alt="" width="100" src="{{data.produit.image}}"></td>
+              </div>
+            </th>
+            <td>
+              <div>
+                <h5 class="text-truncate font-size-14">{{data.produit.nom}}</h5>
+                <p class="text-muted mb-0">{{data.produit.prix}}DT x {{data.qte}}</p>
+              </div>
+            </td>
+            <td>{{data.commande.prix_totale}}DT</td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <h6 class="m-0 text-end">Prix:</h6>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <h6 class="m-0 text-end">Livraison:</h6>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <h6 class="m-0 text-end">Prix Totale:</h6></td>
+            <td>DT</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="confirm()">Confirmer</button>
+    <button class="btn btn-danger" (click)="Annuler()">Annuler</button>
+    <button class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

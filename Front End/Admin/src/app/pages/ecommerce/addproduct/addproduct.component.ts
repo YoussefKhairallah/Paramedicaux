@@ -6,6 +6,12 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 import { ProduitService } from 'src/app/core/services/Ecommerce/Produit/produit.service';
 import Swal from 'sweetalert2';
+import { CategorieService } from '../../../core/services/Ecommerce/Categorie/categorie.service';
+import { Categorie } from '../../../core/models/categorie.model';
+
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addproduct',
@@ -17,8 +23,12 @@ import Swal from 'sweetalert2';
  * Ecommerce add-product component
  */
 export class AddproductComponent implements OnInit {
+  categories: Categorie[];
 
-  constructor(public formBuilder: FormBuilder, private http: HttpClient, private produitService:ProduitService) { }
+
+  constructor(public formBuilder: FormBuilder, private http: HttpClient, private produitService:ProduitService
+    , private categorieServices: CategorieService, private storage: AngularFireStorage,
+    private router: Router) { }
   /**
    * Returns form
    */
@@ -26,6 +36,7 @@ export class AddproductComponent implements OnInit {
     return this.productForm.controls;
   }
 
+  myFiles:string ;
   productForm: FormGroup;
 
   // bread crumb items
@@ -41,6 +52,7 @@ export class AddproductComponent implements OnInit {
     uploadMultiple: false,
     accept: (file) => {
       this.onAccept(file);
+      this.upload(file);
     }
   };
   image = '';
@@ -49,47 +61,53 @@ export class AddproductComponent implements OnInit {
     this.breadCrumbItems = [{ label: 'Ecommerce' }, { label: 'Ajouter un produit', active: true }];
 
     this.productForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
+      nom: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
       fournisseur: ['', [Validators.required]],
-      categorie: ['', [Validators.required]],
-      price: ['', [Validators.required], Validators.pattern('[0123456789.]')],
-      productdesc: ['', [Validators.required]],
-      quantiteProd: ['', [Validators.required]]
+      prix: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      qte: ['', [Validators.required]],
+      qteLimite: ['', [Validators.required]],
+      categorie: ['', [Validators.required]]
 
     });
     this.submit = false;
+    this.getAllCategories();
   }
 
   onAccept(file: any) {
     this.image = file.name;
     this.file = file;
   }
-  /**
-   * Bootsrap validation form submit method
-   */
   validSubmit() {
     this.submit = true;
     const formData = new FormData();
-    formData.append('name', this.productForm.get('name').value);
-    formData.append('fournisseur', this.productForm.get('fournisseur').value);
-    formData.append('categorie', this.productForm.get('categorie').value);
-    formData.append('productdesc', this.productForm.get('productdesc').value);
-    formData.append('price', this.productForm.get('price').value);
-    formData.append('quantiteProd', this.productForm.get('quantiteProd').value);
-    formData.append('image', this.file, this.image);
+    formData.append('nom', this.productForm.get('nom').value);
+    formData.append('nom', this.productForm.get('fournisseur').value);
+    formData.append('nom', this.productForm.get('prix').value);
+    formData.append('nom', this.productForm.get('description').value);
+    formData.append('nom', this.productForm.get('qte').value);
+    formData.append('nom', this.productForm.get('qteLimite').value);
+    formData.append('nom', this.productForm.get('categorie').value);
   }
+  /**
+   * Bootsrap validation form submit method
+   */
+  /* */
   saveProduct(){
-    if (this.validSubmit){
-      this.produitService.createProduit(this.productForm.value)
+    let produit = this.productForm.value;
+    produit['image'] = this.myFiles;
+    produit.categorie = parseInt(produit.categorie);
+    console.log('id::', produit.categorie,produit);
+      this.produitService.createProduit(produit.categorie, produit)
        .subscribe({
          next: (res) => {
            Swal.fire({
              position: 'top-end',
-             title: 'Thank you...',
+             title: 'Merci...',
              text: 'Le produit a éte ajoute avec succes!',
              icon: 'success'
            });
-           this.productForm.reset();  
+           this.router.navigate(['/ecommerce/products']);
          },
            error:() => {
              Swal.fire({
@@ -100,7 +118,42 @@ export class AddproductComponent implements OnInit {
              })
            }
        });
-     }
    }
+
+   getAllCategories():void{
+    this.categorieServices.getCategories()
+    .subscribe(data=>{
+      this.categories=data
+      console.log(data)
+    })
+  }
+
+  onFileChange(event:any) {
+   
+    this.upload(event.target.files[0]);
+        console.log(event.target.files[0].name)
+    console.log(this.myFiles);
+  }
+
+
+  upload(fileUpload) {
+    const path = `/images/${fileUpload.name}`;
+    console.log(path);
+    const storageReference = this.storage.ref('/images/' + fileUpload.name);
+    console.log(storageReference);
+    const uploadTask = this.storage.upload(path,(fileUpload));
+    uploadTask.snapshotChanges().pipe(
+      finalize(() => {
+        storageReference.getDownloadURL().subscribe(downloadURL => {
+         
+          //this.publicationForm.controls.photo.setValue(downloadURL);
+          //fileUpload.name = fileUpload.file.name;
+          console.log(downloadURL);
+          this.myFiles = downloadURL;
+        });
+      })
+    ).subscribe();
+  }
 }
+
 
