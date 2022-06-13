@@ -1,0 +1,78 @@
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">accueil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"></li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title"><span class="text-small text-white ms-2"> Les Produits  </span></h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- Page Content -->
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            
+            
+            <div class="col-md-7 col-lg-12 col-xl-12">
+
+                <div class="row align-items-center pb-3">	
+                    <div class="col-md-4 col-12 d-md-block d-none custom-short-by">
+                        
+                    </div>
+                    <div class="col-md-8 col-12 d-md-block d-none custom-short-by">
+                        <div class="sort-by pb-3">
+                            <span class="sort-title">Trier par</span>
+                            <span class="sortby-fliter">
+                                <ng-select2  width="100%">
+                                    <option>Select</option>
+                                    <option class="sorting">Évaluation</option>
+                                    <option class="sorting">Populaire</option>
+                                    <option class="sorting">Free</option>
+                                </ng-select2>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-lg-4 col-xl-3 produit-custom" *ngFor="let produit of produits">
+                        <div class="profile-widget">
+                            <div class="doc-img">
+                                <a href="/pharmacy/product-desc/{{produit.id}}" tabindex="-1">
+                                    <img class="img-fluid" alt="produit image" src="{{produit.image}}">
+                                </a>
+                                <a href="javascript:void(0)" class="fav-btn" tabindex="-1">
+                                    <i class="far fa-bookmark"></i>
+                                </a>
+                            </div>
+                            <div class="pro-content">
+                                <h3 class="title pb-4">
+                                    <a href="/pharmacy/product-desc/{{produit.id}}" tabindex="-1">{{produit.nom}}</a> 
+                                </h3>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <span class="price">{{produit.prix}} DT</span>
+                                    </div>
+                                    <div class="col-lg-6 text-end">
+                                        <a (click)="addToCart()" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>		
+                    </div>
+
+                 </div>
+                 <div class="col-md-12 text-center">
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="card">
+			<div class="card-body">
+				
+				<!-- Profile Settings Form -->
+				<form>
+					<div class="row form-row">
+						<div class="col-12 col-md-12">
+							<div class="form-group">
+								<div class="change-avatar">
+									<div class="profile-img">
+										<img src="assets/img/patients/patient.jpg" alt="User Image">
+									</div>
+									<div class="upload-img">
+										<div class="change-photo-btn">
+											<span><i class="fa fa-upload"></i>Photo</span>
+											<input type="file" class="upload">
+										</div>
+										<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label>Nom</label>
+								<input type="text" class="form-control" value="{{user.nom}}">
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label>Prenom</label>
+								<input type="text" class="form-control" value="{{user.prenom}}">
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label>Date de Naissance</label>
+								<input type="date" class="form-control datetimepicker" value="{{user.dateNaissance}}">
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label>Email</label>
+								<input type="email" class="form-control" value="{{user.email}}">
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label>Telephone</label>
+								<input type="text" value="{{user.tel}}" class="form-control">
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label>Pays</label>
+								<input type="text" class="form-control" value="{{user.pays}}">
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="form-group">
+							<label>Address</label>
+								<input type="text" class="form-control" value="{{user.adresse}}">
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label>Ville</label>
+								<input type="text" class="form-control" value="{{user.ville}}">
+								<!--<select class="form-control select form-select" value="{{user.ville}}">
+									<option>Ariana</option>
+									<option>Béja</option>
+									<option>Ben Arous</option>
+									<option>Bizerte</option>
+									<option>Gabès</option>
+									<option>Gafsa</option>
+									<option>Jendouba</option>
+									<option>Kairouan</option>
+									<option>Kasserine</option>
+									<option>Kébili</option>
+									<option>Kef</option>
+									<option>Mahdia</option>
+									<option>Manouba</option>
+									<option>Médenine</option>
+									<option>Monastir</option>
+									<option>Nabeul</option>
+									<option>Sfax</option>
+									<option>Sidi Bouzid</option>
+									<option>Siliana</option>
+									<option>Sousse</option>
+									<option>Tataouine</option>
+									<option>Tozeur</option>
+									<option>Tunis</option>
+									<option>Zaghouan</option>
+								</select>-->
+							</div>
+						</div>
+						<div class="col-12 col-md-6">
+							<div class="form-group">
+								<label>Code postal</label>
+								<input type="text" class="form-control" value="{{user.codePostal}}">
+							</div>
+						</div>
+						
+					</div>
+					<div class="submit-section">
+						<button type="submit" class="btn btn-primary submit-btn">Sauvegarder les modifications</button>
+					</div>
+				</form>
+				<!-- /Profile Settings Form -->
+			</div>
+		</div>

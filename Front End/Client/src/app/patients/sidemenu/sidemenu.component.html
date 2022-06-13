@@ -1,0 +1,68 @@
+<div class="profile-sidebar">
+	<div class="widget-profile pro-widget-content">
+		<div class="profile-info-widget">
+			<a href="javascript:void(0)" class="booking-doc-img">
+				<img src="../../../assets/img/patients/patient.jpg" alt="User Image">
+			</a>
+			<div class="profile-det-info">
+				<h3>{{user.nom}} {{user.prenom}}</h3>
+				<div class="patient-details">
+					<h5><i class="fas fa-birthday-cake"></i>{{user.dateNaissance}}</h5>
+					<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> {{user.adresse}}, {{user.ville}}</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="dashboard-widget">
+		<nav class="dashboard-menu">
+			<ul>
+				<li [class.active]="name === 'Dashboard'">
+					<a [routerLink]="'dashboard'" (click)="navigate('Dashboard')">
+						<i class="fas fa-columns"></i>
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li [class.active]="name === 'Favourites'">
+					<a (click)="navigate('Favourites')" [routerLink]="'favourites'">
+						<i class="fas fa-bookmark"></i>
+						<span>Favoris</span>
+					</a>
+				</li>
+				<li [class.active]="name === 'patient-chat'">
+					<a [routerLink]="'patient-chat'">
+						<i class="fas fa-comments"></i>
+						<span>Message</span>
+						
+					</a>
+				</li>
+				<li [class.active]="name === 'Orders'">
+					<a (click)="navigate('Orders')" [routerLink]="'orders'">
+						<i class="fas fa-list-alt"></i>
+						<span>Commandes</span>
+						
+					</a>
+				</li>
+
+				<li [class.active]="name === 'Profile Settings'">
+					<a (click)="navigate('Profile Settings')" [routerLink]="'settings'">
+						<i class="fas fa-user-cog"></i>
+						<span>Paramètres de profil</span>
+					</a>
+				</li>
+				<li [class.active]="name === 'Patients Change Password'">
+					<a (click)="navigate('Patients Change Password')" [routerLink]="'patients-change-password'">
+						<i class="fas fa-lock"></i>
+						<span>Changer le mot de passe</span>
+					</a>
+				</li>
+				<li >
+					<a  (click)="logout()" style="cursor: pointer;">
+						<i class="fas fa-sign-out-alt"></i>
+						<span>Se déconnecter</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+</div>

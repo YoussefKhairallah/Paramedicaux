@@ -1,0 +1,170 @@
+
+    <!--Top Header -->
+    <div class="header-top" *ngIf="headerTop">
+        <div class="left-top ">
+            <ul>
+                <li><i class="fas fa-map-marker-alt top-icon"></i>123, washington street, uk</li>
+                <li><i class="fas fa-phone-volume top-icon"></i>+19 123-456-7890</li>
+                <li><i class="fas fa-envelope top-icon"></i>support@ParaMed.com</li>
+            </ul>
+        </div>
+        <div class="right-top ">
+            <ul>
+                <li><i class="fab fa-facebook-f top-icons"></i>
+                </li>
+                <li><i class="fab fa-instagram top-icons"></i>
+                </li>
+                <li><i class="fab fa-linkedin-in top-icons"></i>
+                </li>
+                <li><i class="fab fa-twitter top-icons"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<!--/Top Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg header-nav no-border">
+            <div class="navbar-header">
+                <a id="mobile_btn" href="javascript:void(0);">
+                    <span class="bar-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </a>
+                <a (click)="home()" class="navbar-brand logo">
+                    <img src="../../../assets/img/paramed2.png" class="img-fluid" alt="Logo" *ngIf="comlogo">
+                    <img src="../../../assets/img/footer-logo.png" class="img-fluid" alt="Logo" *ngIf="whitelogo">
+                </a>
+            </div>
+            <div class="main-menu-wrapper">
+                <div class="menu-header">
+                    <a class="menu-logo">
+                        <img src="../../../assets/img/logo.png" class="img-fluid" alt="Logo" [routerLink]="'home'">
+                    </a>
+                    <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+                <!----------------------------------- Home ----------------------------------->
+                <ul class="main-nav" >
+                    <li [class.active]="base === 'home'"  class="has-submenu" style="cursor: pointer;">
+                        <a [routerLink]="'home'">Accueil</a>
+                    </li>
+                <!----------------------------------- Product ----------------------------------->
+
+                <li *ngFor="let categorie of categorieData"><a href="pharmacy/categorie/{{categorie.id}}">{{categorie.nom}}</a></li>
+                                    
+                
+                <!----------------------------------- About-us ----------------------------------->
+                    
+                    <li ><a [routerLink]="'about-us'"> À propos de nous</a></li>
+
+                <!----------------------------------- Contact-us ----------------------------------->
+                    
+                    <li><a [routerLink]="'contact-us'">Nous contacter</a></li>  
+                </ul>
+            </div>
+            <ul class="nav header-navbar-rht" *ngIf="comrytmenu">
+
+                <!----------------------------------- Contact ----------------------------------->
+
+                <li class="nav-item contact-item">
+                    <div class="header-contact-img">
+                        <i class="far fa-hospital"></i>
+                    </div>
+                    <div class="header-contact-detail">
+                        <p class="contact-header">Contact</p>
+                        <p class="contact-info-header"> +216 51 321 774</p>
+                    </div>
+                </li>
+                <!-- Se connecter / S'inscrire -->
+                <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!auth">
+                    <a class="nav-link header-login"  [routerLink]="'login-page'">Se connecter / S'inscrire </a>
+                </li>
+                <!-- User Menu -->
+                <li class="nav-item dropdown has-arrow logged-item" *ngIf="auth">
+                    <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                        <span class="user-img">
+                            <img *ngIf="!isPatient" class="rounded-circle" src="../../../assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
+                            <img *ngIf="isPatient" class="rounded-circle" src="../../../assets/img/patients/patient.jpg" width="31" alt="Richard Wilson">
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" style="right:0;left:auto;">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img *ngIf="!isPatient" src="../../../assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+                                <img *ngIf="isPatient" src="../../../assets/img/patients/patient.jpg" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>{{user.nom}} {{user.prenom}}</h6>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/patients/dashboard'"  style="cursor: pointer;">Dashboard</a>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/patients/settings'"  style="cursor: pointer;">Paramètres de profil</a>
+                        
+                        <a class="dropdown-item" *ngIf="isPatient" [routerLink]="'/patients/settings'"  style="cursor: pointer;">Paramètres de profil</a>
+                        <a class="dropdown-item" [routerLink]="'login-page'" style="cursor: pointer;">Se déconnecter</a>
+                    </div>
+                </li>
+                    <!-- /User Menu -->
+                <li class="nav-item view-cart-header me-3" *ngIf="pharmcart">
+                    <a class="" id="cart"><i class="fas fa-shopping-cart"></i> <small class="unread-msg1">7</small></a>		
+                    <!-- Shopping Cart -->
+                    <div class="shopping-cart">
+                        <ul class="shopping-cart-items list-unstyled">
+                            <li class="clearfix">
+                                <div class="close-icon"><i class="far fa-times-circle"></i></div>
+                                <img class="avatar-img rounded" src="../../../assets/img/products/product.jpg" alt="User Image">
+                                <span class="item-name">Benzaxapine Croplex</span>
+                                <span class="item-price">$849.99</span>
+                                <span class="item-quantity">Quantity: 01</span>
+                            </li>
+
+                            <li class="clearfix">
+                                <div class="close-icon"><i class="far fa-times-circle"></i></div>
+                                <img class="avatar-img rounded" src="../../../assets/img/products/product1.jpg" alt="User Image">
+                                <span class="item-name">Ombinazol Bonibamol</span>
+                                <span class="item-price">$1,249.99</span>
+                                <span class="item-quantity">Quantity: 01</span>
+                            </li>
+
+                            <li class="clearfix">
+                                <div class="close-icon"><i class="far fa-times-circle"></i></div>
+                                <img class="avatar-img rounded" src="../../../assets/img/products/product2.jpg" alt="User Image">
+                                <span class="item-name">Dantotate Dantodazole</span>
+                                <span class="item-price">$129.99</span>
+                                <span class="item-quantity">Quantity: 01</span>
+                            </li>
+                        </ul>
+                        <div class="booking-summary pt-3">
+                            <div class="booking-item-wrap"> 
+                                <ul class="booking-date">
+                                    <li>Subtotal <span>$5,877.00</span></li>
+                                    <li>Shipping <span>$25.00</span></li>
+                                    <li>Tax <span>$0.00</span></li>
+                                    <li>Total <span>$5.2555</span></li>
+                                </ul>
+                                <div class="booking-total">
+                                    <ul class="booking-total-list text-align">
+                                        <li>
+                                            <div class="clinic-booking pt-4">
+                                                <a class="apt-btn" [routerLink]="'pharmacy/cart'">View Card</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="clinic-booking pt-4">
+                                                <a class="apt-btn" [routerLink]="'pharmacy/checkout'">Checkout</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Shopping Cart -->	
+                </li>
+            </ul>
+           
+        </nav>
+    </header>

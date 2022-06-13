@@ -1,0 +1,172 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Accueil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Description du produit</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Description du produit</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="row" *ngIf="article">
+
+            <div class="col-md-7 col-lg-9 col-xl-9">
+                <!-- Doctor Widget -->
+                <div class="card">
+                    <div class="card-body product-description">
+                        <div class="doctor-widget">
+                            <div class="doc-info-left">
+                                <div class="doctor-img1">
+                                        <img src="{{article && article.image ? article.image : 'https://sometestimage.com/test.jpg'}}" class="img-fluid" alt="User Image">
+                                </div>
+                                <div class="doc-info-cont">
+                                    <h4 class="doc-name mb-2">{{article.nom!}}</h4>
+                                    <p><span class="text-muted">Fabriqué par </span> {{article.fournisseur}}</p>
+                                    <p>{{article.description}}</p>
+                                   
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- /Doctor Widget -->
+                
+                <!-- Doctor Details Tab -->
+                <div class="card">
+                    <div class="card-body pt-0">
+                    
+                        <!-- Tab Menu -->
+                            <h3 class="pt-4">
+                                Détails du produit</h3>
+                            <hr>
+                        <!-- /Tab Menu -->
+                        
+                        <!-- Tab Content -->
+                        <div class="tab-content pt-3">
+                        
+                            <!-- Overview Content -->
+                            <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                    
+                                        <!-- About Details -->
+                                        <div class="widget about-widget">
+                                            <h4 class="widget-title">Description</h4>
+                                            <p>{{article.description}}</p>
+                                        </div>
+                                        <!-- /About Details -->
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Overview Content -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- /Doctor Details Tab -->
+
+            </div>
+
+            <div class="col-md-5 col-lg-3 col-xl-3 theiaStickySidebar">
+                <div class="search-filter">
+                <!-- Right Details -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="clini-infos mt-0">
+                            <h2>{{article.prix}}TND </h2>
+                        </div>
+                        <span class="badge badge-primary">In stock</span>
+                        <div class="custom-increment pt-4">
+                            <div class="input-group1">
+                                <span class="input-group-btn float-start">
+                                    <button title="minus" type="button" (click)="minus()" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                      <span><i class="fas fa-minus"></i></span>
+                                    </button>
+                                </span>
+                                <input title="quantity" type="text" id="quantity" name="quantity" [(ngModel)]="quantity" class=" input-number" value="10">
+                                <span class="input-group-btn float-end">
+                                    <button title="plus" type="button" (click)="plus()" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                        <span><i class="fas fa-plus"></i></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clinic-details mt-4">
+                            <div class="clinic-booking">
+                                <a class="apt-btn" (click)="addToCart()">Ajouter au panier</a>
+                            </div>
+                        </div>
+                        <div class="card flex-fill mt-4 mb-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">SKU	<span class="float-end">201902-0057</span></li>
+                                <li class="list-group-item">Taille du paquet<span class="float-end">100g</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card flex-fill mt-0 mb-0">
+                            <ul class="list-group list-group-flush benifits-col">
+                                <li class="list-group-item d-flex align-items-center">
+                                    <div>
+                                        <i class="fas fa-shipping-fast"></i>
+                                    </div>
+                                    <div> 
+                                        Livraison gratuite<br><span class="text-sm">Pour les commandes à partir de 100 TND</span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex align-items-center">
+                                    <div>
+                                        <i class="far fa-question-circle"></i>
+                                    </div>
+                                    <div>
+                                        Assistance 24h/24 et 7j/7<br><span class="text-sm">Appelez-nous à tout moment</span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex align-items-center">
+                                    <div>
+                                        <i class="fas fa-hands"></i>
+                                    </div>
+                                    <div>
+                                        100% Sécurité<br><span class="text-sm">Seuls les paiements sécurisés</span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex align-items-center">
+                                    <div>
+                                        <i class="fas fa-tag"></i>
+                                    </div>
+                                    <div>
+                                        Offres spéciales<br><span class="text-sm">Remises jusqu'à 90%</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Right Details -->
+                </div>
+            </div>
+
+        </div>
+
+        
+
+    </div>
+</div>		
+<!-- /Page Content -->

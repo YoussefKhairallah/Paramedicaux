@@ -1,0 +1,132 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Accueil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Caisse</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">
+                    Caisse</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 col-lg-7">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Détails de la facturation</h3>
+                    </div>
+                    <div class="card-body">
+                    
+                        <!-- Checkout Form -->
+                        <form>
+                            <!-- Shipping Details -->
+                            <div class="info-widget">
+                                <h4 class="card-title">Les détails de livraison</h4>
+                                <div class="terms-accept">
+                                    <div class="custom-checkbox">
+                                       <label for="terms_accept" class="ms-2">
+                                        Livrer à une adresse différente?</label>
+                                    </div>
+                                </div>
+                                <div class="form-group card-label">
+                                    <textarea title="adresse" [(ngModel)]="adresse" rows="5" class="form-control" name="shipping"></textarea>
+                                </div>
+                            </div>
+                            <!-- /Shipping Details -->
+                            
+                            <div class="payment-widget">
+                                <h4 class="card-title">Méthode de paiement *</h4>
+                                
+                                <!-- Credit Card Payment -->
+                                <div class="payment-list">
+                                    
+                                    <!-- Payer à livraison -->
+                                    <div class="payment-list">
+                                        <label class="payment-radio paypal-option">
+                                            <input type="radio" name="radio2" checked>
+                                            <span class="checkmark"></span>
+                                            Payer à livraison
+                                        </label>
+                                    </div>
+                                    <!-- /Payer à livraison -->
+                                </div>                                
+                                
+                                <!-- Submit Section -->
+                                <div class="submit-section mt-4">
+                                    <a type="button" class="btn btn-primary submit-btn" (click)="commander()">
+                                        Confirmer et payer</a>
+                                </div>
+                                <!-- /Submit Section -->
+                                
+                            </div>
+                        </form>
+                        <!-- /Checkout Form -->
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="col-md-6 col-lg-5 theiaStickySidebar">
+            
+                <!-- Booking Summary -->
+                <div class="card booking-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Votre commande</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-center mb-0">
+                                <tr>
+                                    <th>Produit</th>
+                                    <th class="text-end">Total</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let item of cartItems">
+                                        <td>{{item.produit.nom}}</td>
+                                        <td class="text-end">{{item.total}} DT</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="booking-summary pt-5">
+                            <div class="booking-item-wrap">
+                                <ul class="booking-date">
+                                    <li>Prix <span>{{subtotal}}</span></li>
+                                    <li>Livraison <span>{{livraison}}</span></li>
+                                </ul>
+                                <div class="booking-total">
+                                    <ul class="booking-total-list">
+                                        <li>
+                                            <span>Prix Total</span>
+                                            <span class="total-cost">{{total}}</span>
+                                        </li>
+                                        <li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Booking Summary -->
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>		
+<!-- /Page Content -->

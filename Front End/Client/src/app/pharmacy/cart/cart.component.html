@@ -1,0 +1,124 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Accueil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Panier</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Panier</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">			
+        
+        <div class="card card-table">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>SKU</th>
+                                <th>Prix</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">Prix Totale</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="ln >0">
+                            <tr *ngFor="let item of cartItems; let i =index">
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="/pharmacy/product-desc/{{item.produit.id}}" class="avatar avatar-sm me-2">
+                                            <img class="avatar-img" src="{{item.produit.image}}" alt="User Image"></a>
+                                    </h2>
+                                    <a href="/pharmacy/product-desc/{{item.produit.id}}">{{item.produit.nom}}</a>
+                                </td>
+                                <td>{{item.produit.fournisseur}}</td>
+                                <td>{{item.produit.prix}}DT</td>					
+                                <td class="text-center">
+                                <div class="custom-increment cart">
+                                    <div class="input-group1">
+                                        <span class="input-group-btn">
+                                            <button title="minus" type="button" (click)="minus(i,item.produit.prix)" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                              <span><i class="fas fa-minus"></i></span>
+                                            </button>
+                                        </span>
+                                        <input title="quntity" type="text" id="quantity1" name="quantity" class="input-number" [(ngModel)]="item.qte" [value]="item.qte">
+                                        <span class="input-group-btn">
+                                            <button title="plus" type="button" (click)="plus(item.produit.qte,i,item.produit.prix)" class="" >
+                                                <span><i class="fas fa-plus"></i></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                </td>
+                                <td class="text-center">{{item.total}}</td>
+                                <td class="text-end">
+                                    <div>
+                                        <a title="delete" (click)="delete(i)" class="btn btn-sm bg-danger-light">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>		
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7 col-lg-8">
+            </div>
+            
+            <div class="col-md-5 col-lg-4">
+            
+                <!-- Booking Summary -->
+                <div class="card booking-card">
+                    <div class="card-header">
+                        <h4 class="card-title">Totaux du panier</h4>
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="booking-summary">
+                            <div class="booking-item-wrap">
+                                <ul class="booking-date">
+                                    <li>Prix <span>{{total}}</span></li>
+                                    <li>Livraison <span>{{livraison}} DT</span></li>
+                                    <li>Tva <span>{{tva}}%</span></li>
+                                </ul>
+                                <div class="booking-total">
+                                    <ul class="booking-total-list">
+                                        <li>
+                                            <span>Total</span>
+                                            <span class="total-cost">{{totale}}</span>
+                                        </li>
+                                        <li>
+                                            <div class="clinic-booking pt-4">
+                                                <a class="apt-btn" (click)="commander()">Passer à la caisse</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Booking Summary -->
+                
+            </div>
+        </div>
+
+    </div>
+</div>		
+<!-- /Page Content -->

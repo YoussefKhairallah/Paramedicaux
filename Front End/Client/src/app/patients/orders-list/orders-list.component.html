@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card card-table mb-0">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Id Commande</th>
+                                        <th>Nom Client</th>
+                                        <th class="text-center">Quantity</th>
+                                        <th class="text-center">Prix Totale</th>
+                                        <th>Methode de Payment</th>
+                                        <th class="text-center">Etat</th>
+                                        <th>Date du Commande</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let order of orders">
+                                        <td>1</td>
+                                        <td><a [routerLink]="'/invoice-details'">OD1236547890</a></td>
+                                        <td>Medlife Medical</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">$150</td>
+                                        <td class="text-center">Stripe</td>
+                                        <td><span class="badge badge-primary">Order Placed</span></td>
+                                        <td>11 Nov 2019 <span class="d-block text-info">10.00 AM</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

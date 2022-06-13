@@ -1,0 +1,145 @@
+<!-- Home Banner -->
+
+    <section class="section section-search">
+        <div class="container-fluid">
+            <div class="banner-wrapper">
+                <div class="banner-header text-center aos" data-aos="fade-up">
+                    <h1>Recherche des produits</h1>
+                </div>
+
+                <!-- Search -->
+                <div class="search-box aos" data-aos="fade-up">
+                    <form> 
+                        <div class="form-group search-info">
+                             <input type="text" class="form-control"
+                            placeholder="Recherche un produit"/>
+                            <!--<ng-autocomplete [data]="countries" type="text" class="form-control"
+                                [searchKeyword]="keyword" placeholder="Recherche un produit" (selected)='selectEvent($event)'
+                                (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)'
+                                historyIdentifier="countries" [itemTemplate]="itemTemplate"
+                                [notFoundTemplate]="notFoundTemplate">-
+                            </ng-autocomplete> -->
+
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.name"></a>
+                            </ng-template>
+
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+							                       
+                        </div>
+                        <button type="submit" class="btn btn-primary search-btn mt-0"
+                            [routerLink]="'/patients/search-doctor'"><i class="fas fa-search"></i>
+                            <span>Recherche</span></button>
+                    </form>
+                </div>
+                <!-- /Search -->
+
+            </div>
+        </div>
+    </section>
+    <!-- /Home Banner -->
+
+    <!-- popular section-->
+    <section class="section section-doctor">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">                    
+                    <div class="doctor-slider slider aos" data-aos="fade-up">
+                        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfigure">
+                            <div class="slick-slide" *ngFor="let produit of produitData;let i=index">
+                                <div ngxSlickItem>
+                                    <div class="profile-widget" style="width: 100%; display: inline-block;">
+                                        <div class="doc-img">
+                                            <a href="/pharmacy/product-desc/{{produit.id}}"
+                                                 tabindex="-1">
+                                                <img class="img-fluid" alt="User Image" [src]="produit.image">
+                                            </a>
+                                            <a title="favoris" href="javascript:void(0)" class="fav-btn" tabindex="-1">
+                                                <i class="far fa-bookmark"></i>
+                                            </a>
+                                        </div>
+                                        <div class="pro-content">
+                                            <h3 class="title">
+                                                <a href="/pharmacy/product-desc/{{produit.id}}"
+                                                    
+                                                    tabindex="-1">{{produit.nom}}</a>
+                                                <i class="fas fa-check-circle verified"></i>
+                                            </h3>
+                                            <p class="speciality">{{produit.fournisseur}}</p>
+                                            <div class="rating">
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star filled"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <ul class="available-info">
+                                               
+                                                <li>
+                                                    <i class="far fa-money-bill-alt"></i> {{produit.prix}}
+                                                    <a href="javascript:void(0)" tooltip="Lorem Ipsum" placement="top">DT</a>
+                                                </li>
+                                            </ul>
+                                            <div class="row row-sm">
+                                                <div class="col-6">
+                                                    <a href="/pharmacy/product-desc/{{produit.id}}"
+                                                         class="btn view-btn"
+                                                        tabindex="-1">Voir les détails</a>
+                                                </div>
+                                                <div class="col-6">
+                                                    <a [routerLink]="'/patients/booking'"
+                                                        [queryParams]="{id: produit.id}" class="btn book-btn"
+                                                        tabindex="-1">Ajouter panier</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ngx-slick-carousel>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--popular section-->
+
+    <section class="section section-features">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="section-header text-center aos" data-aos="fade-up">
+                    <h2>Nos Catégories</h2>
+                    
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-9 aos" data-aos="fade-up">
+                        <!-- Slider -->
+    
+                        <div class="specialities-slider slider">
+                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig3">
+                                <div ngxSlickItem *ngFor="let slide of slides" class="speicality-item text-center">
+                                    <div class="">
+                                        <div class="speicality-img">
+                                            <img src="{{slide.img}}" class="img-fluid" alt="Speciality">
+                                            <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                        </div>
+                                        <p>{{slide.name}}</p>
+                                    </div>
+                                </div>
+                            </ngx-slick-carousel>
+                            <div class="text-center client-navbtn">
+                                <button title="next" class="btn-next" (click)="next()"><i
+                                        class="las la-caret-square-left"></i></button>
+                                <button title="prev" class="btn-prev" (click)="prev()"><i
+                                        class="las la-caret-square-right"></i></button>
+                            </div>
+                        </div>
+                        <!-- /Slider -->
+    
+                    </div>
+                </div>
+                </div>
+            </div>
+    </section>
