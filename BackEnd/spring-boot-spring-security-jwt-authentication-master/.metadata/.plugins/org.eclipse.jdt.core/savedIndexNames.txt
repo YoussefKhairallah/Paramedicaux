@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+F:\Projet PFE\Nouveau dossier\BackEnd\spring-boot-spring-security-jwt-authentication-master\.metadata\.plugins\org.eclipse.jdt.core
-851528089.index
-3435648363.index
-1865797976.index
