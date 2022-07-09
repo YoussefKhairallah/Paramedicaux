@@ -55,22 +55,7 @@ export class HeaderComponent implements OnInit {
       
     });
     this.url1 = this.router.url;
-    this.commonService.message.subscribe((res) => {
-      if (res === 'patientLogin') {
-        this.auth = true;
-        console.log("result",res)
-        // this.isPatient = true;
-      }
-      if (res === 'doctorLogin') {
-        this.auth = true;
-        // this.isPatient = false;
-      }
-
-      if (res === 'logout') {
-        this.auth = false;
-        this.isPatient = false;
-      }
-    });
+    this.auth = this.authService.isLoggedIn;
   }
 
   getAll():void{
@@ -84,6 +69,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getAll();
     this.auth = this.authService.isLoggedIn;
+    console.log(this.auth);
     this.user = JSON.parse(localStorage.getItem('userInfo') || '[]');
 
     AOS.init({
@@ -163,8 +149,9 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.auth = false;
     this.isPatient = false;
-    this.commonService.nextmessage('logout');
-    this.router.navigate(['/login']);
+    // this.commonService.nextmessage('logout');
+    // this.router.navigate(['/login']);
+    this.authService.logout();
   }
 
   home() {

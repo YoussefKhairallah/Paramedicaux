@@ -48,10 +48,15 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-header">
-				<h4 class="card-title"></h4>
+				<h4 class="card-title">Bienvenue {{user.nom}} {{user.prenom}}</h4>
 			</div>
 			<div class="card-body pt-2 pb-2 mt-1 mb-1">
-				
+				<p><label>Nom :</label> <span>{{user.nom}}</span></p>
+				<p><label>Prenom :</label> <span>{{user.prenom}}</span></p>
+				<p><label>Email :</label> <span>{{user.email}}</span></p>
+				<p><label>Ville :</label> <span>{{user.ville}}</span></p>
+				<p><label>Adresse :</label> <span>{{user.adresse}}</span></p>
+				<p><label>Date de naissance :</label> <span>{{user.dateNaissance}}</span></p>
 			</div>
 		</div>
 	</div>

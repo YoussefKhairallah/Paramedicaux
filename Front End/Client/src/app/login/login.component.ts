@@ -60,10 +60,10 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.authService.getUser(data.id);
-        this.router.navigate(['/home']);
+        
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err;
         this.isLoginFailed = true;
       }
     });

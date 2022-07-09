@@ -37,7 +37,7 @@ export class CategorieComponent implements OnInit {
 
   getProduits(id: number) {
     this.produitservice.getProduitsByCategories(id).subscribe(data => {
-      console.log(data);
+      console.log('data::',data);
       this.produits = data;
     });
   }

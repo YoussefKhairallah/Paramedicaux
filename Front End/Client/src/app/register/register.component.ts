@@ -4,6 +4,12 @@ import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../shared/services/auth/auth.service';
+import { param } from 'jquery';
+import { FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from '../shared/models/user.model';
 
 declare const $: any;
 @Component({
@@ -20,85 +26,50 @@ export class RegisterComponent implements OnInit {
   tel = '';
   adresse = '';
   ville = '';
-  pays = '';
   codePostal ='';
 
+  formData!: FormGroup;
   isPatient: boolean = true;
-  doctors: any = [];
-  patients: any = [];
-  reg_type = 'Patient Register';
-  doc_patient = 'Are you a Doctor?';
+
   value: any;
   constructor(
     private toastr: ToastrService,
-    public commonService: CommonServiceService,
-    public router: Router
+    public authServices: AuthService,
+    public router: Router,
+    private modalService: NgbModal
   ) {}
-
+user=new User();
   ngOnInit(): void {
-    this.getpatients();
-    this.getDoctors();
-    if($('.floating').length > 0 ){
-      $('.floating').on('focus blur',  (e: { type: string; }) => {
-      $(this).parents('.form-focus').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
-      }).trigger('blur');
-    }
+
   }
 
-  changeRegType() {
-    if (this.reg_type === 'Doctor Register') {
-      this.reg_type = 'Patient Register';
-      this.doc_patient = 'Are you a Doctor?';
-      this.isPatient = true;
-    } else {
-      this.reg_type = 'Doctor Register';
-      this.doc_patient = 'Not a Doctor?';
-      this.isPatient = false;
-    }
+  get form() {
+    return this.formData.controls;
   }
-
   signup() {
-    if (this.nom === '' || this.password === '' || this.prenom === '' || this.dateNaissance === '' || this.email === '' || this.tel === '' || this.adresse || this.codePostal || this.ville || this.pays) {
-      this.toastr.error('', 'Veuillez saisir le champ obligatoire !');
-    } else {
-      if (!this.isPatient) {
-        let params = {
-          id: this.doctors.length + 1,
-          doctor_name: this.nom,
-          password: this.password,
-          prenom: this.prenom,
-          datenaissance: this.dateNaissance,
-          mail: this.email,
-          tel: this.tel
+      console.log("Form object: " + this.user);
 
-        };
-        this.commonService.createDoctor(params).subscribe((res) => {
-          this.toastr.success('', 'Register successfully!');
-          this.router.navigate(['/doctor-register-step1']);
-        });
-      } else {
-        let params = {
-          id: this.patients.length + 1,
-          name: this.nom,
-          password: this.password,
-        };
-        this.commonService.createPatient(params).subscribe((res) => {
-          this.toastr.success('', 'Register successfully!');
-          this.router.navigate(['/patient-register-step1']);
-        });
-      }
-    }
-  }
-
-  getDoctors() {
-    this.commonService.getDoctors().subscribe((res) => {
-      this.doctors = res;
+      this.authServices.createuser(this.user,3)
+      .subscribe( res => {
+        this.modalService.dismissAll();
+        Swal.fire({
+          position: 'top-end',
+          title: 'Thank you...',
+          text: 'Utilisateur ajoute avec succes!',
+          icon: 'success'});
+        this.user=new User();
+    }, error => {
+      error = console.error();
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Oops...',
+        text: "il y a un erreur avec l'ajout!!"
+      })
     });
+    
   }
 
-  getpatients() {
-    this.commonService.getpatients().subscribe((res) => {
-      this.patients = res;
-    });
-  }
+
+
 }

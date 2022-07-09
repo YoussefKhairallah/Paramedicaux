@@ -1,0 +1,119 @@
+<div class="container-fluid">
+
+  <!-- start page title -->
+  <app-page-title title="Ajouter un produit" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+
+          <h4 class="card-title">Informations de base</h4>
+          <p class="card-title-desc">Remplissez toutes les informations ci-dessous</p>
+
+          <form [formGroup]="productForm" (ngSubmit)="validSubmit()">
+            <div class="row">
+              <div class="col-sm-6">
+                <!--================================================= Nom Produit =================================================-->
+                <div class="mb-3">
+                  <label for="nom">Nom du produit</label>
+                  <input id="nom" name="nom" type="text" class="form-control" formControlName="nom"
+                    [ngClass]="{'is-invalid': submit && form.nom.errors}">
+                  <div *ngIf="submit && form.nom.errors" class="invalid-feedback">
+                    <span *ngIf="form.nom.errors.required">Nom du produit est obligatoire.</span>
+                  </div>
+                </div>
+
+      <!--================================================= Fournisseur Produit =================================================-->
+
+                <div class="mb-3">
+                  <label for="fournisseur">Fournisseur du produit</label>
+                  <input id="fournisseur" name="fournisseur" type="text" class="form-control" formControlName="fournisseur"
+                    [ngClass]="{'is-invalid': submit && form.fournisseur.errors}">
+                  <div *ngIf="submit && form.fournisseur.errors" class="invalid-feedback">
+                    <span *ngIf="form.fournisseur.errors.required">Fournisseur du produit est obligatoire.</span>
+                  </div>
+                </div>
+
+      <!--================================================= Prix Produit =================================================-->
+                
+                <div class="mb-3">
+                  <label for="price">Prix</label>
+                  <input id="price" name="prix" type="text" class="form-control" formControlName="prix" [ngClass]="{'is-invalid': submit &&
+                  form.prix.errors}">
+                  <div *ngIf="submit && form.prix.errors" class="invalid-feedback">
+                    <span *ngIf="form.prix.errors.required">Prix est obligatoire.</span>
+                  </div>
+                </div>
+
+      <!--================================================= Quantite Produit =================================================-->
+                
+                <div class="mb-3">
+                  <label for="price">Quantite du produit</label>
+                  <input id="quantiteProd" name="qte" type="number" class="form-control" formControlName="qte" [ngClass]="{'is-invalid': submit &&
+                  form.qte.errors}">
+                  <div *ngIf="submit && form.qte.errors" class="invalid-feedback">
+                    <span *ngIf="form.qte.errors.required">Quantite du produit est obligatoire.</span>
+                  </div>
+                </div>  
+
+      <!--================================================= Image Produit =================================================-->
+
+                <label for="product-image" class="mt-2"> Images du produit</label>
+                <dropzone class="dropzone" [config]="config"></dropzone>
+              </div>
+              <div class="col-sm-6">
+
+      <!--================================================= Categorie Produit =================================================-->
+
+              <div class="mb-3">
+                  <label class="control-label">Categorie</label>
+                  <select name="categorie" formControlName="categorie" class="form-control" [ngClass]="{'is-invalid': submit &&
+                  form.categorie.errors}">
+                    <option value="{{categorie.id}}" *ngFor="let categorie of categories">{{categorie.nom}}</option>
+                  </select>
+                  <div *ngIf="submit && form.categorie.errors" class="invalid-feedback">
+                  <span *ngIf="form.categorie.errors.required">Categorie est obligatoire.</span>
+                  </div>
+              </div>
+
+      <!--================================================= Quantite limit du produit =================================================-->
+
+                <div class="mb-3">
+                  <label for="price">Quantite limite du produit</label>
+                  <input id="qteLimite" name="qteLimite" type="number" class="form-control" formControlName="qteLimite" [ngClass]="{'is-invalid': submit &&
+                  form.qteLimite.errors}">
+                  <div *ngIf="submit && form.qteLimite.errors" class="invalid-feedback">
+                    <span *ngIf="form.qteLimite.errors.required">Quantite limite du produit est obligatoire.</span>
+                  </div>
+                </div> 
+
+      <!--================================================= Description du produit =================================================-->
+
+                <div class="mb-3">
+                  <label for="productdesc">Description du produit</label>
+                  <textarea class="form-control" id="description" rows="5" name="description" formControlName="description" [ngClass]="{'is-invalid': submit &&
+                  form.description.errors}"></textarea>
+                  <div *ngIf="submit && form.description.errors" class="invalid-feedback">
+                    <span *ngIf="form.description.errors.required">Description est obligatoire.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      <!--================================================= Les Buttons =================================================-->
+
+            <div class="d-flex flex-wrap gap-2 mt-2">
+              <button type="submit" class="btn btn-primary" (click)="saveProduct()">Sauvegarder</button>
+              <button type="submit" class="btn btn-secondary">Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+
+</div>
+<!-- container-fluid -->

@@ -67,41 +67,16 @@ export class DashboardComponent implements OnInit {
     },
     colors: ['#03a4fb']
   };
+  user: any;
 
   constructor(public commonService:CommonServiceService) { }
 
   ngOnInit(): void {
     
-    this.getPatients();
-    this.getAppointments();
-      var chart = new ApexCharts(document.querySelector('#bmi-status'),
-      this.bmichartOptions
-      );
-    chart.render();
+   this.user = JSON.parse(localStorage.getItem('userInfo')!)
   }
 
-  getAppointments() {
-    this.commonService.getAppointments()
-      .subscribe(res=>{
-        
-        this.appointments = res;
-        let scope = this;
-        this.appointments.forEach((index:any)=>{
-          let filter = scope.patients.filter((a:any)=>a.key === index.patient_key);
-          if(filter.length != 0) {
-            index['patients'] = filter[0];
-          }
-        })
-       
-      })
-  }
-
-  getPatients() {
-    this.commonService.getpatients()
-    .subscribe(res=>{
-      this.patients = res;
-    })
-  }
+  
 
 
  

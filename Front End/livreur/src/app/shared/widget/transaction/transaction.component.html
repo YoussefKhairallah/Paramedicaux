@@ -1,0 +1,121 @@
+<!--<div class="table-responsive mb-0">
+  <table class="table table-centered table-nowrap">
+    <thead class="table-light">
+      <tr>
+        <th class="align-middle">Id commande</th>
+        <th class="align-middle">Id Client</th>
+        <th class="align-middle">Adresse</th>
+        <th class="align-middle">Prix total</th>
+        <th class="align-middle">Payment Method</th>
+        <th class="align-middle">Etat</th>
+        <th class="align-middle">View Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of OrdersData">
+        <td>
+          <a class="text-body fw-bold">{{data.id}}</a>
+        </td>
+        <td>
+          <a class="text-body fw-bold">{{data.id_client}}</a>
+        </td>
+        <td>{{data.date}}</td>
+        <td>{{data.prix_totale}}</td>
+        <td>
+          <i :class="`fab ${data.payment[0]} mr-1`"></i>
+          {{data.payment[1]}}
+        </td>
+        <td>
+          <span class="badge badge-pill badge-soft-success font-size-11" [ngClass]=" { 'badge-soft-danger': data.status === 'Chargeback',
+           'badge-soft-warning':data.status === 'Refund' }">{{data.status}}</span>
+        </td>
+        
+        <td>
+          <!-- Button trigger modal 
+          <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="openModal(content)">Detaille</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #content role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Detaille du commande</h5>
+      <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body" *ngFor="let data of OrdersData">
+      <p class="mb-2">
+        Id du produit:
+        <span class="text-primary">{{data.produit_id}}</span>
+      </p>
+      <p class="mb-4">
+       Nom & Prenom du client:
+        <span class="text-primary">{{data.client_id}}</span>
+      </p>
+      <div class="table-responsive">
+        <table class="table table-centered table-nowrap">
+          <thead>
+            <tr>
+              <th scope="col">Produit</th>
+              <th scope="col">Nom du produit</th>
+              <th scope="col">Prix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">
+                <div>
+                  <img src="../../../../assets/images/product/img-7.png" alt class="avatar-sm" />
+                </div>
+              </th>
+              <td>
+                <div>
+                  <h5 class="text-truncate font-size-14">Wireless Headphone (Black)</h5>
+                  <p class="text-muted mb-0">$ 225 x 1</p>
+                </div>
+              </td>
+              <td>$ 255</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <div>
+                  <img src="../../../../assets/images/product/img-4.png" alt class="avatar-sm" />
+                </div>
+              </th>
+              <td>
+                <div>
+                  <h5 class="text-truncate font-size-14">Phone patterned cases</h5>
+                  <p class="text-muted mb-0">$ 145 x 1</p>
+                </div>
+              </td>
+              <td>$ 145</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <h6 class="m-0 text-end">Prix:</h6>
+              </td>
+              <td>$ 400</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <h6 class="m-0 text-end">Livraison:</h6>
+              </td>
+              <td>Free</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <h6 class="m-0 text-end">Prix Totale:</h6>
+              </td>
+              <td>$ 400</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success">Confirmer</button>
+      <button class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+</div>
+<!-- end table -->-->

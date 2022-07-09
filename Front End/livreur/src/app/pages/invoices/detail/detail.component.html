@@ -1,0 +1,99 @@
+<div class="container-fluid">
+
+  <!-- start page title -->
+
+  <app-page-title title="Détails de la facture" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="invoice-title">
+            <h4 class="float-end font-size-16">Commande # 12345</h4>
+            <div class="mb-4">
+              <img src="../../../../assets/logo/paramed1.png" alt="logo" height="20" />
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-6">
+              <address>
+                <strong>Facturé à:</strong><br>
+                John Smith<br>
+                1234 Main<br>
+                Apt. 4B<br>
+                Springfield, ST 54321
+              </address>
+            </div>
+            <div class="col-6 text-sm-end">
+              <address>
+                <strong>livrer à:</strong><br>
+                {{commande.id_client.nom}} {{commande.id_client.prenom}}<br>
+                {{commande.id_client.email}}<br>
+                {{commande.id_client.tel}}<br>
+                {{commande.id_client.adresse}}
+              </address>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 mt-3">
+              
+            </div>
+            <div class="col-6 mt-3 text-sm-end">
+              <address>
+                <strong>Date du commande:</strong><br>
+                {{commande.date}}<br><br>
+              </address>
+            </div>
+          </div>
+          <div class="py-2 mt-3">
+            <h3 class="font-size-15 fw-bold">détail commande:</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width: 70px;">Num.</th>
+                  <th>Produit</th>
+                  <th class="text-end">Prix</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of commandeData">
+                  <td>{{data.id}}</td>
+                  <td>{{data.produit.nom}}</td>
+                  <td class="text-end">{{data.total}} DT</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-end">Prix</td>
+                  <td class="text-end">{{totale}} DT</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="border-0 text-end">
+                    <strong>Livraison</strong></td>
+                  <td class="border-0 text-end">{{shipping}}</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="border-0 text-end">
+                    <strong>Total</strong></td>
+                  <td class="border-0 text-end">
+                    <h4 class="m-0">{{totale + shipping}}</h4>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-print-none">
+            <div class="float-end">
+              <a href="javascript:window.print()" class="btn btn-success"><i class="fa fa-print"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+
+</div> <!-- container-fluid -->

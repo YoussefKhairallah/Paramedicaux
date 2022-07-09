@@ -124,14 +124,6 @@
       }
     },
 
-    "TASKS": {
-      "TEXT": "Tasks",
-      "LIST": {
-        "TASKLIST": "Task List",
-        "KANBAN": "Kanban Board",
-        "CREATETASK": "Create Task"
-      }
-    },
     "CONTACTS": {
       "TEXT": "Contacts",
       "LIST": {
@@ -139,32 +131,6 @@
         "CLIENT":"Les client",
         "LIVREUR":"Les livreur",
         "PROFILE": "Profile"
-      }
-    },
-    "PAGES": {
-      "TEXT": "Pages"
-    },
-    "AUTHENTICATION": {
-      "TEXT": "Authentication",
-      "BADGE": "New",
-      "LIST": {
-        "LOGIN": "Login",
-        "REGISTER": "Register",
-        "RECOVERPWD": "Recover Password",
-        "CONFIRMMAIL": "Confirm Mail",
-        "EMAILVERIFICATION": "Email verification"
-      }
-    },
-    "UTILITY": {
-      "TEXT": "Utility",
-      "LIST": {
-        "STARTER": "Starter Page",
-        "MAINTENANCE": "Maintenance",
-        "TIMELINE": "Timeline",
-        "FAQS": "FAQs",
-        "PRICING": "Pricing",
-        "ERROR404": "Error 404",
-        "ERROR500": "Error 500"
       }
     }
   }

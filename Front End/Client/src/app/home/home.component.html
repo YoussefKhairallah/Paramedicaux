@@ -89,9 +89,8 @@
                                                         tabindex="-1">Voir les détails</a>
                                                 </div>
                                                 <div class="col-6">
-                                                    <a [routerLink]="'/patients/booking'"
-                                                        [queryParams]="{id: produit.id}" class="btn book-btn"
-                                                        tabindex="-1">Ajouter panier</a>
+                                                    <a class="btn book-btn"
+                                                        tabindex="-1" (click)="addToCart()">Ajouter panier</a>
                                                 </div>
                                             </div>
                                         </div>

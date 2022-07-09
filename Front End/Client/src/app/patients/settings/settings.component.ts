@@ -13,5 +13,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('userInfo') || '[]');
   }
-
+  edit(){
+    
+  }
 }

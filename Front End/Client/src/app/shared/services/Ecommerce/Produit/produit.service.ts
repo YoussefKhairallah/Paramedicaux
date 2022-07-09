@@ -48,8 +48,8 @@ export class ProduitService {
  
 
   // create new produit
-  createProduit(produit: Object): Observable<Object> {
-    return this.http.post(`${this.prodUrl}`, produit);
+  createProduit(id: number,produit: Object): Observable<Object> {
+    return this.http.post(`http://localhost:8080/api/categories/${id}/produits`, produit);
   }
 
   

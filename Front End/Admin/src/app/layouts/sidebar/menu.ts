@@ -92,20 +92,7 @@ export const MENU: MenuItem[] = [
         id: 36,
         label: 'MENUITEMS.INVOICES.TEXT',
         icon: 'bx-receipt',
-        subItems: [
-            {
-                id: 37,
-                label: 'MENUITEMS.INVOICES.LIST.INVOICELIST',
-                link: '/invoices/list',
-                parentId: 36
-            },
-            {
-                id: 38,
-                label: 'MENUITEMS.INVOICES.LIST.INVOICEDETAIL',
-                link: '/invoices/detail',
-                parentId: 36
-            },
-        ]
+        link: '/invoices/list'
     },
 
     //=========================== Contact =========================
@@ -140,103 +127,7 @@ export const MENU: MenuItem[] = [
                 parentId: 48
             }
         ]
-    },
-    //=========================== AUTHENTICATION =========================
-
-    {
-        id: 56,
-        label: 'MENUITEMS.PAGES.TEXT',
-        isTitle: true
-    },
-    {
-        id: 57,
-        label: 'MENUITEMS.AUTHENTICATION.TEXT',
-        icon: 'bx-user-circle',
-        badge: {
-            variant: 'success',
-            text: 'MENUITEMS.AUTHENTICATION.BADGE',
-        },
-        subItems: [
-            {
-                id: 58,
-                label: 'MENUITEMS.AUTHENTICATION.LIST.LOGIN',
-                link: '/account/login',
-                parentId: 57
-            },
-
-            {
-                id: 60,
-                label: 'MENUITEMS.AUTHENTICATION.LIST.REGISTER',
-                link: '/account/signup',
-                parentId: 57
-            },
-
-            {
-                id: 62,
-                label: 'MENUITEMS.AUTHENTICATION.LIST.RECOVERPWD',
-                link: '/account/reset-password',
-                parentId: 57
-            },
-
-            {
-                id: 66,
-                label: 'MENUITEMS.AUTHENTICATION.LIST.CONFIRMMAIL',
-                link: '/pages/confirm-mail',
-                parentId: 57
-            },
-
-            {
-                id: 68,
-                label: 'MENUITEMS.AUTHENTICATION.LIST.EMAILVERIFICATION',
-                link: '/pages/email-verification',
-                parentId: 57
-            }
-        ]
-    },
-    //=========================== Utility =========================
-
-    {
-        id: 72,
-        label: 'MENUITEMS.UTILITY.TEXT',
-        icon: 'bx-file',
-        subItems: [
-            {
-                id: 74,
-                label: 'MENUITEMS.UTILITY.LIST.MAINTENANCE',
-                link: '/pages/maintenance',
-                parentId: 72
-            },
-            {
-                id: 74,
-                label: 'Coming Soon',
-                link: '/pages/coming-soon',
-                parentId: 72
-            },
-            {
-                id: 75,
-                label: 'MENUITEMS.UTILITY.LIST.TIMELINE',
-                link: '/pages/timeline',
-                parentId: 72
-            },
-            {
-                id: 76,
-                label: 'MENUITEMS.UTILITY.LIST.FAQS',
-                link: '/pages/faqs',
-                parentId: 72
-            },
-            {
-                id: 78,
-                label: 'MENUITEMS.UTILITY.LIST.ERROR404',
-                link: '/pages/404',
-                parentId: 72
-            },
-            {
-                id: 79,
-                label: 'MENUITEMS.UTILITY.LIST.ERROR500',
-                link: '/pages/500',
-                parentId: 72
-            },
-        ]
     }
+
 ];
 

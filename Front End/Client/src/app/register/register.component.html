@@ -1,67 +1,92 @@
 	<div class="content">
 				<div class="container-fluid">
-					
+
 					<div class="row">
 						<div class="col-md-8 offset-md-2">
-								
+
 							<!-- Register Content -->
 							<div class="account-content">
 								<div class="row align-items-center justify-content-center">
 									<div class="col-md-7 col-lg-6 login-left">
-										<img src="../../assets/img/login-banner.png" class="img-fluid" alt="Doccure Register">	
+										<img src="../../assets/img/login-banner.png" class="img-fluid" alt="Doccure Register">
 									</div>
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
 											<h3>Inscription</h3>
 										</div>
-										
+
 										<!-- Register Form -->
 										<form>
 											<!------------------------------------- Name ------------------------------------->
 											<div class="form-group form-focus">
-												<input type="text" name="nom"  class="form-control floating" [(ngModel)]="nom">
+												<input type="text" name="nom"  class="form-control floating" [(ngModel)]="user.nom">
 												<label class="focus-label">Nom</label>
 											</div>
 
 											<!------------------------------------- Lastname ------------------------------------->
 
 											<div class="form-group form-focus">
-												<input type="text" name="prenom"  class="form-control floating" [(ngModel)]="prenom">
+												<input type="text" name="prenom"  class="form-control floating" [(ngModel)]="user.prenom">
 												<label class="focus-label">Prenom</label>
 											</div>
 
 											<!-------------------------------------Date Naissance ------------------------------------->
 
 											<div class="form-group form-focus">
-												<input type="date" name="dateNaissance" class="form-control floating" [(ngModel)]="dateNaissance">
-												
+												<input type="date" name="dateNaissance" class="form-control floating" [(ngModel)]="user.dateNaissance">
+
 											</div>
 
 											<!------------------------------------- Phone ------------------------------------->
 
 											<div class="form-group form-focus">
-												<input type="text" name="tel"  class="form-control floating" [(ngModel)]="tel" max="8">
+												<input type="text" name="tel"  class="form-control floating" [(ngModel)]="user.tel" max="8">
 												<label class="focus-label">Telephone</label>
 											</div>
 											<!------------------------------------- Adresse ------------------------------------->
 											<div class="form-group form-focus">
-												<input type="text" name="adresse" class="form-control floating" [(ngModel)]="adresse">
+												<input type="text" name="adresse" class="form-control floating" [(ngModel)]="user.adresse">
 												<label class="focus-label">Adresse</label>
 											</div>
 											<!------------------------------------- Ville ------------------------------------->
 											<div class="form-group form-focus">
-												<input type="text" name="ville"  class="form-control floating" [(ngModel)]="ville">
 												<label class="focus-label">Ville</label>
+												<select class="form-control select form-select" class="form-control floating" [(ngModel)]="user.ville">
+													<option value="Ariana">Ariana</option>
+													<option value="Béja">Béja</option>
+													<option value="Ben Arous">Ben Arous</option>
+													<option value="Bizerte">Bizerte</option>
+													<option value="Gabés">Gabès</option>
+													<option value="Gafsa">Gafsa</option>
+													<option value="Jendouba">Jendouba</option>
+													<option value="Kairouan">Kairouan</option>
+													<option value="Kasserine">Kasserine</option>
+													<option>Kébili</option>
+													<option>Kef</option>
+													<option>Mahdia</option>
+													<option>Manouba</option>
+													<option>Médenine</option>
+													<option>Monastir</option>
+													<option>Nabeul</option>
+													<option>Sfax</option>
+													<option>Sidi Bouzid</option>
+													<option>Siliana</option>
+													<option>Sousse</option>
+													<option>Tataouine</option>
+													<option>Tozeur</option>
+													<option>Tunis</option>
+													<option>Zaghouan</option>
+												</select>
 											</div>
 											<!------------------------------------- Code Postal ------------------------------------->
 											<div class="form-group form-focus">
-												<input type="text" name="codePostal" class="form-control floating" [(ngModel)]="codePostal">
+												<input type="text" name="codePostal" class="form-control floating" [(ngModel)]="user.codePostal">
 												<label class="focus-label">Code Postal</label>
 											</div>
-											<!------------------------------------- Pays ------------------------------------->
+											<!------------------------------------- Pays -----------------------------------
 											<div class="form-group form-focus">
 												<label class="focus-label">Pays</label>
-												<select class="form-control select form-select" class="form-control floating" [(ngModel)]="pays">
+												<select class="form-control select form-select" class="form-control floating" [(ngModel)]="user.pays">
 													<option>Ariana</option>
 													<option>Béja</option>
 													<option>Ben Arous</option>
@@ -87,18 +112,18 @@
 													<option>Tunis</option>
 													<option>Zaghouan</option>
 												</select>
-											</div>
+											</div>-->
 											<!------------------------------------- Email ------------------------------------->
-											
+
 											<div class="form-group form-focus">
-												<input type="email" name="email"  class="form-control floating" [(ngModel)]="email">
+												<input type="email" name="email"  class="form-control floating" [(ngModel)]="user.email">
 												<label class="focus-label">Email</label>
 											</div>
 
 											<!------------------------------------- Password ------------------------------------->
 
 											<div class="form-group form-focus">
-												<input type="password" name="password" class="form-control floating"  [(ngModel)]="password">
+												<input type="password" name="password" class="form-control floating"  [(ngModel)]="user.password">
 												<label class="focus-label">Mot de passe</label>
 											</div>
 											<!------------------------------------- Vous avez déjà un compte? ------------------------------------->
@@ -126,15 +151,15 @@
 											</div>
 										</form>
 										<!-- /Register Form -->
-										
+
 									</div>
 								</div>
 							</div>
 							<!-- /Register Content -->
-								
+
 						</div>
 					</div>
 
 				</div>
 
-			</div>		
+			</div>

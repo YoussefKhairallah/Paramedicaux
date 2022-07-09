@@ -50,12 +50,6 @@
 								<input type="text" value="{{user.tel}}" class="form-control">
 							</div>
 						</div>
-						<div class="col-12 col-md-6">
-							<div class="form-group">
-								<label>Pays</label>
-								<input type="text" class="form-control" value="{{user.pays}}">
-							</div>
-						</div>
 						<div class="col-12">
 							<div class="form-group">
 							<label>Address</label>
@@ -65,8 +59,8 @@
 						<div class="col-12 col-md-6">
 							<div class="form-group">
 								<label>Ville</label>
-								<input type="text" class="form-control" value="{{user.ville}}">
-								<!--<select class="form-control select form-select" value="{{user.ville}}">
+								<!--<input type="text" class="form-control" value="{{user.ville}}">-->
+								<select class="form-control select form-select" value="{{user.ville}}">
 									<option>Ariana</option>
 									<option>Béja</option>
 									<option>Ben Arous</option>
@@ -91,7 +85,7 @@
 									<option>Tozeur</option>
 									<option>Tunis</option>
 									<option>Zaghouan</option>
-								</select>-->
+								</select>
 							</div>
 						</div>
 						<div class="col-12 col-md-6">
@@ -103,7 +97,7 @@
 						
 					</div>
 					<div class="submit-section">
-						<button type="submit" class="btn btn-primary submit-btn">Sauvegarder les modifications</button>
+						<button type="submit" class="btn btn-primary submit-btn"(clic)="edit()">Sauvegarder les modifications</button>
 					</div>
 				</form>
 				<!-- /Profile Settings Form -->

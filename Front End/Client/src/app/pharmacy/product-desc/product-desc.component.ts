@@ -40,7 +40,7 @@ export class ProductDescComponent implements OnInit {
     this.produitServices.getProduitByID(id)
     .subscribe(data=>{
       this.article=data
-      //console.log('produits',data)
+      console.log('produits',data)
     })
   }
 

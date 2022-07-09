@@ -18,20 +18,10 @@
               </div>
               <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group form-focus">
-                  <input
-                    class="form-control floating"
-                    placeholder="Entre email"
-                    type="text"
-                    name="email"
-                    autocomplete="off"
-                    formControlName="email"
-                    [ngClass]="{
-                      'is-invalid': submitted && form['email'].errors
-                    }"
-                  />
+                  <input class="form-control floating" placeholder="Entre email" type="text" name="email" autocomplete="off"
+                    formControlName="email" [ngClass]="{'is-invalid': submitted && form['email'].errors}"/>
                   <label class="focus-label">Email</label>
-                  <div
-                    *ngIf="submitted && form['email'].errors"
+                  <div *ngIf="submitted && form['email'].errors"
                     class="invalid-feedback"
                   >
                     <span *ngIf="form['email'].errors['required']"
@@ -73,9 +63,7 @@
 								</div> -->
 
                 <div class="text-end">
-                  <a class="forgot-link" [routerLink]="'/forgot-password'"
-                    >Mot de passe oublié ?</a
-                  >
+                  <!--<a class="forgot-link" [routerLink]="'/forgot-password'">Mot de passe oublié ?</a>-->
                 </div>
                 <button
                   class="btn btn-primary w-100 btn-lg login-btn"
