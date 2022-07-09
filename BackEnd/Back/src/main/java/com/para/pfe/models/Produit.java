@@ -1,6 +1,9 @@
 package com.para.pfe.models;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "produits")
-public class Produit {
+public class Produit implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,29 +58,46 @@ public class Produit {
 	@NotNull
 	private String Fournisseur;
 
-	 @ManyToMany(fetch = FetchType.LAZY,
+	@ManyToMany(fetch = FetchType.LAZY,
 		      cascade = {
 		          CascadeType.PERSIST,
 		          CascadeType.MERGE
 		      },
 		      mappedBy = "produits")
 		  @JsonIgnore
-		  private Set<Categorie> categories = new HashSet<>();
+    private List<Categorie> categories = new ArrayList<>();
 	
 	public Produit() {
 		super();
 	}
 	
-	public Produit(String nom, int qte, String prix, String description, String image, String fournisseur, int qteLimite) {
+	
+
+	public Produit(Long id, @NotEmpty(message = "nom obligatoire") @NotNull String nom, @NotNull int qte,
+			@NotNull int qteLimite, @NotNull String prix, @NotNull String description, @NotBlank @NotNull String image,
+			@NotBlank @NotNull String fournisseur, List<Categorie> categories) {
 		super();
+		this.id = id;
 		Nom = nom;
 		Qte = qte;
+		QteLimite = qteLimite;
 		Prix = prix;
 		Description = description;
 		Image = image;
 		Fournisseur = fournisseur;
-		QteLimite = qteLimite;
+		this.categories = categories;
 	}
+
+	
+
+
+	@Override
+	public String toString() {
+		return "Produit [id=" + id + ", Nom=" + Nom + ", Qte=" + Qte + ", QteLimite=" + QteLimite + ", Prix=" + Prix
+				+ ", Description=" + Description + ", Image=" + Image + ", Fournisseur=" + Fournisseur + "]";
+	}
+
+
 
 	public Long getId() {
 		return id;
@@ -130,11 +150,14 @@ public class Produit {
 	public void setQteLimite(int qteLimite) {
 		QteLimite = qteLimite;
 	}
-	 public Set<Categorie> getCategories() {
-		    return categories;
-		  }
 
-		  public void setCategories(Set<Categorie> categories) {
-		    this.categories = categories;
-		  }  
+	public List<Categorie> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Categorie> categories) {
+		this.categories = categories;
+	}
+	
+	
 }

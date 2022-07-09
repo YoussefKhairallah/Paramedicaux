@@ -75,12 +75,12 @@ public class AuthController {
 
   @PostMapping("/signup")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+    /*if (userRepository.existsByUsername(signUpRequest.getUsername())) {
       return ResponseEntity
           .badRequest()
           .body(new MessageResponse("Error: Username is already taken!"));
     }
-
+*/
     if (userRepository.existsByEmail(signUpRequest.getEmail())) {
       return ResponseEntity
           .badRequest()
@@ -92,21 +92,21 @@ public class AuthController {
 
     //Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
-    System.out.println(signUpRequest.getRole());
-    User user = new User(signUpRequest.getUsername(),
-    					signUpRequest.getNom(),
+    String strRoles = signUpRequest.getRole();
+    System.out.println("role"+strRoles);
+    User user = new User(signUpRequest.getNom(),
     					signUpRequest.getPrenom(),
     					signUpRequest.getDateNaissance(),
     					signUpRequest.getTel(),
     					signUpRequest.getAdresse(),
     					signUpRequest.getCodePostal(),
-    					signUpRequest.getPays(),
     					signUpRequest.getVille(),
     					signUpRequest.getEmail(),
     					encoder.encode(signUpRequest.getPassword()),
-    					signUpRequest.getImage(),
-    					signUpRequest.getState()
+    					signUpRequest.getState(),
+    					signUpRequest.getRole(), strRoles, strRoles
     					);
+    /*
     if (signUpRequest.getRole() == null) {
         Role clientRole = roleRepository.findByName(ERole.ROLE_CLIENT)
             .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -115,7 +115,8 @@ public class AuthController {
     	  Set<String> strRoles = signUpRequest.getRole();
 
       strRoles.forEach(role -> {
-        switch (role) {
+    	  */
+        switch (strRoles) {
         case "admin":
           Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
               .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -133,9 +134,9 @@ public class AuthController {
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                 roles.add(clientRole);
         }
-      });
+     // });
     
-      }
+     // }
     user.setRoles(roles);
     System.out.println(user);
     userRepository.save(user);

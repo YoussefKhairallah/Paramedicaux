@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -37,19 +38,19 @@ public class Avis {
 	@NotNull
 	private String Date;
     
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="id_client", nullable =false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private User client;
-
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="id_produit", nullable =false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Produit produit;
-    
+    public Produit produit;  
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="id_client", nullable =false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    public User client;
 
+  
 
 	public Avis() {
 		super();
@@ -93,12 +94,12 @@ public class Avis {
 	}
 
 
-	public User getUser() {
+	public User getClient() {
 		return client;
 	}
 
 
-	public void setUser(User client) {
+	public void setClient(User client) {
 		this.client = client;
 	}
 

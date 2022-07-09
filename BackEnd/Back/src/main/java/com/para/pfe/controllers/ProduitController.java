@@ -1,5 +1,6 @@
 package com.para.pfe.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ import com.para.pfe.models.Produit;
 import com.para.pfe.repository.CategorieRepository;
 import com.para.pfe.repository.ProduitRepository;
 
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5200"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5200","http://localhost:6200"}, allowCredentials = "true")
 
 @RestController
 @RequestMapping("/api")
@@ -37,19 +38,18 @@ public class ProduitController {
 	 
 	 @Autowired
 	 private CategorieRepository categorieRepository;
+	 
+	
 	 @GetMapping("/produits")
-	 
-	 
-	    public List<Produit> getAllProduits() {
+	 public List<Produit> getAllProduits() {
 	        return  (List<Produit>) produitrepo.findAll();
 	    }
 
 
 	    @GetMapping("/produits/{id}")
-	    public ResponseEntity<Produit> getProduitById(@PathVariable(value = "id") Long id)
+	    public ResponseEntity<Object> getProduitById(@PathVariable(value = "id") Long id)
 	        throws ResourceNotFoundException {
-	        Produit produits = produitrepo.findById(id)
-	          .orElseThrow(() -> new ResourceNotFoundException("Produit not found for this id :: " + id));
+	         Object produits = produitrepo.findById(id).get();
 	        return ResponseEntity.ok().body(produits);
 	    }
 	    
@@ -74,8 +74,11 @@ public class ProduitController {
 	    	          .orElseThrow(() -> new ResourceNotFoundException("Categories not found for this id :: " + categorieId));
 	        
 	        // add and create new Produit
-	        categorie.addProduit(pd);
-	        categorieRepository.save(categorie);
+	        //categorie.addProduit(pd);
+	        //categorieRepository.save(categorie);
+	    	categorie.getProduits().add(pd);
+	    	pd.getCategories().add(categorie);
+	    	categorieRepository.save(categorie);
 	      
 	      return new ResponseEntity<>(produitRequest, HttpStatus.CREATED);
 	    }
@@ -85,6 +88,14 @@ public class ProduitController {
 	         @Valid @RequestBody Produit produitsDetails) throws ResourceNotFoundException {
 	        Produit produits = produitrepo.findById(id)
 	        .orElseThrow(() -> new ResourceNotFoundException("Produit not found for this id :: " + id));
+			List<Long> catids=new ArrayList<Long>();
+			produits.getCategories().forEach(c->{
+				catids.add(c.getId());
+			});
+			long idc=catids.get(0);
+			Categorie ca=categorieRepository.findById(idc).get();
+			produits.getCategories().add(ca);
+  
 	        
 	        produits.setNom(produitsDetails.getNom());
 	        produits.setDescription(produitsDetails.getDescription());
@@ -94,9 +105,7 @@ public class ProduitController {
 	        produits.setFournisseur(produitsDetails.getFournisseur());
 	        produits.setImage(produitsDetails.getImage());
 
-
-
-	        final Produit updatedProduit = produitrepo.save(produits);
+	         Produit updatedProduit = produitrepo.save(produits);
 	        return ResponseEntity.ok(updatedProduit);
 	    }
 

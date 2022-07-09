@@ -34,7 +34,7 @@ public class User {
 
 
 	private String DateNaissance;
-	@Column(length = 8)
+	@Column(length = 255)
 
 
 	private String Tel;
@@ -52,7 +52,6 @@ public class User {
 
 	private String codePostal;
 
-	private String pays;
 
 	//@NotNull
 	private String state;
@@ -75,7 +74,6 @@ public class User {
 	this.Tel = tel;
 	this.adresse = adresse;
     this.codePostal = codePostal;
-    this.pays = pays;
     this.ville = ville;
     this.email = email;
     this.password = password;
@@ -114,14 +112,6 @@ public String getCodePostal() {
 
 public void setCodePostal(String codePostal) {
 	this.codePostal = codePostal;
-}
-
-public String getPays() {
-	return pays;
-}
-
-public void setPays(String pays) {
-	this.pays = pays;
 }
 
 public Long getId() {

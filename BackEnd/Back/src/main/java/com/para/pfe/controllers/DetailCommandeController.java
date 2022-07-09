@@ -22,7 +22,7 @@ import com.para.pfe.exception.ResourceNotFoundException;
 import com.para.pfe.models.DetailCommande;
 import com.para.pfe.repository.DetailCommandeRepository;
 
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5200"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5200","http://localhost:6200"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class DetailCommandeController {
@@ -33,7 +33,7 @@ public class DetailCommandeController {
     @GetMapping("/detailcommande")
     public List<DetailCommande> getAllDetailCommande() {
         return  (List<DetailCommande>) DetailCommandeRepository.findAll();
-        //return (List<DetailCommande>) DetailCommandeRepository.findAll();
+        
     }
 
 
@@ -41,7 +41,7 @@ public class DetailCommandeController {
     public ResponseEntity<DetailCommande> getDetailCommandeById(@PathVariable(value = "id") Long username)
         throws ResourceNotFoundException {
         DetailCommande devis = DetailCommandeRepository.findById(username)
-          .orElseThrow(() -> new ResourceNotFoundException("DetailCommande not found for this id :: " + username));
+          .orElseThrow(() -> new ResourceNotFoundException("Detail Commande not found for this id :: " + username));
         return ResponseEntity.ok().body(devis);
     }
     
@@ -57,7 +57,6 @@ public class DetailCommandeController {
          @Valid @RequestBody DetailCommande devisDetails) throws ResourceNotFoundException {
         DetailCommande devis = DetailCommandeRepository.findById(username)
         .orElseThrow(() -> new ResourceNotFoundException("DetailCommande not found for this id :: " + username));
-
 
         DetailCommande updatedDetailCommande = DetailCommandeRepository.save(devis);
         return ResponseEntity.ok(updatedDetailCommande);

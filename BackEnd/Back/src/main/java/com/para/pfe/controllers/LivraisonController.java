@@ -22,7 +22,7 @@ import com.para.pfe.exception.ResourceNotFoundException;
 import com.para.pfe.models.Livraison;
 import com.para.pfe.repository.LivraisonRepository;
 
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5200"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:5200","http://localhost:6200"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class LivraisonController {

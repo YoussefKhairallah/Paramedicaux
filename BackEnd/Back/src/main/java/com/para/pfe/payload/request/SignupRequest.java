@@ -1,62 +1,51 @@
 package com.para.pfe.payload.request;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.validation.constraints.*;
 
 public class SignupRequest {
 	
-	@NotEmpty(message = "Please enter username")
-	@Size(min = 3, max = 20)
-	private String username;
-	
-  private String image;
 	@Column(length = 50)
-	@NotBlank
-	@NotNull
+	
+	
 	private  String Nom;
 	
 	@Column(length = 50)
-	@NotBlank
-	@NotNull
+	
+	
 	private String Prenom;
 	
-	@NotBlank
-	@NotNull
+	
+	
 	private String DateNaissance;
 	
 	@Column(length = 8)
-	@NotBlank
-	@NotNull
+	
+	
 	private String Tel;
 	
-	@NotBlank
+	
 	private String adresse;
 	
-	@NotBlank
+	
 	private String ville;
 	
-	@NotBlank
+	
 	private String codePostal;
 	
-	@NotBlank
-	private String pays;
-	
-	@NotBlank
 	@Size(max = 50)
 	@Email
 	private String email;
 
-	@NotBlank
+	
 	@Size(min = 6, max = 40)
 	private String password;
 	
-	@NotBlank
-	//@NotNull
+	
+	//
 	private String state;
 	
-	private Set<String> role;
+	private String role;
 
 	
   public String getNom() {
@@ -99,14 +88,6 @@ public class SignupRequest {
 		this.codePostal = codePostal;
 	}
 
-	public String getPays() {
-		return pays;
-	}
-
-	public void setPays(String pays) {
-		this.pays = pays;
-	}
-
 	public String getDateNaissance() {
 		return DateNaissance;
 	}
@@ -147,27 +128,12 @@ public class SignupRequest {
 	    this.password = password;
 	  }
 	
-	  public Set<String> getRole() {
+	  public String getRole() {
 	    return this.role;
 	  }
 	
-	  public void setRole(Set<String> role) {
+	  public void setRole(String role) {
 	    this.role = role;
 	  }
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getUsername() {
-		return username;
-	  }
-	
-	  public void setUsername(String username) {
-		this.username = username;
-	  }
 }

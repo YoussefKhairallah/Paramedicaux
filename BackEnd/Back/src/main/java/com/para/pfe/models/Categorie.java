@@ -1,6 +1,9 @@
 package com.para.pfe.models;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -23,35 +26,42 @@ import javax.validation.constraints.NotNull;
             "nom"
         })
 })
-public class Categorie {
+public class Categorie implements Serializable  {
 
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	
 
     @Column(length = 50)
 	@NotNull
 	private String nom;
 	
-    @ManyToMany(fetch = FetchType.LAZY,
-    	      cascade = {
-    	          CascadeType.PERSIST,
-    	          CascadeType.MERGE
-    	      })
-    	  @JoinTable(name = "produit_categorie",
-    	        joinColumns = { @JoinColumn(name = "categorie_id") },
-    	        inverseJoinColumns = { @JoinColumn(name = "produit_id") })
-    	  private Set<Produit> produits = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "categorie_produit",
+            joinColumns = { @JoinColumn(name = "categorie_id") },
+            inverseJoinColumns = { @JoinColumn(name = "produit_id") })
+    private List<Produit> produits = new ArrayList<>();
 	
 	public Categorie() {
 		
 	}
 	
 	
+	
+	
 	public Categorie(String nom) {
 		this.nom = nom;
 	}
+
+	@Override
+	public String toString() {
+		return "Categorie [id=" + id + ", nom=" + nom  + "]";
+	}
+
+
+
 
 	public Long getId() {
 		return id;
@@ -70,13 +80,23 @@ public class Categorie {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	 public Set<Produit> getProduits() {
-		    return produits;
-		  }
 
-		  public void setProduits(Set<Produit> produits) {
-		    this.produits = produits;
-		  }
+
+	public List<Produit> getProduits() {
+		return produits;
+	}
+	public void setProducts(List<Produit> produits) {
+		this.produits = produits;
+	}
+	
+	
+	/*
+	public List<Produit> getProducts() {
+		return produits;
+	}
+	public void setProducts(List<Produit> produits) {
+		this.produits = produits;
+	}
 		  
 		  public void addProduit(Produit produit) {
 		    this.produits.add(produit);
@@ -90,4 +110,5 @@ public class Categorie {
 		      produit.getCategories().remove(this);
 		    }
 		  }
+		  */
 }
